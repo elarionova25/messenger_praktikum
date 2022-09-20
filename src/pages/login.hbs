@@ -1,0 +1,52 @@
+---
+styles:
+- '../styles/login.css'
+
+labels: 
+- {
+    name: 'Логин',
+    label: 'login',
+    type: 'text'
+}
+- {
+    name: 'Пароль',
+    label: 'password',
+    type: 'password'
+
+}
+---
+
+{{!< layout}} <div class="block">
+    <div class="entry-form">
+        <div class="title">
+            <p class="title-text">Вход</p>
+        </div>
+        <div class="data">
+
+            {{#each labels}}
+            <label class="text-field__label" for="{{this.label}}">{{this.name}}</label>
+            {{> "input/input"}}
+            {{/each}}
+
+            {{!-- {{> "input/input"}}
+            <div class="text-field">
+                <label class="text-field__label" for="password">Пароль</label>
+                <input class="text-field__input" type="password" name="password" id="password"
+                    placeholder="Введите пароль">
+            </div> --}}
+        </div>
+        <div class="buttons">
+            <button class="btn sign-in-btn">
+                <a href="./index.hbs" style="color:#fff">
+                    Войти
+                </a>
+            </button>
+            <br>
+            <button class="btn sign-up-btn">
+                <a href="./register.hbs" class="sign-up-link">
+                    Нет аккаунта?
+                </a>
+            </button>
+        </div>
+    </div>
+    </div>

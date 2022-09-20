@@ -1,0 +1,12 @@
+.plug {
+    width: 75%;
+    position: relative;
+}
+
+.text-wrap {
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 35%;
+    color: #999999;
+}
