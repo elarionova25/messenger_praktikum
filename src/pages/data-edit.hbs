@@ -1,0 +1,56 @@
+---
+styles:
+- '../styles/data-edit.css'
+
+labels:
+- "Почта"
+- "Логин"
+- "Имя"
+- "Фамилия"
+- "Имя в чате"
+- "Телефон"
+---
+
+
+{{!< layout}} <div class="back-button">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 19 19" fill="none" stroke="#999999"
+        stroke-width="3" stroke-linecap="butt" stroke-linejoin="arcs">
+        <path d="M15 18l-6-6 6-6" />
+    </svg>
+    <a href="./profile.hbs" class="back-btn" style="color: #999">
+        Назад
+    </a>
+    </div>
+
+    <div class="profile-container">
+        <div class="profile">
+            <div class="avatar-wrap">
+                {{> "avatar-input/avatar-input"}}
+            </div>
+            <div class="name-wrap">
+                <p class="name">
+                    <b>
+                        Екатерина
+                    </b>
+                </p>
+            </div>
+            <div class="wrap">
+                {{#each labels}}
+                <div class="info-wrap">
+                    <p class="info-label">
+                        {{this}}
+                    </p>
+                    <div class="edit-input">
+                        {{> "input/input"}}
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+        <div class="save-btn-wrap">
+            <a href="./profile.hbs" style="color:#fff" class="save-btn">
+                Сохранить
+            </a>
+        </div>
+    </div>
