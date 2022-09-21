@@ -8,5 +8,5 @@
     position: absolute;
     top: 50%;
     left: 35%;
-    color: #999999;
+    color: var(--main-grey-color);
 }

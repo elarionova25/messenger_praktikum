@@ -2,7 +2,7 @@
     height: 71px;
     max-width: 381px;
     margin: 0px;
-    border-top: 1px solid #EAEAEA;
+    border-top: 1px solid var(--main-border-color);
     display: flex;
     overflow: hidden;
 }
@@ -44,7 +44,7 @@
     font-weight: 600;
     font-size: 13px;
     line-height: 13px;
-    color: #1E1E1E;
+    color: var(--main-black-color);
 }
 
 .new-message {
@@ -54,10 +54,11 @@
     font-weight: 500;
     font-size: 12px;
     line-height: 15px;
-    color: #999999;
+    color: var(--main-grey-color);
 }
 
 .time-text {
+    float: right;
     left: 275px;
     top: 115px;
     font-style: normal;
@@ -65,15 +66,19 @@
     font-size: 9px;
     line-height: 13px;
     text-align: right;
-    color: #999999;
+    color: var(--main-grey-color);
+}
+
+.time {
+    margin-top: 10px;
 }
 
 .badge {
     box-sizing: border-box;
     display: block;
     float: right;
-    background-color: #3369F3;
-    color: white;
+    background-color: var(--main-blue-color);
+    color: var(--main-white-color);
     border-radius: 3rem;
     text-align: center;
     font-size: .7rem;

@@ -16,7 +16,7 @@
 }
 
 .text {
-    color:#4676D7;
+    color: var(--main-blue-color);
 }
 
 .title {

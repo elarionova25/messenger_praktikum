@@ -9,7 +9,7 @@
     height: 130px;
     margin: 12px;
     border-radius: 50%;
-    box-shadow: 0 0 7px #00000080;
+    box-shadow: 0 0 7px var(--main-black-color);
     display: block;
     margin: 40px auto 40px auto;
     background: #EFEFEF;
@@ -24,7 +24,7 @@
 .info-wrap {
     margin: 0 40px 0 40px;
     display: flex;
-    border-bottom: 1px solid #EAEAEA;
+    border-bottom: 1px solid var(--main-border-color);
 }
 
 .info-label{
@@ -35,6 +35,6 @@
 .info {
     font-size: 15px;
     float: right;
-    color: #999999;
+    color: var(--main-grey-color);
     margin-left: auto;
 }

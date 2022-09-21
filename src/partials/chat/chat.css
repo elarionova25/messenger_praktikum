@@ -22,7 +22,7 @@
   width: 42px;
   height: 100%;
   border-radius: 50%;
-  background-color: #3369F3;
+  background-color: var(--main-blue-color);
 }
 
 input[type="file"] {
@@ -32,7 +32,7 @@ input[type="file"] {
 .header-chat {
   display: flex;
   width: 100%;
-  border-bottom: 1px solid #EAEAEA;
+  border-bottom: 1px solid var(--main-border-color);
 }
 
 .messages-pool {
@@ -142,14 +142,14 @@ input[type="file"] {
 .settings {
   margin: 0 0 0 auto;
   border: none;
-  color: white;
+  color: var(--main-white-color);
   padding: 12px 16px;
   font-size: 16px;
   cursor: pointer;
 }
 
 .dropbtn {
-  color: white;
+  color: var(--main-white-color);
   padding: 16px;
   font-size: 16px;
   border: none;
@@ -164,7 +164,7 @@ input[type="file"] {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
+  background-color: var(--main-white-color);
   min-width: 200px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   right: 0;
@@ -172,7 +172,7 @@ input[type="file"] {
 }
 
 .dropdown-content a {
-  color: black;
+  color: var(--main-black-color);
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -194,7 +194,7 @@ input[type="file"] {
   height: 71px;
   max-width: 381px;
   margin: 0px;
-  border-top: 1px solid #EAEAEA;
+  border-top: 1px solid var(--main-border-color);
   display: flex;
   overflow: hidden;
 }
@@ -247,7 +247,7 @@ input[type="file"] {
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
-  color: #999999;
+  color: var(--main-grey-color);
 }
 
 .time-text {
@@ -258,15 +258,15 @@ input[type="file"] {
   font-size: 9px;
   line-height: 13px;
   text-align: right;
-  color: #999999;
+  color: var(--main-grey-color);
 }
 
 .badge {
   box-sizing: border-box;
   display: block;
   float: right;
-  background-color: #3369F3;
-  color: white;
+  background-color: var(--main-blue-color);
+  color: var(--main-white-color);
   border-radius: 3rem;
   text-align: center;
   font-size: .7rem;

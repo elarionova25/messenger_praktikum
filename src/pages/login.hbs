@@ -2,16 +2,16 @@
 styles:
 - '../styles/login.css'
 
-labels: 
+labels:
 - {
-    name: 'Логин',
-    label: 'login',
-    type: 'text'
+name: 'Логин',
+label: 'login',
+type: 'text'
 }
 - {
-    name: 'Пароль',
-    label: 'password',
-    type: 'password'
+name: 'Пароль',
+label: 'password',
+type: 'password'
 
 }
 ---
@@ -22,18 +22,10 @@ labels:
             <p class="title-text">Вход</p>
         </div>
         <div class="data">
-
             {{#each labels}}
             <label class="text-field__label" for="{{this.label}}">{{this.name}}</label>
             {{> "input/input"}}
             {{/each}}
-
-            {{!-- {{> "input/input"}}
-            <div class="text-field">
-                <label class="text-field__label" for="password">Пароль</label>
-                <input class="text-field__input" type="password" name="password" id="password"
-                    placeholder="Введите пароль">
-            </div> --}}
         </div>
         <div class="buttons">
             <button class="btn sign-in-btn">

@@ -10,7 +10,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    box-shadow: 0 0 7px #00000080;
+    box-shadow: 0 0 7px var(--main-black-color);
     border-radius: 12px;
     width: 30%;
     height: 100%;
@@ -29,7 +29,6 @@
 }
 
 .data {
-    /* text-align: center; */
     padding: 10px;
 }
 
@@ -39,21 +38,15 @@
 
 input[type="text"] {
     font-family: inherit;
-    /* 1 */
     font-size: inherit;
-    /* 1 */
     line-height: inherit;
-    /* 1 */
     margin: 0;
-    /* 2 */
 }
 
-/* установим отступ 1rem от нижнего края элемента */
 .text-field {
     margin-bottom: 1rem;
 }
 
-/* стили для label */
 .text-field__label {
     display: block;
     margin-bottom: 0.25rem;
@@ -61,7 +54,6 @@ input[type="text"] {
     font-size: 15px;
 }
 
-/* стили для input */
 .text-field__input {
     display: block;
     width: 100%;
@@ -72,7 +64,7 @@ input[type="text"] {
     font-weight: 400;
     line-height: 1.5;
     color: #212529;
-    background-color: #fff;
+    background-color: var(--main-white-color);
     background-clip: padding-box;
     border: 1px solid #bdbdbd;
     border-radius: 0.25rem;
@@ -90,8 +82,8 @@ input[type="text"] {
     appearance: none;
     border: 0;
     border-radius: 5px;
-    background: #4676D7;
-    color: #fff;
+    background: var(--main-blue-color);
+    color: var(--main-white-color);
     padding: 8px 16px;
     font-size: 16px;
     width: 300px;
@@ -99,21 +91,21 @@ input[type="text"] {
 }
 
 .register-btn:hover {
-    background: #8bb1fb;
+    opacity: 0.7;
 }
 
 .sign-in-btn{
-    background:#fff;
-    color: #4676D7;
+    background: var(--main-white-color);
+    color: var(--main-blue-color);
     margin-bottom: 0px;
 }
 
 .sign-in-link {
     text-decoration: none;
-    color: #4676D7;
+    color: var(--main-blue-color);
 }
 
 .sign-in-link:hover {
     text-decoration: none;
-    color: #92b4f9;
+    opacity: 0.7;
 }

@@ -2,11 +2,19 @@
 @import '../partials/plug/plug.css';
 @import '../partials/chat/chat.css';
 @import '../partials/chat-element/chat-element.css';
-@import '../partials/modal/modal.css';
+@import '../partials/modals/modal.css';
 @import '../partials/input/input.css';
 @import '../partials/profile-data/profile-data.css';
 @import '../partials/avatar-input/avatar-input.css';
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300&display=swap');
+
+:root {
+    --main-blue-color: #4676D7;
+    --main-black-color: black;
+    --main-grey-color:  #999999;
+    --main-white-color: white;
+    --main-border-color: #EAEAEA;
+}
 
 * {
     box-sizing: border-box;
