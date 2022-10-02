@@ -53,7 +53,7 @@ input {
 }
 
 .search-btn:before {
-  content: url("../asserts/search.svg");
+  /*content: url("../../asserts/search.svg'");*/
   font-size: 16px;
   color: #F9F0DA;
 } 
