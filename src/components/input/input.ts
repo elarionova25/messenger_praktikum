@@ -20,10 +20,11 @@ export class Input extends Block {
   protected render(): string {
     // language=hbs
     return `
-      <div class="input">
+      <div class="text-field">
           {{label}}:
-        <input class="input__input" name="{{name}}" type="{{type}}" placeholder="{{placeholder}}" value="{{value}}">
-        <div class="input__error">{{#if error}}{{error}}{{/if}}</div>
+          
+          <input class="text-field__input" name="{{name}}" id="{{name}}" type="{{type}}" placeholder="{{placeholder}}" value="{{value}}">
+          <div class="input__error">{{#if error}}{{error}}{{/if}}</div>
       </div>
     `
   }

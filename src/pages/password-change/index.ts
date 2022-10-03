@@ -1,0 +1,1 @@
+import {PasswordChangePage} from "./password-change";

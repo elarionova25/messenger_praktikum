@@ -10,12 +10,27 @@ import Button from './components/button';
 import Link from './components/link';
 import Input from './components/input';
 import Layout from './components/layout';
+import {ChatList} from "./components/chat-list/chat-list";
+import {RegisterPage} from "./pages/register/register";
+import {MainPage} from "./pages/main/main";
+import {ChatElement} from "./components/chat-element/chat-element";
+import {Chat} from "./components/chat/chat";
+import {ProfilePage} from "./pages/profile/profile";
+import {ProfileData} from "./components/profile-data/profile-data";
+import {DataEditPage} from "./pages/data-edit/data-edit";
+import AvatarInput from "./components/avatar-input";
+import {PasswordChangePage} from "./pages/password-change/password-change";
 
 registerComponent(Button);
 registerComponent(Link);
 registerComponent(Input);
 registerComponent(Layout);
+registerComponent(ChatList);
+registerComponent(ChatElement);
+registerComponent(Chat);
+registerComponent(ProfileData);
+registerComponent(AvatarInput);
 
 document.addEventListener("DOMContentLoaded", () => {
-    renderDOM(new LoginPage());
+    renderDOM(new PasswordChangePage());
 });

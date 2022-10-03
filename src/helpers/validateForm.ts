@@ -1,6 +1,10 @@
 export enum ValidateType {
     Login= 'login',
-    Password = 'password'
+    Password = 'password',
+    Name = 'name',
+    Surname = 'surname',
+    Email = 'email',
+    Phone = 'phone'
 }
 
 type ValidateRule = {
