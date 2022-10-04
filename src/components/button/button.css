@@ -3,13 +3,13 @@
 }
 
 .button__button {
-  background: #1E1E1E;
   border: none;
   cursor: pointer;
-  color: white;
   padding: 15px 32px;
   font-size: 14px;
   border-radius: 20px;
+  background: var(--main-blue-color);
+  color: var(--main-white-color);
 }
 
 .button__button:hover {

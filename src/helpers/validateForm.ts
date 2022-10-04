@@ -18,9 +18,16 @@ export function validateForm(rules: ValidateRule[]) {
 
         if ( type === ValidateType.Login ) {
             if ( value.length === 0 ) {
-                return  'can not be empty'
+                return  'Поле Логин не может быть пустым'
             } else if ( value.length < 4 ) {
-                return 'make it longer'
+                return 'Логин должен содержать больше 3х символов'
+            }
+        }
+        if ( type === ValidateType.Password ) {
+            if ( value.length === 0 ) {
+                return  'Поле Пароль не может быть пустым'
+            } else if ( value.length < 4 ) {
+                return 'Пароль должен содержать больше 3х символов'
             }
         }
     }

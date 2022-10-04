@@ -31,8 +31,9 @@ export class LoginPage extends Block {
                         loginValue: loginEl.value,
                         passwordValue: passwordEl.value,
                     });
+                    console.log('form is ready to send');
+                    console.log(this.props)
                 }
-                console.log(errorMessage);
             },
         })
     }
@@ -53,6 +54,7 @@ export class LoginPage extends Block {
               placeholder="Введите логин"
               value="${this.props.loginValue}"
               label="Логин"
+              ref="loginInput"
         }}}
         <br>
         {{{ Input
@@ -61,15 +63,19 @@ export class LoginPage extends Block {
               placeholder="Введите пароль"
               value="${this.props.passwordValue}"
               label="Пароль"
+              ref="passwordInput"
         }}}
         </div>
+        <div class="input-error">{{#if error}}{{error}}{{/if}}</div>
+
+        
         <div class="buttons">
-            <button class="btn sign-in-btn">
-                <a href="/" style="color:#fff">
-                    Войти
-                </a>
-            </button>
-            <br>
+        {{{ Button text='Войти' onClick=onSubmit}}}
+<!--            <button class="btn sign-in-btn">-->
+<!--                <a href="/" style="color:#fff">-->
+<!--                    Войти-->
+<!--                </a>-->
+<!--            </button>-->
             <button class="btn sign-up-btn">
                 <a href="/pages/register" class="sign-up-link">
                     Нет аккаунта?
