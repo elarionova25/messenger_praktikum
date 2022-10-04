@@ -5,15 +5,16 @@
 
 .entry-form {
     position: absolute;
-    margin: auto;
+    margin: 0 auto;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     box-shadow: 0 0 7px #00000080;
     border-radius: 12px;
-    width: 30%;
-    height: 100%;
+    min-width: 200px;
+    max-width: 600px;
+    min-height: 850px;
 }
 
 .title {
@@ -108,4 +109,9 @@ input[type="text"] {
 .sign-in-link:hover {
     text-decoration: none;
     opacity: 0.7;
+}
+
+.input-error {
+    text-align: center;
+    color: red;
 }

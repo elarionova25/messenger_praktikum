@@ -30,5 +30,15 @@ export function validateForm(rules: ValidateRule[]) {
                 return 'Пароль должен содержать больше 3х символов'
             }
         }
+        if ( type === ValidateType.Name ) {
+            if ( value.length === 0 ) {
+                return  'Поле Имя не может быть пустым'
+            }
+        }
+        if ( type === ValidateType.Surname ) {
+            if ( value.length === 0 ) {
+                return  'Поле Фамилия не может быть пустым'
+            }
+        }
     }
 }
