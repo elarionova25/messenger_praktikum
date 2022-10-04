@@ -18,7 +18,8 @@ a {
     box-shadow: 0 0 7px var(--main-black-color);
     border-radius: 12px;
     max-width: 600px;
-    max-height: 700px;
+    min-height: 700px;
+    max-height: 1400px;
 }
 
 .profile-img {
@@ -75,6 +76,7 @@ a {
 }
 
 .save-btn-wrap {
+    margin-top: 20px;
     position: absolute;
     bottom: 10px;
     left: 50%;

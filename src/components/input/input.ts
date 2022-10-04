@@ -21,8 +21,11 @@ export class Input extends Block {
     // language=hbs
     return `
       <div class="text-field">
-          {{label}}:
-          
+          <div class="label">
+              <span>
+                  {{label}}:
+              </span>
+          </div>
           <input class="text-field__input" name="{{name}}" id="{{name}}" type="{{type}}" placeholder="{{placeholder}}" value="{{value}}">
           <div class="input__error">{{#if error}}{{error}}{{/if}}</div>
       </div>
