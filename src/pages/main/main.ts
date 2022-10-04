@@ -6,7 +6,7 @@ export class MainPage extends Block {
         return`
             <div class="container">
                 <div class="chat-list-wrap">
-            {{{ ChatList }}}
+                {{{ ChatList }}}
                 {{{ Chat }}}
                 </div>
             </div>

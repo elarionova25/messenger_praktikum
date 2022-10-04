@@ -1,4 +1,5 @@
-import {Block} from "../../../core";
+import {Block} from "../../core";
+import './500.css'
 
 
 export class ServerError extends Block {
@@ -15,6 +16,8 @@ export class ServerError extends Block {
                 <span class="text subtitle">
                     Мы уже фиксим.
                 </span>
+                <br>
+                <a href="/" class="link">На главную</a>
         </div>
     </div>
 </div>

@@ -71,7 +71,7 @@ export class LoginPage extends Block {
             </button>
             <br>
             <button class="btn sign-up-btn">
-                <a href="/" class="sign-up-link">
+                <a href="/pages/register" class="sign-up-link">
                     Нет аккаунта?
                 </a>
             </button>

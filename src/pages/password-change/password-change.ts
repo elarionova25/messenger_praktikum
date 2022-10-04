@@ -1,9 +1,63 @@
 import {Block} from "../../core";
 import DefaultImage from "../../noimage.png";
 import "./password-change.css";
+import {validateForm, ValidateType} from "../../helpers/validateForm";
 
 
 export class PasswordChangePage extends Block {
+    constructor() {
+        super();
+
+        this.setProps({
+            error: '',
+            oldPasswordValue: '',
+            newPasswordValue: '',
+            onSubmit: () => {
+                const loginEl = this.element?.querySelector('input[name="oldPassword"]') as HTMLInputElement;
+                const passwordEl = this.element?.querySelector('input[name="newPassword"]') as HTMLInputElement;
+                const nameEl = this.element?.querySelector('input[name="newPassword"]') as HTMLInputElement;
+                const surnameEl = this.element?.querySelector('input[name="surname"]') as HTMLInputElement;
+                const phoneEl = this.element?.querySelector('input[name="phone"]') as HTMLInputElement;
+                const emailEl = this.element?.querySelector('input[name="email"]') as HTMLInputElement;
+
+
+                const errorMessage = validateForm([
+                    {type: ValidateType.Login, value: loginEl.value},
+                    {type: ValidateType.Password, value: passwordEl.value},
+                    {type: ValidateType.Name, value: nameEl.value},
+                    {type: ValidateType.Surname, value: surnameEl.value},
+                    {type: ValidateType.Phone, value: phoneEl.value},
+                    {type: ValidateType.Email, value: emailEl.value},
+
+
+                ]);
+
+                if (errorMessage) {
+                    this.setProps({
+                        error: errorMessage,
+                        loginValue: loginEl.value,
+                        passwordValue: passwordEl.value,
+                        emailValue: emailEl.value,
+                        nameValue: nameEl.value,
+                        surnameValue: surnameEl.value,
+                        phoneValue: phoneEl.value,
+                    });
+                } else {
+                    this.setProps({
+                        error: '',
+                        loginValue: loginEl.value,
+                        passwordValue: passwordEl.value,
+                        emailValue: emailEl.value,
+                        nameValue: nameEl.value,
+                        surnameValue: surnameEl.value,
+                        phoneValue: phoneEl.value,
+                    });
+                }
+                console.log(errorMessage);
+            },
+        })
+    }
+
     render() {
         //language=hbs
         return `
@@ -33,21 +87,21 @@ export class PasswordChangePage extends Block {
                         <div class="wrap">
                             {{{ Input
                                     type="password"
-                                    name="password"
+                                    name="oldPassword"
                                     placeholder="Введите пароль"
                                     value="${this.props.loginValue}"
                                     label="Старый пароль"
                             }}}
                             {{{ Input
                                     type="password"
-                                    name="password"
+                                    name="newPassword"
                                     placeholder="Введите пароль"
                                     value="${this.props.loginValue}"
                                     label="Новый пароль"
                             }}}
                             {{{ Input
                                     type="password"
-                                    name="password"
+                                    name="newPasswordRepeat"
                                     placeholder="Введите пароль"
                                     value="${this.props.loginValue}"
                                     label="Повторите новый пароль"
@@ -57,7 +111,7 @@ export class PasswordChangePage extends Block {
 
                     <div class="save-btn-wrap">
                         <button class="save-btn">
-                            <a href="./" style="color:#fff">
+                            <a href="/pages/profile/" style="color:#fff">
                                 Сохранить
                             </a>
                         </button>

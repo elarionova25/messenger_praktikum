@@ -1,13 +1,14 @@
 import {Block} from "../../core";
+import DefaultProfileImage from "../../noimage.png";
 import "./profile-data.css"
 
 
 export class ProfileData extends Block {
     render(){
         return `
-        <div class="profile">
+    <div class="profile">
     <div class="avatar-wrap">
-        <img src="../../noimage.png" alt="Аватар" class="profile-img">
+        <img src="${DefaultProfileImage}" alt="Аватар" class="profile-img">
     </div>
     <div class="name-wrap">
         <p class="name">

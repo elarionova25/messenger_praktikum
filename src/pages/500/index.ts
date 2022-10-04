@@ -1,6 +1,7 @@
-import {ChatList} from "./chat-list";
+import {ServerError} from "./500";
 import {renderDOM} from "../../core";
 
+
 document.addEventListener("DOMContentLoaded", () => {
-    renderDOM(new ChatList());
-});
+    renderDOM(new ServerError());
+})

@@ -94,6 +94,61 @@ export class Chat extends Block {
             </div>
         </div>
     </div>
+    
+    {{#Modal 
+        id='openAddModal'
+        title='Добавить пользователя'}}
+        {{{ Input 
+                type="login"
+                name="login"
+                placeholder="Введите логин"
+                value="${this.props.loginValue}"
+                label="Логин"
+        }}}
+        <div class="buttons">
+                <button class="modal-btn">
+                    <a href="#close" style="color:#fff">
+                        Добавить
+                    </a>
+                </button>
+        </div>
+    {{/Modal}}
+    
+    {{#Modal 
+        id='openDeletePersonModal'
+        title='Удалить пользователя'}}
+        {{{ Input 
+                type="login"
+                name="login"
+                placeholder="Введите логин"
+                value="${this.props.loginValue}"
+                label="Логин"
+        }}}
+         <div class="buttons">
+                <button class="modal-btn">
+                    <a href="#close" style="color:#fff">
+                        Удалить
+                    </a>
+                </button>
+         </div>
+    {{/Modal}}
+    
+    {{#Modal id='openDeleteModal'}}
+         <p>Вы действительно хотите удалить диалог?</p>
+         <br>
+            <div class="yes-no-buttons">
+                <button class="yes-btn">
+                    <a href="#close" style="color:#fff">
+                        ДА!
+                    </a>
+                </button>
+                <button class="no-btn">
+                    <a href="#close" class="no-btn">
+                        Нет
+                    </a>
+                </button>
+            </div>
+    {{/Modal}}
 </div>
         `
     }

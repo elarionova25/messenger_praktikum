@@ -121,13 +121,13 @@ export class RegisterPage extends Block {
                     </div>
                     <div class="buttons">
                         <button class="btn register-btn">
-                            <a href="./index.hbs" style="color:#fff">
+                            <a href="/" style="color:#fff">
                                 Зарегистрироваться
                             </a>
                         </button>
                         <br>
                         <button class="btn sign-in-btn">
-                            <a href="./login.hbs" class="sign-in-link">
+                            <a href="/pages/login" class="sign-in-link">
                                 Войти
                             </a>
                         </button>

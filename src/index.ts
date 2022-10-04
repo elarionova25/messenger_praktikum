@@ -20,6 +20,8 @@ import {ProfileData} from "./components/profile-data/profile-data";
 import {DataEditPage} from "./pages/data-edit/data-edit";
 import AvatarInput from "./components/avatar-input";
 import {PasswordChangePage} from "./pages/password-change/password-change";
+import {Plug} from "./components/plug/plug";
+import {Modal} from "./components/modals/modal";
 
 registerComponent(Button);
 registerComponent(Link);
@@ -30,7 +32,10 @@ registerComponent(ChatElement);
 registerComponent(Chat);
 registerComponent(ProfileData);
 registerComponent(AvatarInput);
+registerComponent(Plug);
+registerComponent(ProfileData);
+registerComponent(Modal);
 
 document.addEventListener("DOMContentLoaded", () => {
-    renderDOM(new PasswordChangePage());
+    renderDOM(new MainPage());
 });

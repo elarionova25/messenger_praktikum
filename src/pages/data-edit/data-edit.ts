@@ -141,7 +141,7 @@ export class DataEditPage extends Block {
         </div>
 
         <div class="save-btn-wrap">
-            <a href="./profile.hbs" style="color:#fff" class="save-btn">
+            <a href="/pages/profile" style="color:#fff" class="save-btn">
                 Сохранить
             </a>
         </div>

@@ -1,4 +1,5 @@
-import {Block} from "../../../core";
+import {Block} from "../../core";
+import './404.css';
 
 
 export class NotFoundErrorPage extends Block {
@@ -15,6 +16,8 @@ export class NotFoundErrorPage extends Block {
                 <span class="text subtitle">
                     Ой... Мы не можем найти страницу.
                 </span>
+                <br>
+                <a href="/" class="link">На главную</a>
         </div>
     </div>
 </div>

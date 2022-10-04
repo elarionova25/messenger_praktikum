@@ -1,6 +1,7 @@
-import {ChatList} from "./chat-list";
+import {NotFoundErrorPage} from "./404";
 import {renderDOM} from "../../core";
 
+
 document.addEventListener("DOMContentLoaded", () => {
-    renderDOM(new ChatList());
-});
+    renderDOM(new NotFoundErrorPage());
+})
