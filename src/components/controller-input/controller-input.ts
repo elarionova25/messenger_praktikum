@@ -26,6 +26,7 @@ export class ControllerInput extends Block {
                 if(errorMessage){
                     this.setProps( {
                         error: errorMessage,
+                        value: inputEl.value,
                     })
                 } else {
                     this.setProps( {
@@ -33,7 +34,7 @@ export class ControllerInput extends Block {
                         value: inputEl.value,
                     })
                 }
-                this.refs.inputRef.value = inputEl.value
+                this.refs.inputRef.props.value= inputEl.value;
             }
         });
     }

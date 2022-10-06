@@ -12,27 +12,28 @@ export class LoginPage extends Block {
             onInput: () => console.log('input'),
             onFocus: () => console.log('focus'),
             onSubmit: () => {
-                console.log(123)
-                const loginEl = this.element?.querySelector('input[name="login"]') as HTMLInputElement;
-                const passwordEl = this.element?.querySelector('input[name="password"]') as HTMLInputElement;
+                const loginEl = this.refs.loginControllerInputRef;
+                const passwordEl = this.refs.passwordControllerInputRef;
 
+                console.log(loginEl);
                 const errorMessage = validateForm([
-                    {type: loginEl.name, value: loginEl.value},
-                    {type: passwordEl.name, value: passwordEl.value},
+                    {type: loginEl.props.name, value: loginEl.props.value},
+                    {type: passwordEl.props.name, value: passwordEl.props.value},
                 ]);
-                console.log(errorMessage)
+
+                console.log(this.refs.loginControllerInputRef.refs.InputRef)
 
                 if (errorMessage) {
                     this.setProps({
                         error: errorMessage,
-                        loginValue: loginEl.value,
-                        passwordValue: passwordEl.value,
+                        loginValue: loginEl.props.value,
+                        passwordValue: passwordEl.props.value,
                     });
                 } else {
                     this.setProps({
                         error: '',
-                        loginValue: loginEl.value,
-                        passwordValue: passwordEl.value,
+                        loginValue: loginEl.props.value,
+                        passwordValue: passwordEl.props.value,
                     });
                     console.log('form is ready to send');
                     console.log(this.props)
@@ -58,7 +59,7 @@ export class LoginPage extends Block {
               onInput=onInput
               onFocus=onFocus
               label="Логин"
-              value=""
+              value="${this.props.loginValue}"
               ref="loginControllerInputRef"
         }}}
             {{{ControllerInput
@@ -68,9 +69,8 @@ export class LoginPage extends Block {
               onInput=onInput
               onFocus=onFocus
               label="Пароль"
-              value=""
-              ref="passwordInputRef"
-
+              value="{{value}}"
+              ref="passwordControllerInputRef"
         }}}
         </div>
         
@@ -95,35 +95,28 @@ export class LoginPage extends Block {
     }
 }
 
-// <div class="screen screen_theme_full">
-//   <div class="screen__content">
-//       {{{ AvatarInput }}}
-//       {{{ Input
-//         type="text"
-//         name="login"
-//         placeholder="Login"
-//         value="${this.props.loginValue}"
-//         label="Login"
-//       }}}
-//       {{{ Input
-//               type="password"
-//               name="password"
-//               placeholder="password"
-//               value="${this.props.passwordValue}"
-//               label="Password"
-//       }}}
-//       {{#if error}}{{error}}{{/if}}
-//       {{{ Button text="login" onClick=onSubmit}}}
+// console.log(123)
+// const loginEl = this.element?.querySelector('input[name="login"]') as HTMLInputElement;
+// const passwordEl = this.element?.querySelector('input[name="password"]') as HTMLInputElement;
 //
-//   </div>
-// </div>
-
-// <br>
-//     {{{ Input
-//     type="password"
-//     name="password"
-//     placeholder="Введите пароль"
-//     value="${this.props.passwordValue}"
-//     label="Пароль"
-//     ref="passwordInput"
-// }}}
+// const errorMessage = validateForm([
+//     {type: loginEl.name, value: loginEl.value},
+//     {type: passwordEl.name, value: passwordEl.value},
+// ]);
+// console.log(errorMessage)
+//
+// if (errorMessage) {
+//     this.setProps({
+//         error: errorMessage,
+//         loginValue: loginEl.value,
+//         passwordValue: passwordEl.value,
+//     });
+// } else {
+//     this.setProps({
+//         error: '',
+//         loginValue: loginEl.value,
+//         passwordValue: passwordEl.value,
+//     });
+//     console.log('form is ready to send');
+//     console.log(this.props)
+// }
