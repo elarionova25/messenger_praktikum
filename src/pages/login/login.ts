@@ -1,23 +1,26 @@
 import Block from '../../core/Block';
-import {validateForm, ValidateType} from "../../helpers/validateForm";
+import {validateForm} from "../../helpers/validateForm";
 import './login.css';
 
 export class LoginPage extends Block {
     constructor() {
         super();
-
         this.setProps({
             error: '',
             loginValue: '',
             passwordValue: '',
+            onInput: () => console.log('input'),
+            onFocus: () => console.log('focus'),
             onSubmit: () => {
+                console.log(123)
                 const loginEl = this.element?.querySelector('input[name="login"]') as HTMLInputElement;
                 const passwordEl = this.element?.querySelector('input[name="password"]') as HTMLInputElement;
 
                 const errorMessage = validateForm([
-                    {type: ValidateType.Login, value: loginEl.value},
-                    {type: ValidateType.Password, value: passwordEl.value},
+                    {type: loginEl.name, value: loginEl.value},
+                    {type: passwordEl.name, value: passwordEl.value},
                 ]);
+                console.log(errorMessage)
 
                 if (errorMessage) {
                     this.setProps({
@@ -48,34 +51,38 @@ export class LoginPage extends Block {
             <p class="title-text">Вход</p>
         </div>
         <div class="data">
-        {{{ Input
+        {{{ControllerInput
               type="text"
               name="login"
               placeholder="Введите логин"
-              value="${this.props.loginValue}"
+              onInput=onInput
+              onFocus=onFocus
               label="Логин"
-              ref="loginInput"
+              value=""
+              ref="loginControllerInputRef"
         }}}
-        <br>
-        {{{ Input
-              type="password"
+            {{{ControllerInput
+              type="text"
               name="password"
               placeholder="Введите пароль"
-              value="${this.props.passwordValue}"
+              onInput=onInput
+              onFocus=onFocus
               label="Пароль"
-              ref="passwordInput"
+              value=""
+              ref="passwordInputRef"
+
         }}}
         </div>
-        <div class="input-error">{{#if error}}{{error}}{{/if}}</div>
-
         
+        <div class="error-message">
+         {{#if error}}
+                {{error}}
+            {{/if}}
+
+        </div>
+           
         <div class="buttons">
         {{{ Button text='Войти' onClick=onSubmit}}}
-<!--            <button class="btn sign-in-btn">-->
-<!--                <a href="/" style="color:#fff">-->
-<!--                    Войти-->
-<!--                </a>-->
-<!--            </button>-->
             <button class="btn sign-up-btn">
                 <a href="/pages/register" class="sign-up-link">
                     Нет аккаунта?
@@ -110,3 +117,13 @@ export class LoginPage extends Block {
 //
 //   </div>
 // </div>
+
+// <br>
+//     {{{ Input
+//     type="password"
+//     name="password"
+//     placeholder="Введите пароль"
+//     value="${this.props.passwordValue}"
+//     label="Пароль"
+//     ref="passwordInput"
+// }}}

@@ -22,6 +22,8 @@ import AvatarInput from "./components/avatar-input";
 import {PasswordChangePage} from "./pages/password-change/password-change";
 import {Plug} from "./components/plug/plug";
 import {Modal} from "./components/modals/modal";
+import {Error} from "./components/error/error";
+import {ControllerInput} from "./components/controller-input/controller-input";
 
 registerComponent(Button);
 registerComponent(Link);
@@ -35,6 +37,8 @@ registerComponent(AvatarInput);
 registerComponent(Plug);
 registerComponent(ProfileData);
 registerComponent(Modal);
+registerComponent(Error);
+registerComponent(ControllerInput);
 
 document.addEventListener("DOMContentLoaded", () => {
     renderDOM(new MainPage());
