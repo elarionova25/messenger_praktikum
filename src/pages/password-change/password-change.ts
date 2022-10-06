@@ -1,7 +1,7 @@
 import {Block} from "../../core";
 import DefaultImage from "../../noimage.png";
 import "./password-change.css";
-import {validateForm, ValidateType} from "../../helpers/validateForm";
+import {validateForm} from "../../helpers/validateForm";
 
 
 export class PasswordChangePage extends Block {
@@ -12,48 +12,33 @@ export class PasswordChangePage extends Block {
             error: '',
             oldPasswordValue: '',
             newPasswordValue: '',
+            newPasswordRepeatValue: '',
             onSubmit: () => {
-                const loginEl = this.element?.querySelector('input[name="oldPassword"]') as HTMLInputElement;
-                const passwordEl = this.element?.querySelector('input[name="newPassword"]') as HTMLInputElement;
-                const nameEl = this.element?.querySelector('input[name="newPassword"]') as HTMLInputElement;
-                const surnameEl = this.element?.querySelector('input[name="surname"]') as HTMLInputElement;
-                const phoneEl = this.element?.querySelector('input[name="phone"]') as HTMLInputElement;
-                const emailEl = this.element?.querySelector('input[name="email"]') as HTMLInputElement;
-
+                const oldPasswordEl = this.refs.oldPasswordRef.props;
+                const newPasswordEl = this.refs.newPasswordRef.props;
+                const newRepeatPasswordEl = this.refs.newRepeatPasswordRef.props;
 
                 const errorMessage = validateForm([
-                    {type: ValidateType.Login, value: loginEl.value},
-                    {type: ValidateType.Password, value: passwordEl.value},
-                    {type: ValidateType.Name, value: nameEl.value},
-                    {type: ValidateType.Surname, value: surnameEl.value},
-                    {type: ValidateType.Phone, value: phoneEl.value},
-                    {type: ValidateType.Email, value: emailEl.value},
-
-
+                    {type: 'password', value: oldPasswordEl.value},
+                    {type: 'newPassword', value: newPasswordEl.value},
+                    {type: 'newPasswordRepeat', value: newRepeatPasswordEl.value},
                 ]);
 
                 if (errorMessage) {
                     this.setProps({
                         error: errorMessage,
-                        loginValue: loginEl.value,
-                        passwordValue: passwordEl.value,
-                        emailValue: emailEl.value,
-                        nameValue: nameEl.value,
-                        surnameValue: surnameEl.value,
-                        phoneValue: phoneEl.value,
+                        oldPasswordValue: oldPasswordEl.value,
+                        newPasswordValue: newPasswordEl.value,
+                        newPasswordRepeatValue: newRepeatPasswordEl.value,
                     });
                 } else {
                     this.setProps({
                         error: '',
-                        loginValue: loginEl.value,
-                        passwordValue: passwordEl.value,
-                        emailValue: emailEl.value,
-                        nameValue: nameEl.value,
-                        surnameValue: surnameEl.value,
-                        phoneValue: phoneEl.value,
+                        oldPasswordValue: oldPasswordEl.value,
+                        newPasswordValue: newPasswordEl.value,
+                        newPasswordRepeatValue: newRepeatPasswordEl.value,
                     });
                 }
-                console.log(errorMessage);
             },
         })
     }
@@ -85,37 +70,49 @@ export class PasswordChangePage extends Block {
                             </p>
                         </div>
                         <div class="wrap">
-                            {{{ Input
+                            {{{ControllerInput
                                     type="password"
-                                    name="oldPassword"
+                                    name="password"
+                                    onInput=onInput
+                                    onFocus=onFocus
                                     placeholder="Введите пароль"
                                     value="${this.props.loginValue}"
                                     label="Старый пароль"
+                                    ref="oldPasswordRef"
                             }}}
-                            {{{ Input
+                            {{{ControllerInput
                                     type="password"
                                     name="newPassword"
+                                    onInput=onInput
+                                    onFocus=onFocus
                                     placeholder="Введите пароль"
                                     value="${this.props.loginValue}"
                                     label="Новый пароль"
+                                    ref="newPasswordRef"
                             }}}
-                            {{{ Input
+                            {{{ControllerInput
                                     type="password"
                                     name="newPasswordRepeat"
+                                    onInput=onInput
+                                    onFocus=onFocus
                                     placeholder="Введите пароль"
                                     value="${this.props.loginValue}"
                                     label="Повторите новый пароль"
+                                    ref="newRepeatPasswordRef"
                             }}}
                         </div>
                     </div>
-
+                    <div class="input-error">{{#if error}}{{error}}{{/if}}</div>
                     <div class="save-btn-wrap">
-                        <button class="save-btn">
-                            <a href="/pages/profile/" style="color:#fff">
-                                Сохранить
-                            </a>
-                        </button>
+                        {{{ Button text="Cохранить" onClick=onSubmit}}}
                     </div>
+<!--                    <div class="save-btn-wrap">-->
+<!--                        <button class="save-btn">-->
+<!--                            <a href="/pages/profile/" style="color:#fff">-->
+<!--                                Сохранить-->
+<!--                            </a>-->
+<!--                        </button>-->
+<!--                    </div>-->
                 </div>
             </div>
         `

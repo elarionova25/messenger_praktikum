@@ -46,5 +46,14 @@ export function validateForm(rules: ValidateRule[]) {
                 return  'Поле Фамилия не может быть пустым'
             }
         }
+
+        if ( type === 'newPassword'|| type === 'newPasswordRepeat') {
+            if ( value.length === 0 ) {
+                return  'Поле Новый пароль не может быть пустым'
+            }
+            else if ( value.length < 4 ) {
+                return 'Новый пароль должен содержать больше 3х символов'
+            }
+        }
     }
 }

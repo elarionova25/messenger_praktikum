@@ -5,7 +5,6 @@ import {validateForm, ValidateType} from "../../helpers/validateForm";
 export class RegisterPage extends Block {
     constructor() {
         super();
-
         this.setProps({
             error: '',
             emailValue: '',
@@ -16,21 +15,21 @@ export class RegisterPage extends Block {
             passwordValue: '',
             passwordRetryValue: '',
             onSubmit: () => {
-                const loginEl = this.element?.querySelector('input[name="login"]') as HTMLInputElement;
-                const passwordEl = this.element?.querySelector('input[name="password"]') as HTMLInputElement;
-                const nameEl = this.element?.querySelector('input[name="name"]') as HTMLInputElement;
-                const surnameEl = this.element?.querySelector('input[name="surname"]') as HTMLInputElement;
-                const phoneEl = this.element?.querySelector('input[name="phone"]') as HTMLInputElement;
-                const emailEl = this.element?.querySelector('input[name="email"]') as HTMLInputElement;
-                const passwordRetryEl = this.element?.querySelector('input[name="passwordRetry"]') as HTMLInputElement;
+                const emailEl = this.refs.emailControllerInputRef.props;
+                const loginEl = this.refs.loginControllerInputRef.props;
+                const nameEl = this.refs.nameControllerInputRef.props;
+                const surnameEl = this.refs.surnameControllerInputRef.props;
+                const phoneEl = this.refs.phoneControllerInputRef.props;
+                const passwordEl = this.refs.passwordControllerInputRef.props;
+                const passwordRetryEl = this.refs.passwordRetryControllerInputRef.props;
 
                 const errorMessage = validateForm([
-                    {type: ValidateType.Login, value: loginEl.value},
-                    {type: ValidateType.Password, value: passwordEl.value},
-                    {type: ValidateType.Name, value: nameEl.value},
-                    {type: ValidateType.Surname, value: surnameEl.value},
-                    {type: ValidateType.Phone, value: phoneEl.value},
-                    {type: ValidateType.Email, value: emailEl.value},
+                    {type: 'login', value: loginEl.value},
+                    {type: 'password', value: passwordEl.value},
+                    {type: 'name', value: nameEl.value},
+                    {type: 'surname', value: surnameEl.value},
+                    {type: 'phone', value: phoneEl.value},
+                    {type: 'email', value: emailEl.value},
                 ]);
 
                 if (errorMessage) {
@@ -81,54 +80,75 @@ export class RegisterPage extends Block {
                         <p class="title-text">Регистрация</p>
                     </div>
                     <div class="data">
-                        {{{ Input
+                        {{{ControllerInput
                                 type="text"
                                 name="email"
                                 placeholder="Введите email"
-                                value="${this.props.emailValue}"
+                                onInput=onInput
+                                onFocus=onFocus
                                 label="Email"
+                                value="${this.props.emailValue}"
+                                ref="emailControllerInputRef"
                         }}}
-                        {{{ Input
+                        {{{ControllerInput
                                 type="text"
                                 name="login"
                                 placeholder="Введите логин"
-                                value="${this.props.loginValue}"
+                                onInput=onInput
+                                onFocus=onFocus
                                 label="Логин"
+                                value="${this.props.loginValue}"
+                                ref="loginControllerInputRef"
                         }}}
-                        {{{ Input
+                        {{{ControllerInput
                                 type="text"
                                 name="name"
                                 placeholder="Введите имя"
-                                value="${this.props.nameValue}"
+                                onInput=onInput
+                                onFocus=onFocus
                                 label="Имя"
+                                value="${this.props.nameValue}"
+                                ref="nameControllerInputRef"
                         }}}
-                        {{{ Input
+                        {{{ControllerInput
                                 type="text"
                                 name="surname"
                                 placeholder="Введите фамилию"
-                                value="${this.props.surnameValue}"
+                                onInput=onInput
+                                onFocus=onFocus
                                 label="Фамилия"
+                                value="${this.props.surnameValue}"
+                                ref="surnameControllerInputRef"
                         }}}
-                        {{{ Input
+                        {{{ControllerInput
                                 type="text"
                                 name="phone"
                                 placeholder="Введите телефон"
-                                value="${this.props.phoneValue}"
+                                onInput=onInput
+                                onFocus=onFocus
                                 label="Телефон"
+                                value="${this.props.phoneValue}"
+                                ref="phoneControllerInputRef"
                         }}}
-                        {{{ Input
+                        {{{ControllerInput
                                 type="password"
                                 name="password"
                                 placeholder="Введите пароль"
-                                value="${this.props.passwordValue}"
+                                onInput=onInput
+                                onFocus=onFocus
                                 label="Пароль"
+                                value="${this.props.passwordValue}"
+                                ref="passwordControllerInputRef"
                         }}}
-                        {{{ Input
+                        {{{ControllerInput
                                 type="password"
                                 name="passwordRetry"
                                 placeholder="Введите пароль"
-                                value="${this.props.passwordRetryValue}"
+                                onInput=onInput
+                                onFocus=onFocus
                                 label="Пароль (ещё раз)"
+                                value="${this.props.passwordRetryValue}"
+                                ref="passwordRetryControllerInputRef"
                         }}}
                     </div>
                     <div class="input-error">{{#if error}}{{error}}{{/if}}</div>
