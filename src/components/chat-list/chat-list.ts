@@ -22,7 +22,7 @@ export class ChatList extends Block{
             <button class="search-btn" type="submit"></button>
         </form>
         <div class="create-chat">
-            <a href="#openAddModal" class="create-group">
+            <a href="#openAddPersonModal" class="create-group">
                 Создать группу
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="-1 -5 24 24" fill="none"
                     stroke="#999" stroke-width="2" stroke-linecap="butt" stroke-linejoin="bevel">
@@ -42,27 +42,23 @@ export class ChatList extends Block{
     <div class="chats-list">
         {{{ ChatElement }}}
     </div>
-    
-    {{#Modal 
-        id='openAddModal'
-        title='Добавить пользователя'}}
-        {{{ Input 
+       {{#Modal
+            id='openAddPersonModal'
+            title='Добавить пользователя'}}
+        {{{ Input
                 type="login"
                 name="login"
                 placeholder="Введите логин"
-                value="${this.props.loginValue}"
-                label="Логин"
         }}}
         <div class="buttons">
-                <button class="modal-btn">
-                    <a href="#close" style="color:#fff">
-                        Добавить
-                    </a>
-                </button>
+            <button class="modal-btn">
+                <a href="#close" style="color:#fff">
+                    Добавить
+                </a>
+            </button>
         </div>
     {{/Modal}}
 </div>
-
         `
     }
 }

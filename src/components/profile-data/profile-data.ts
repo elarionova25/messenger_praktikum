@@ -1,5 +1,4 @@
 import {Block} from "../../core";
-import DefaultProfileImage from "../../noimage.png";
 import "./profile-data.css"
 
 
@@ -8,7 +7,7 @@ export class ProfileData extends Block {
         return `
     <div class="profile">
     <div class="avatar-wrap">
-        <img src="${DefaultProfileImage}" alt="Аватар" class="profile-img">
+        <img src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png" alt="Аватар" class="profile-img">
     </div>
     <div class="name-wrap">
         <p class="name">

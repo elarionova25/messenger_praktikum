@@ -1,9 +1,67 @@
 import {Block} from "../../core";
 import './chat.css'
+import {validateForm} from "../../helpers/validateForm";
 
 
 export class Chat extends Block {
+    constructor() {
+        super();
+        this.setProps({
+            message: '',
+            onSubmit: () => {
+                const loginEl = this.element?.querySelector('input[name="login"]') as HTMLInputElement;
+                const passwordEl = this.element?.querySelector('input[name="password"]') as HTMLInputElement;
+                const nameEl = this.element?.querySelector('input[name="first_name"]') as HTMLInputElement;
+                const surnameEl = this.element?.querySelector('input[name="second_name"]') as HTMLInputElement;
+                const phoneEl = this.element?.querySelector('input[name="phone"]') as HTMLInputElement;
+                const emailEl = this.element?.querySelector('input[name="email"]') as HTMLInputElement;
+                const errorMessage = validateForm([
+                    {type: 'login', value: loginEl.value},
+                    {type: 'password', value: passwordEl.value},
+                    {type: 'first_name', value: nameEl.value},
+                    {type: 'second_name', value: surnameEl.value},
+                    {type: 'phone', value: phoneEl.value},
+                    {type: 'email', value: emailEl.value},
+                ]);
+
+                if (errorMessage) {
+                    this.setProps({
+                        error: errorMessage,
+                        loginValue: loginEl.value,
+                        passwordValue: passwordEl.value,
+                        emailValue: emailEl.value,
+                        nameValue: nameEl.value,
+                        surnameValue: surnameEl.value,
+                        phoneValue: phoneEl.value,
+                    });
+                } else {
+                    this.setProps({
+                        error: '',
+                        loginValue: loginEl.value,
+                        passwordValue: passwordEl.value,
+                        emailValue: emailEl.value,
+                        nameValue: nameEl.value,
+                        surnameValue: surnameEl.value,
+                        phoneValue: phoneEl.value,
+                    });
+                }
+            },
+            onBlur: () => {
+                const messageEl = this.element?.querySelector('input[name="message"]') as HTMLInputElement;
+                const errorMessage = validateForm( [{type: 'message', value: messageEl.value}])
+                if(errorMessage){
+                    this.setProps({
+                        error: errorMessage,
+                    })
+                    console.log(this.props.error)
+                }
+            }
+        })
+    }
+
+
     render() {
+        //language=hbs
         return `
         <div class="chat">
     <div class="header-chat">
@@ -23,7 +81,7 @@ export class Chat extends Block {
                 </svg>
             </div>
             <div class="dropdown-content">
-                <a href="#openAddModal">Добавить пользователя</a>
+                <a href="#openAddPersonModal">Добавить пользователя</a>
                 <a href="#openDeletePersonModal">Удалить пользователя</a>
                 <a href="#openDeleteModal">Удалить диалог</a>
                 </ul>
@@ -83,34 +141,33 @@ export class Chat extends Block {
             </label>
         </div>
         <form class="text-bar-field">
-            <input type="text" placeholder="Введите сообщение" name="message">
-        </form>
-        <div class="icon-wrap">
-            <div class="circle">
-                <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="2 -1 20 20" fill="none"
-                    stroke="#FFFFFF" stroke-width="2" stroke-linecap="butt" stroke-linejoin="bevel">
-                    <path d="M5 12h13M12 5l7 7-7 7"></path>
-                </svg>
-            </div>
-        </div>
-    </div>
-    
-    {{#Modal 
-        id='openAddModal'
-        title='Добавить пользователя'}}
+<!--            <input type="text" placeholder="Введите сообщение" name="message">-->
         {{{ Input 
+            type=text
+            placeholder="Введите сообщение"
+            onBlur=onBlur
+            name="message"
+        }}}
+        </form>
+        {{{ SendButton 
+            onClick=onClick
+        }}}
+    </div>
+            
+    {{#Modal
+            id='openAddPersonModal'
+            title='Добавить пользователя'}}
+        {{{ Input
                 type="login"
                 name="login"
                 placeholder="Введите логин"
-                value="${this.props.loginValue}"
-                label="Логин"
         }}}
         <div class="buttons">
-                <button class="modal-btn">
-                    <a href="#close" style="color:#fff">
-                        Добавить
-                    </a>
-                </button>
+            <button class="modal-btn">
+                <a href="#close" style="color:#fff">
+                    Добавить
+                </a>
+            </button>
         </div>
     {{/Modal}}
     
@@ -121,8 +178,6 @@ export class Chat extends Block {
                 type="login"
                 name="login"
                 placeholder="Введите логин"
-                value="${this.props.loginValue}"
-                label="Логин"
         }}}
          <div class="buttons">
                 <button class="modal-btn">

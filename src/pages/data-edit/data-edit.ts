@@ -1,12 +1,11 @@
 import {Block} from "../../core";
 import "./data-edit.css"
-import {validateForm, ValidateType} from "../../helpers/validateForm";
+import {validateForm} from "../../helpers/validateForm";
 
 
 export class DataEditPage extends Block {
     constructor() {
         super();
-
         this.setProps({
             error: '',
             emailValue: '',
@@ -18,21 +17,18 @@ export class DataEditPage extends Block {
             onSubmit: () => {
                 const loginEl = this.element?.querySelector('input[name="login"]') as HTMLInputElement;
                 const passwordEl = this.element?.querySelector('input[name="password"]') as HTMLInputElement;
-                const nameEl = this.element?.querySelector('input[name="name"]') as HTMLInputElement;
-                const surnameEl = this.element?.querySelector('input[name="surname"]') as HTMLInputElement;
+                const nameEl = this.element?.querySelector('input[name="first_name"]') as HTMLInputElement;
+                const surnameEl = this.element?.querySelector('input[name="second_name"]') as HTMLInputElement;
                 const phoneEl = this.element?.querySelector('input[name="phone"]') as HTMLInputElement;
                 const emailEl = this.element?.querySelector('input[name="email"]') as HTMLInputElement;
 
-
                 const errorMessage = validateForm([
-                    {type: ValidateType.Login, value: loginEl.value},
-                    {type: ValidateType.Password, value: passwordEl.value},
-                    {type: ValidateType.Name, value: nameEl.value},
-                    {type: ValidateType.Surname, value: surnameEl.value},
-                    {type: ValidateType.Phone, value: phoneEl.value},
-                    {type: ValidateType.Email, value: emailEl.value},
-
-
+                    {type: 'login', value: loginEl.value},
+                    {type: 'password', value: passwordEl.value},
+                    {type: 'first_name', value: nameEl.value},
+                    {type: 'second_name', value: surnameEl.value},
+                    {type: 'phone', value: phoneEl.value},
+                    {type: 'email', value: emailEl.value},
                 ]);
 
                 if (errorMessage) {
@@ -69,7 +65,7 @@ export class DataEditPage extends Block {
         stroke-width="3" stroke-linecap="butt" stroke-linejoin="arcs">
         <path d="M15 18l-6-6 6-6" />
     </svg>
-    <a href="./profile.hbs" class="back-btn" style="color: #999">
+    <a href="./profile.ts" class="back-btn" style="color: #999">
         Назад
     </a>
     </div>
@@ -109,7 +105,7 @@ export class DataEditPage extends Block {
                 }}}
                 {{{ControllerInput
                         type="text"
-                        name="name"
+                        name="first_name"
                         placeholder="Введите имя"
                         onInput=onInput
                         onFocus=onFocus
@@ -119,7 +115,7 @@ export class DataEditPage extends Block {
                 }}}
                 {{{ControllerInput
                         type="text"
-                        name="surname"
+                        name="second_name"
                         placeholder="Введите фамилию"
                         onInput=onInput
                         onFocus=onFocus

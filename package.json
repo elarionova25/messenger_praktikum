@@ -5,8 +5,8 @@
     "scripts": {
         "dev": "parcel src/pages/index.hbs --no-cache",
         "build": "parcel build src/pages/index.hbs --no-cache",
-        "start": "parcel src/**/*.html --no-cache",
-        "run": "npm run build && node server.js --no-cache"
+        "start": "node server.js --no-cache  && parcel src/**/*.html --no-cache",
+        "hot": "parcel src/**/*.html --no-cache"
     },
     "keywords": [],
     "author": "",

@@ -1,0 +1,15 @@
+.icon-wrap {
+    display: inline-block;
+    text-align: center;
+    width: 42px;
+    height: 42px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.circle {
+    width: 42px;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--main-blue-color);
+}

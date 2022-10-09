@@ -1,5 +1,4 @@
 import Block from '../../core/Block';
-import Input from "../input";
 import './controller-input.css';
 import {validateForm} from "../../helpers/validateForm";
 

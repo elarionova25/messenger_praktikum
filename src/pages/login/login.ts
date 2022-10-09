@@ -62,7 +62,7 @@ export class LoginPage extends Block {
               value="${this.props.loginValue}"
               ref="loginControllerInputRef"
         }}}
-            {{{ControllerInput
+        {{{ControllerInput
               type="text"
               name="password"
               placeholder="Введите пароль"
@@ -78,7 +78,6 @@ export class LoginPage extends Block {
          {{#if error}}
                 {{error}}
             {{/if}}
-
         </div>
            
         <div class="buttons">
@@ -94,29 +93,3 @@ export class LoginPage extends Block {
     `;
     }
 }
-
-// console.log(123)
-// const loginEl = this.element?.querySelector('input[name="login"]') as HTMLInputElement;
-// const passwordEl = this.element?.querySelector('input[name="password"]') as HTMLInputElement;
-//
-// const errorMessage = validateForm([
-//     {type: loginEl.name, value: loginEl.value},
-//     {type: passwordEl.name, value: passwordEl.value},
-// ]);
-// console.log(errorMessage)
-//
-// if (errorMessage) {
-//     this.setProps({
-//         error: errorMessage,
-//         loginValue: loginEl.value,
-//         passwordValue: passwordEl.value,
-//     });
-// } else {
-//     this.setProps({
-//         error: '',
-//         loginValue: loginEl.value,
-//         passwordValue: passwordEl.value,
-//     });
-//     console.log('form is ready to send');
-//     console.log(this.props)
-// }

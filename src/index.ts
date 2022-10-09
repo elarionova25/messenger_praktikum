@@ -25,6 +25,7 @@ import {Modal} from "./components/modals/modal";
 import {Error} from "./components/error/error";
 import {ControllerInput} from "./components/controller-input/controller-input";
 import {SimpleInput} from "./components/simple-input/simple-input";
+import {SendButton} from "./components/send-button/send-button";
 
 registerComponent(Button);
 registerComponent(Link);
@@ -41,6 +42,7 @@ registerComponent(Modal);
 registerComponent(Error);
 registerComponent(ControllerInput);
 registerComponent(SimpleInput);
+registerComponent(SendButton);
 
 document.addEventListener("DOMContentLoaded", () => {
     renderDOM(new MainPage());

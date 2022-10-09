@@ -1,6 +1,6 @@
 import {Block} from "../../core";
 import './register.css';
-import {validateForm, ValidateType} from "../../helpers/validateForm";
+import {validateForm} from "../../helpers/validateForm";
 
 export class RegisterPage extends Block {
     constructor() {
@@ -153,11 +153,6 @@ export class RegisterPage extends Block {
                     </div>
                     <div class="input-error">{{#if error}}{{error}}{{/if}}</div>
                     <div class="buttons">
-<!--                        <button class="btn register-btn">-->
-<!--                            <a href="/" style="color:#fff">-->
-<!--                                Зарегистрироваться-->
-<!--                            </a>-->
-<!--                        </button>-->
                         {{{ Button text="Зарегистрироваться" onClick=onSubmit}}}
                         <button class="btn sign-in-btn">
                             <a href="/pages/login" class="sign-in-link">

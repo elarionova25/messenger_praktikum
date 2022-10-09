@@ -1,5 +1,4 @@
 import {Block} from "../../core";
-import DefaultImage from "../../noimage.png";
 import "./password-change.css";
 import {validateForm} from "../../helpers/validateForm";
 
@@ -60,7 +59,7 @@ export class PasswordChangePage extends Block {
                 <div class="profile-container">
                     <div class="profile">
                         <div class="avatar-wrap">
-                            <img src="${DefaultImage}" alt="Аватар" class="profile-img">
+                            <img src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png" alt="Аватар" class="profile-img">
                         </div>
                         <div class="name-wrap">
                             <p class="name">
@@ -106,13 +105,6 @@ export class PasswordChangePage extends Block {
                     <div class="save-btn-wrap">
                         {{{ Button text="Cохранить" onClick=onSubmit}}}
                     </div>
-<!--                    <div class="save-btn-wrap">-->
-<!--                        <button class="save-btn">-->
-<!--                            <a href="/pages/profile/" style="color:#fff">-->
-<!--                                Сохранить-->
-<!--                            </a>-->
-<!--                        </button>-->
-<!--                    </div>-->
                 </div>
             </div>
         `
