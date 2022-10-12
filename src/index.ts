@@ -1,4 +1,3 @@
-import OnboardingPage from "./pages/onBoarding";
 import LoginPage from "./pages/login";
 
 require("babel-core/register");
