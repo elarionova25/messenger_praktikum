@@ -14,7 +14,7 @@ export class Button extends Block {
 
   protected render(): string {
     return `
-    <div class="button">
+    <div class="button-wrap">
         <button class="button__button" type="button">{{text}}</button>
     </div>
     `;
