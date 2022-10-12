@@ -30,29 +30,16 @@ export class DataEditPage extends Block {
                     {type: 'phone', value: phoneEl.value},
                     {type: 'email', value: emailEl.value},
                 ]);
-
-                if (errorMessage) {
-                    this.setProps({
-                        error: errorMessage,
-                        loginValue: loginEl.value,
-                        passwordValue: passwordEl.value,
-                        emailValue: emailEl.value,
-                        nameValue: nameEl.value,
-                        surnameValue: surnameEl.value,
-                        phoneValue: phoneEl.value,
-                    });
-                } else {
-                    this.setProps({
-                        error: '',
-                        loginValue: loginEl.value,
-                        passwordValue: passwordEl.value,
-                        emailValue: emailEl.value,
-                        nameValue: nameEl.value,
-                        surnameValue: surnameEl.value,
-                        phoneValue: phoneEl.value,
-                    });
-                }
-            },
+                this.setProps({
+                    error: errorMessage || "",
+                    loginValue: loginEl.value,
+                    passwordValue: passwordEl.value,
+                    emailValue: emailEl.value,
+                    nameValue: nameEl.value,
+                    surnameValue: surnameEl.value,
+                    phoneValue: phoneEl.value,
+                });
+            }
         })
     }
 

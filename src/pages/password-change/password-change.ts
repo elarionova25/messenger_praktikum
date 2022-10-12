@@ -23,22 +23,13 @@ export class PasswordChangePage extends Block {
                     {type: 'newPasswordRepeat', value: newRepeatPasswordEl.value},
                 ]);
 
-                if (errorMessage) {
-                    this.setProps({
-                        error: errorMessage,
-                        oldPasswordValue: oldPasswordEl.value,
-                        newPasswordValue: newPasswordEl.value,
-                        newPasswordRepeatValue: newRepeatPasswordEl.value,
-                    });
-                } else {
-                    this.setProps({
-                        error: '',
-                        oldPasswordValue: oldPasswordEl.value,
-                        newPasswordValue: newPasswordEl.value,
-                        newPasswordRepeatValue: newRepeatPasswordEl.value,
-                    });
+                this.setProps({
+                    error: errorMessage || "",
+                    oldPasswordValue: oldPasswordEl.value,
+                    newPasswordValue: newPasswordEl.value,
+                    newPasswordRepeatValue: newRepeatPasswordEl.value,
+                });
                 }
-            },
         })
     }
 

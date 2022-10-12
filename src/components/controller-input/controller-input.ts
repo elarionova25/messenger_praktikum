@@ -22,17 +22,10 @@ export class ControllerInput extends Block {
             onBlur: (e: FocusEvent) => {
                 let inputEl = e.target as HTMLInputElement;
                 let errorMessage = validateForm( [{type: inputEl.name, value: inputEl.value}]);
-                if(errorMessage){
-                    this.setProps( {
-                        error: errorMessage,
-                        value: inputEl.value,
-                    })
-                } else {
-                    this.setProps( {
-                        error: '',
-                        value: inputEl.value,
-                    })
-                }
+                this.setProps( {
+                    error: errorMessage || "",
+                    value: inputEl.value,
+                })
                 this.refs.inputRef.props.value= inputEl.value;
             }
         });

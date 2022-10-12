@@ -15,26 +15,18 @@ export class LoginPage extends Block {
                 const loginEl = this.refs.loginControllerInputRef;
                 const passwordEl = this.refs.passwordControllerInputRef;
 
-                console.log(loginEl);
                 const errorMessage = validateForm([
                     {type: loginEl.props.name, value: loginEl.props.value},
                     {type: passwordEl.props.name, value: passwordEl.props.value},
                 ]);
 
-                console.log(this.refs.loginControllerInputRef.refs.InputRef)
+                this.setProps({
+                    error: errorMessage || "",
+                    loginValue: loginEl.props.value,
+                    passwordValue: passwordEl.props.value,
+                });
 
-                if (errorMessage) {
-                    this.setProps({
-                        error: errorMessage,
-                        loginValue: loginEl.props.value,
-                        passwordValue: passwordEl.props.value,
-                    });
-                } else {
-                    this.setProps({
-                        error: '',
-                        loginValue: loginEl.props.value,
-                        passwordValue: passwordEl.props.value,
-                    });
+                if(!errorMessage) {
                     console.log('form is ready to send');
                     console.log(this.props)
                 }

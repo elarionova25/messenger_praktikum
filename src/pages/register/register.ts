@@ -21,7 +21,6 @@ export class RegisterPage extends Block {
                 const surnameEl = this.refs.surnameControllerInputRef.props;
                 const phoneEl = this.refs.phoneControllerInputRef.props;
                 const passwordEl = this.refs.passwordControllerInputRef.props;
-                const passwordRetryEl = this.refs.passwordRetryControllerInputRef.props;
 
                 const errorMessage = validateForm([
                     {type: 'login', value: loginEl.value},
@@ -31,43 +30,16 @@ export class RegisterPage extends Block {
                     {type: 'phone', value: phoneEl.value},
                     {type: 'email', value: emailEl.value},
                 ]);
-
-                if (errorMessage) {
-                    this.setProps({
-                        error: errorMessage,
-                        loginValue: loginEl.value,
-                        passwordValue: passwordEl.value,
-                        emailValue: emailEl.value,
-                        nameValue: nameEl.value,
-                        surnameValue: surnameEl.value,
-                        phoneValue: phoneEl.value,
-                    });
-                } else {
-                    if(passwordRetryEl.value === passwordEl.value)
-                    this.setProps({
-                        error: '',
-                        loginValue: loginEl.value,
-                        passwordValue: passwordEl.value,
-                        emailValue: emailEl.value,
-                        nameValue: nameEl.value,
-                        surnameValue: surnameEl.value,
-                        phoneValue: phoneEl.value,
-                        passwordRetryValue: passwordRetryEl.value,
-                    });
-                    else {
-                        this.setProps({
-                            error: 'Пароли не совпадают',
-                            loginValue: loginEl.value,
-                            passwordValue: passwordEl.value,
-                            emailValue: emailEl.value,
-                            nameValue: nameEl.value,
-                            surnameValue: surnameEl.value,
-                            phoneValue: phoneEl.value,
-                            passwordRetryValue: passwordRetryEl.value,
-                        });
-                    }
-                }
-            },
+                this.setProps({
+                    error: errorMessage || "",
+                    loginValue: loginEl.value,
+                    passwordValue: passwordEl.value,
+                    emailValue: emailEl.value,
+                    nameValue: nameEl.value,
+                    surnameValue: surnameEl.value,
+                    phoneValue: phoneEl.value
+                });
+            }
         })
     }
 
