@@ -3,8 +3,8 @@ import './chat-list.css'
 
 export class ChatList extends Block{
     render() {
-        return `
         //language = hbs
+        return `
         <div class="chats">
         <div class="header">
         <div class="profile">

@@ -6,7 +6,7 @@ export class ChatElement extends Block {
         return `
             <div class="chat-element">
     <div class="wrapper avatar">
-        <img src="https://randomuser.me/api/portraits/men/32.jpg">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="avatar">
     </div>
 
     <div class="chat-wrap">

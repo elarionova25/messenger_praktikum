@@ -1,5 +1,5 @@
 .chats {
-    background-color: #FBFBFB;
+    background-color: var(--chat-list-background-color);
     width: 25%;
     min-height: 100%;
     border-right: solid var(--main-border-color);

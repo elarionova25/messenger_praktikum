@@ -2,48 +2,17 @@ import {Block} from "../../core";
 import './chat.css'
 import {validateForm} from "../../helpers/validateForm";
 
-
 export class Chat extends Block {
     constructor() {
         super();
         this.setProps({
             message: '',
-            onSubmit: () => {
-                const loginEl = this.element?.querySelector('input[name="login"]') as HTMLInputElement;
-                const passwordEl = this.element?.querySelector('input[name="password"]') as HTMLInputElement;
-                const nameEl = this.element?.querySelector('input[name="first_name"]') as HTMLInputElement;
-                const surnameEl = this.element?.querySelector('input[name="second_name"]') as HTMLInputElement;
-                const phoneEl = this.element?.querySelector('input[name="phone"]') as HTMLInputElement;
-                const emailEl = this.element?.querySelector('input[name="email"]') as HTMLInputElement;
-                const errorMessage = validateForm([
-                    {type: 'login', value: loginEl.value},
-                    {type: 'password', value: passwordEl.value},
-                    {type: 'first_name', value: nameEl.value},
-                    {type: 'second_name', value: surnameEl.value},
-                    {type: 'phone', value: phoneEl.value},
-                    {type: 'email', value: emailEl.value},
-                ]);
-
-                if (errorMessage) {
+            onClick: () => {
+                if(this.refs.sendButtonRef.props.className==="disabled") {
                     this.setProps({
-                        error: errorMessage,
-                        loginValue: loginEl.value,
-                        passwordValue: passwordEl.value,
-                        emailValue: emailEl.value,
-                        nameValue: nameEl.value,
-                        surnameValue: surnameEl.value,
-                        phoneValue: phoneEl.value,
-                    });
-                } else {
-                    this.setProps({
-                        error: '',
-                        loginValue: loginEl.value,
-                        passwordValue: passwordEl.value,
-                        emailValue: emailEl.value,
-                        nameValue: nameEl.value,
-                        surnameValue: surnameEl.value,
-                        phoneValue: phoneEl.value,
-                    });
+                        error: 'Сообщение пустое',
+                    })
+                    console.log(this.props.error)
                 }
             },
             onBlur: () => {
@@ -53,7 +22,10 @@ export class Chat extends Block {
                     this.setProps({
                         error: errorMessage,
                     })
-                    console.log(this.props.error)
+                    console.log(errorMessage)
+                    this.refs.sendButtonRef.props.className="disabled";
+                } else {
+                    this.refs.sendButtonRef.props.className="circle";
                 }
             }
         })
@@ -149,8 +121,10 @@ export class Chat extends Block {
             name="message"
         }}}
         </form>
-        {{{ SendButton 
-            onClick=onClick
+        {{{ SendButton
+                className="disabled"
+                onClick=onClick
+                ref="sendButtonRef"
         }}}
     </div>
             
