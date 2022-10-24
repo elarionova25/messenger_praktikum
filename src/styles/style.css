@@ -1,11 +1,3 @@
-@import '../partials/chat-list/chat-list.css';
-@import '../partials/plug/plug.css';
-@import '../partials/chat/chat.css';
-@import '../partials/chat-element/chat-element.css';
-@import '../partials/modals/modal.css';
-@import '../partials/input/input.css';
-@import '../partials/profile-data/profile-data.css';
-@import '../partials/avatar-input/avatar-input.css';
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300&display=swap');
 
 :root {
@@ -14,6 +6,7 @@
     --main-grey-color:  #999999;
     --main-white-color: white;
     --main-border-color: #EAEAEA;
+    --chat-list-background-color: #FBFBFB;
 }
 
 * {
