@@ -1,68 +1,55 @@
-enum METHODS {
-    GET = 'GET',
-    POST =  'POST',
-    PUT = 'PUT',
-    PATCH = 'PATCH',
-    DELETE = 'DELETE'
+import {queryStringify} from "../helpers/queryStringify";
+
+const METHODS = {
+    GET: 'GET',
 };
 
-let url = 'https://url/';
-
-type Options = {
-    headers: (name: string) => (string | null);
-    method: METHODS;
-    timeout: number;
-    data?: any;
-}
-
-
-function queryStringify(data:object) {
-    let string = Object.entries(data);
-    let resultString = '';
-    string.map(function ([key, value]) {
-        resultString = resultString + '?' + key + '=' + value;
-    });
-    return resultString;
-}
-
 class HTTPTransport {
-    get = (url:string, options = {}) => {
-        return this.request(url, {
-            ...options, method: METHODS.GET,
-            timeout: 5000,
-            headers: function (name: string): string | null {
-                throw new Error("Function not implemented.");
-            }
-        });
+    get = ({url, options = {}}: { url: any, options?: {} }) => {
+        const response = this.request({url: url, options: {...options, method: METHODS.GET}, timeout: options.timeout});
+        response.then(
+            result => {
+                options.data = queryStringify(result.response)
+            },
+            error => console.log(error)
+        )
+        return response;
     };
 
-    request = (url:string, options: Options) => {
+    options = {
+        timeout: null,
+        data: {},
+        headers: {},
+    }
+
+    request = ({url, options, timeout = 5000}: { url: string, options: any, timeout?: number }) => {
+        const { method, data } = options;
+
         return new Promise((resolve, reject) => {
-            var xhr = new XMLHttpRequest();
-            xhr.open(options.method, url);
+            const xhr = new XMLHttpRequest();
+            const isGet = method === METHODS.GET;
 
-            options.headers = xhr.getResponseHeader;
-
+            xhr.open(method,
+                isGet && !!data
+                    ? `${url}${queryStringify(data)}`
+                    : url,);
             xhr.responseType = 'json';
 
-            if(options.method === METHODS.GET || !options.data){
+            xhr.onload = function () {
+                resolve(xhr);
+            };
+
+            xhr.onabort = reject;
+            xhr.onerror = reject;
+
+            xhr.timeout = timeout;
+            xhr.ontimeout = reject;
+
+            if (method === METHODS.GET || !data) {
                 xhr.send();
             } else {
-                xhr.send(JSON.stringify(options.data));
+                xhr.send(data);
             }
-
-            xhr.timeout = options.timeout;
-            xhr.ontimeout = reject;
-            xhr.onerror = reject;
-            xhr.onabort = reject;
-
-            xhr.onload = function () {
-                let responseObj = xhr.response;
-                queryStringify(responseObj);
-            };
         })
     };
 }
-
-new HTTPTransport().get(url);
-
