@@ -250,10 +250,16 @@ export default class Block<P = any> {
             /**
              * Ищем элемент layout-а, куда вставлять детей
              */
-            const layoutContent = content.querySelector('[data-layout="1"]');
+            // const layoutContent = content.querySelector('[data-layout="1"]');
+            //
+            // if (layoutContent && stubChilds.length) {
+            //     layoutContent.append(...stubChilds);
+            // }
+            const slotContent = content.querySelector('[data-slot="1"]') as HTMLDivElement;
 
-            if (layoutContent && stubChilds.length) {
-                layoutContent.append(...stubChilds);
+            if (slotContent && stubChilds.length) {
+                slotContent.append(...stubChilds);
+                delete slotContent.dataset.slot;
             }
         });
 
