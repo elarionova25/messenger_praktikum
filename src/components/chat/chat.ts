@@ -3,6 +3,8 @@ import './chat.css'
 import {validateForm} from "../../helpers/validateForm";
 
 export class Chat extends Block {
+    static componentName = 'Chat';
+
     constructor() {
         super();
         this.setProps({

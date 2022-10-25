@@ -2,6 +2,8 @@ import {Block} from "../../core";
 import './chat-list.css'
 
 export class ChatList extends Block{
+    static componentName = 'Chat List';
+
     render() {
         //language = hbs
         return `

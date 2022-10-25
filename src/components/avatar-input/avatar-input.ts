@@ -3,7 +3,7 @@ import Block from '../../core/Block';
 import './avatar-input.css';
 
 export class AvatarInput extends Block {
-
+    static componentName = 'Avatar Input';
 
     protected render() {
         return `

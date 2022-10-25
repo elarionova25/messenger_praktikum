@@ -2,6 +2,8 @@ import {Block} from "../../core";
 
 
 export class ChatElement extends Block {
+    static componentName = 'Chat Element';
+
     render() {
         return `
             <div class="chat-element">
