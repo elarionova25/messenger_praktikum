@@ -15,7 +15,8 @@ export class Modal extends Block {
                         <a href="#close" title="Close" class="close">×</a>
                     </div>
                     <div class="modal-body">
-                        <div data-slot="1"></div>
+                     <div data-slot="1">
+                    </div>
                     </div>
                 </div>
             </div>

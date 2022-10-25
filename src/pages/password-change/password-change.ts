@@ -4,6 +4,8 @@ import {validateForm} from "../../helpers/validateForm";
 
 
 export class PasswordChangePage extends Block {
+    static componentName = 'Изменение пароля';
+
     constructor() {
         super();
 
@@ -42,7 +44,7 @@ export class PasswordChangePage extends Block {
                          stroke-width="3" stroke-linecap="butt" stroke-linejoin="arcs">
                         <path d="M15 18l-6-6 6-6" />
                     </svg>
-                    <a href="./" class="back-btn">
+                    <a href="/profile" class="back-btn">
                         Назад
                     </a>
                 </div>

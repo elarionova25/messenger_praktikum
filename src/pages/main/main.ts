@@ -1,6 +1,7 @@
 import {Block} from "../../core";
 
 export class MainPage extends Block {
+    static componentName = 'Чат';
     // language=hbs
     render() {
         return`

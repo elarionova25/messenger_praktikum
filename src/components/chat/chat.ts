@@ -116,7 +116,7 @@ export class Chat extends Block {
         </div>
         <form class="text-bar-field">
 <!--            <input type="text" placeholder="Введите сообщение" name="message">-->
-        {{{ Input 
+        {{{ SimpleInput 
             type=text
             placeholder="Введите сообщение"
             onBlur=onBlur
@@ -133,11 +133,6 @@ export class Chat extends Block {
     {{#Modal
             id='openAddPersonModal'
             title='Добавить пользователя'}}
-        {{{ Input
-                type="login"
-                name="login"
-                placeholder="Введите логин"
-        }}}
         <div class="buttons">
             <button class="modal-btn">
                 <a href="#close" style="color:#fff">
@@ -164,9 +159,10 @@ export class Chat extends Block {
          </div>
     {{/Modal}}
     
-    {{#Modal id='openDeleteModal'}}
-         <p>Вы действительно хотите удалить диалог?</p>
-         <br>
+    {{#Modal id='openDeleteModal'
+             title='Вы действительно хотите удалить диалог?'
+    }}
+         lol
             <div class="yes-no-buttons">
                 <button class="yes-btn">
                     <a href="#close" style="color:#fff">
