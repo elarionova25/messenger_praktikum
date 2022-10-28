@@ -7,8 +7,6 @@ interface ErrorProps {
 }
 
 export class Error extends Block<ErrorProps> {
-    static componentName = 'Error';
-
     protected render(): string {
         // language=hbs
         return `

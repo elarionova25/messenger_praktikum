@@ -1,9 +1,6 @@
 import Block from '../../core/Block';
-import {CoreRouter} from "../../core/Router/CoreRouter";
-import {Store} from "../../core/Store";
 import {validateForm} from "../../helpers/validateForm";
 import './login.css';
-import {withRouter, withStore} from "../../utils";
 
 export class LoginPage extends Block {
     constructor() {
@@ -12,6 +9,8 @@ export class LoginPage extends Block {
             error: '',
             loginValue: '',
             passwordValue: '',
+            onInput: () => console.log('input'),
+            onFocus: () => console.log('focus'),
             onSubmit: () => {
                 const loginEl = this.refs.loginControllerInputRef;
                 const passwordEl = this.refs.passwordControllerInputRef;

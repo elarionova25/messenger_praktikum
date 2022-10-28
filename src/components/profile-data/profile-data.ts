@@ -3,8 +3,6 @@ import "./profile-data.css"
 
 
 export class ProfileData extends Block {
-    static componentName = 'Profile data';
-
     render(){
         return `
     <div class="profile">
