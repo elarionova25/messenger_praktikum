@@ -7,7 +7,6 @@ type ButtonProps = {
   onClick: () => void;
 }
 
-
 export class Button extends Block {
   constructor({text, onClick}: ButtonProps) {
     super({text, events: {click: onClick}});
@@ -21,3 +20,5 @@ export class Button extends Block {
     `;
   }
 }
+
+

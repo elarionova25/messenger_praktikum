@@ -123,21 +123,18 @@ export default class Block<P = any> {
   };
 
   getContent(): HTMLElement {
-    // Хак, чтобы вызвать CDM только после добавления в DOM
-    if (this.element?.parentNode?.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
-      setTimeout(() => {
-        if (this.element?.parentNode?.nodeType !==  Node.DOCUMENT_FRAGMENT_NODE ) {
-          this.eventBus().emit(Block.EVENTS.FLOW_CDM);
-        }
-      }, 100)
-    }
+    // if (this.element?.parentNode?.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
+    //   setTimeout(() => {
+    //     if (this.element?.parentNode?.nodeType !==  Node.DOCUMENT_FRAGMENT_NODE ) {
+    //       this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+    //     }
+    //   }, 100)
+    // }
 
     return this.element!;
   }
 
   _makePropsProxy(props: any): any {
-    // Можно и так передать this
-    // Такой способ больше не применяется с приходом ES6+
     const self = this;
 
     return new Proxy(props as unknown as object, {
@@ -148,8 +145,6 @@ export default class Block<P = any> {
       set(target: Record<string, unknown>, prop: string, value: unknown) {
         target[prop] = value;
 
-        // Запускаем обновление компоненты
-        // Плохой cloneDeep, в след итерации нужно заставлять добавлять cloneDeep им самим
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, {...target}, target);
         return true;
       },
@@ -191,19 +186,11 @@ export default class Block<P = any> {
   _compile(): DocumentFragment {
     const fragment = document.createElement('template');
 
-    /**
-     * Рендерим шаблон
-     */
+
     const template = Handlebars.compile(this.render());
     fragment.innerHTML = template({ ...this.state, ...this.props, children: this.children, refs: this.refs });
 
-    /**
-     * Заменяем заглушки на компоненты
-     */
     Object.entries(this.children).forEach(([id, component]) => {
-      /**
-       * Ищем заглушку по id
-       */
       const stub = fragment.content.querySelector(`[data-id="${id}"]`);
 
       if (!stub) {
@@ -212,15 +199,9 @@ export default class Block<P = any> {
 
       const stubChilds = stub.childNodes.length ? stub.childNodes : [];
 
-      /**
-       * Заменяем заглушку на component._element
-       */
       const content = component.getContent();
       stub.replaceWith(content);
 
-      /**
-       * Ищем элемент layout-а, куда вставлять детей
-       */
       const slotContent = content.querySelector('[data-slot="1"]') as HTMLDivElement;
 
       if (slotContent && stubChilds.length) {
@@ -229,12 +210,8 @@ export default class Block<P = any> {
       }
     });
 
-    /**
-     * Возвращаем фрагмент
-     */
     return fragment.content;
   }
-
 
   show() {
     this.getContent().style.display = 'block';
