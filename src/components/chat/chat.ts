@@ -162,6 +162,7 @@ export class Chat extends Block {
     {{#Modal id='openDeleteModal'
              title='Вы действительно хотите удалить диалог?'
     }}
+         lol
             <div class="yes-no-buttons">
                 <button class="yes-btn">
                     <a href="#close" style="color:#fff">
