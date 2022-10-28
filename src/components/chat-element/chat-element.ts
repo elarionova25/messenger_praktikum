@@ -1,5 +1,4 @@
 import {Block} from "../../core";
-import './chat-element.css'
 
 
 export class ChatElement extends Block {
@@ -7,7 +6,7 @@ export class ChatElement extends Block {
 
     render() {
         return `
-    <div class="chat-element">
+            <div class="chat-element">
     <div class="wrapper avatar">
         <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="avatar">
     </div>

@@ -10,7 +10,7 @@ export class ChatList extends Block{
         <div class="chats">
         <div class="header">
         <div class="profile">
-            <a href="/profile" class="profile-text">
+            <a href="/pages/profile/" class="profile-text">
                 Профиль
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 19 19" fill="none"
                     stroke="#999999" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
@@ -47,7 +47,7 @@ export class ChatList extends Block{
        {{#Modal
             id='openAddPersonModal'
             title='Добавить пользователя'}}
-        {{{ SimpleInput
+        {{{ Input
                 type="login"
                 name="login"
                 placeholder="Введите логин"

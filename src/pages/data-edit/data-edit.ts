@@ -4,7 +4,6 @@ import {validateForm} from "../../helpers/validateForm";
 
 
 export class DataEditPage extends Block {
-    static componentName = 'Редактирование';
     constructor() {
         super();
         this.setProps({
@@ -53,7 +52,7 @@ export class DataEditPage extends Block {
         stroke-width="3" stroke-linecap="butt" stroke-linejoin="arcs">
         <path d="M15 18l-6-6 6-6" />
     </svg>
-    <a href="/profile" class="back-btn" style="color: #999">
+    <a href="./profile.ts" class="back-btn" style="color: #999">
         Назад
     </a>
     </div>

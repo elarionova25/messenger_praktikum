@@ -1,10 +1,11 @@
 import Block from '../../core/Block';
+import {CoreRouter} from "../../core/Router/CoreRouter";
+import {Store} from "../../core/Store";
 import {validateForm} from "../../helpers/validateForm";
 import './login.css';
+import {withRouter, withStore} from "../../utils";
 
 export class LoginPage extends Block {
-    static componentName = 'Логин';
-
     constructor() {
         super();
         this.setProps({
@@ -74,10 +75,8 @@ export class LoginPage extends Block {
            
         <div class="buttons">
         {{{ Button text='Войти' onClick=onSubmit}}}
-<!--        {{{ Button text='Нет аккаунта?' onClick=onSubmit}}}-->
-           
             <button class="btn sign-up-btn">
-                <a href="/register" class="sign-up-link">
+                <a href="/pages/register" class="sign-up-link">
                     Нет аккаунта?
                 </a>
             </button>

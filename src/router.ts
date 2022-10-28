@@ -68,7 +68,7 @@ export function initRouter(router: CoreRouter, store: Store<AppState>) {
         if (prevState.screen !== nextState.screen) {
             const Page = getScreenComponent(nextState.screen);
             renderDOM(new Page({}));
-            document.title = `${Page.componentName}`;
+            document.title = `App / ${Page.componentName}`;
         }
     });
 }

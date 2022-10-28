@@ -57,6 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const store = new Store<AppState>(defaultState);
     const router = new PathRouter();
 
+    /**
+     * Помещаем роутер и стор в глобальную область для доступа в хоках with*
+     * @warning Не использовать такой способ на реальный проектах
+     */
     window.router = router;
     window.store = store;
 

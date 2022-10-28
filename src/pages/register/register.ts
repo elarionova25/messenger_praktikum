@@ -3,7 +3,6 @@ import './register.css';
 import {validateForm} from "../../helpers/validateForm";
 
 export class RegisterPage extends Block {
-    static componentName = 'Регистрация';
     constructor() {
         super();
         this.setProps({
@@ -128,7 +127,7 @@ export class RegisterPage extends Block {
                     <div class="buttons">
                         {{{ Button text="Зарегистрироваться" onClick=onSubmit}}}
                         <button class="btn sign-in-btn">
-                            <a href="/login" class="sign-in-link">
+                            <a href="/pages/login" class="sign-in-link">
                                 Войти
                             </a>
                         </button>

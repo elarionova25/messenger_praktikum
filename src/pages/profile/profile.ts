@@ -2,7 +2,6 @@ import {Block} from "../../core";
 import './profile.css';
 
 export class ProfilePage extends Block {
-    static componentName = 'Профиль';
     // language=hbs
     render() {
         return `
@@ -20,13 +19,13 @@ export class ProfilePage extends Block {
                     {{{ ProfileData }}}
                     <div class="links-container">
                         <div class="settings-link">
-                            <a href="/data-edit">Изменить данные</a>
+                            <a href="/pages/data-edit">Изменить данные</a>
                         </div>
                         <div class="settings-link">
-                            <a href="/password-change">Изменить пароль</a>
+                            <a href="/pages/password-change">Изменить пароль</a>
                         </div>
                         <div class="settings-link">
-                            <a href="/login" style="color: #FF0000;">Выйти</a>
+                            <a href="/pages/login" style="color: #FF0000;">Выйти</a>
                         </div>
                     </div>
                 </div>

@@ -1,8 +1,5 @@
 import {ChatList} from "./chat-list";
-import {registerComponent, renderDOM} from "../../core";
-import {SimpleInput} from "../simple-input/simple-input";
-
-registerComponent(SimpleInput);
+import {renderDOM} from "../../core";
 
 document.addEventListener("DOMContentLoaded", () => {
     renderDOM(new ChatList());
