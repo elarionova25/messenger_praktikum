@@ -22,10 +22,10 @@ export class ProfilePage extends Block {
                             <a href="/pages/data-edit">Изменить данные</a>
                         </div>
                         <div class="settings-link">
-                            <a href="/pages/password-change">Изменить пароль</a>
+                            <a href="/password-change">Изменить пароль</a>
                         </div>
                         <div class="settings-link">
-                            <a href="/pages/login" style="color: #FF0000;">Выйти</a>
+                            <a href="/login" style="color: #FF0000;">Выйти</a>
                         </div>
                     </div>
                 </div>

@@ -26,7 +26,7 @@ export class LoginPage extends Block {
                     passwordValue: passwordEl.props.value,
                 });
 
-                if(!errorMessage) {
+                if (!errorMessage) {
                     console.log('form is ready to send');
                     console.log(this.props)
                 }
@@ -55,7 +55,7 @@ export class LoginPage extends Block {
               ref="loginControllerInputRef"
         }}}
         {{{ControllerInput
-              type="text"
+              type="password"
               name="password"
               placeholder="Введите пароль"
               onInput=onInput
@@ -71,11 +71,11 @@ export class LoginPage extends Block {
                 {{error}}
             {{/if}}
         </div>
-           
+        
         <div class="buttons">
-        {{{ Button text='Войти' onClick=onSubmit}}}
-            <button class="btn sign-up-btn">
-                <a href="/pages/register" class="sign-up-link">
+            {{{ Button text="Войти" onClick=onSubmit}}}
+            <button class="btn sign-in-btn">
+                <a href="/register" class="sign-in-link">
                     Нет аккаунта?
                 </a>
             </button>

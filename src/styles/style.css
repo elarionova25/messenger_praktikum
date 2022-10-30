@@ -15,11 +15,13 @@
   }
 
 .container {
+    width: 100vw;
+    height: 100vh;
     margin: 0 auto;
 }
 
 .chat-list-wrap {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     display: flex;
     overflow: hidden;

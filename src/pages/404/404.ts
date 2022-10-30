@@ -6,7 +6,7 @@ export class NotFoundErrorPage extends Block {
     render() {
         return `
         <div class="body">
-    <div class="container">
+    <div class="error-container">
         <div class="error-text">
             <p class="text title">
                 <b>

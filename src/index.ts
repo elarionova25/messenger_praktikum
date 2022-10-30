@@ -54,12 +54,13 @@ enum Routes {
     Error404='/error404',
     Error500='/error500',
     DataEdit='/data-edit',
-    PasswordChange='password-change'
+    PasswordChange='/password-change'
 }
 
 window.addEventListener("DOMContentLoaded", () => {
     Router
-        .use(Routes.Main, LoginPage)
+        .use(Routes.Main, MainPage)
+        .use(Routes.Login, LoginPage)
         .use(Routes.Register, RegisterPage)
         .use(Routes.Profile, ProfilePage)
         .use(Routes.Error404, NotFoundErrorPage)

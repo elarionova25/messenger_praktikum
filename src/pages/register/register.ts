@@ -47,7 +47,7 @@ export class RegisterPage extends Block {
         // language=hbs
         return `
             <div class="block">
-                <div class="entry-form">
+                <div class="register-entry-form">
                     <div class="title">
                         <p class="title-text">Регистрация</p>
                     </div>
@@ -127,7 +127,7 @@ export class RegisterPage extends Block {
                     <div class="buttons">
                         {{{ Button text="Зарегистрироваться" onClick=onSubmit}}}
                         <button class="btn sign-in-btn">
-                            <a href="/pages/login" class="sign-in-link">
+                            <a href="/login" class="sign-in-link">
                                 Войти
                             </a>
                         </button>
