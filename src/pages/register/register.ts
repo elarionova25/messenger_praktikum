@@ -1,19 +1,23 @@
 import {Block} from "../../core";
 import './register.css';
 import {validateForm} from "../../helpers/validateForm";
+import {SignupData} from "../../api/AuthAPI";
+import AuthController from '../../controllers/AuthController';
 
 export class RegisterPage extends Block {
     constructor() {
         super();
         this.setProps({
             error: '',
-            emailValue: '',
-            nameValue: '',
-            surnameValue: '',
-            phoneValue: '',
-            loginValue: '',
-            passwordValue: '',
-            passwordRetryValue: '',
+            values: {
+                email: '',
+                first_name: '',
+                login: '',
+                password: '',
+                phone: '',
+                second_name: '',
+                // passwordRetryValue: ''
+            },
             onSubmit: () => {
                 const emailEl = this.refs.emailControllerInputRef.props;
                 const loginEl = this.refs.loginControllerInputRef.props;
@@ -32,13 +36,22 @@ export class RegisterPage extends Block {
                 ]);
                 this.setProps({
                     error: errorMessage || "",
-                    loginValue: loginEl.value,
-                    passwordValue: passwordEl.value,
-                    emailValue: emailEl.value,
-                    nameValue: nameEl.value,
-                    surnameValue: surnameEl.value,
-                    phoneValue: phoneEl.value
+                    values: {
+                        email: emailEl.value,
+                        first_name: nameEl.value,
+                        login: loginEl.value,
+                        password: passwordEl.value,
+                        second_name: surnameEl.value,
+                        phone: phoneEl.value
+                    }
                 });
+
+                //if(!errorMessage){
+                    const data = this.props.values
+                    AuthController.signup(data as SignupData);
+
+               // }
+                console.log(this.props.values)
             }
         })
     }
@@ -54,24 +67,25 @@ export class RegisterPage extends Block {
                     <div class="data">
                         {{{ControllerInput
                                 type="text"
-                                name="email"
-                                placeholder="Введите email"
-                                onInput=onInput
-                                onFocus=onFocus
-                                label="Email"
-                                value="${this.props.emailValue}"
-                                ref="emailControllerInputRef"
-                        }}}
-                        {{{ControllerInput
-                                type="text"
                                 name="login"
                                 placeholder="Введите логин"
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Логин"
-                                value="${this.props.loginValue}"
+                                value="${this.props.login}"
                                 ref="loginControllerInputRef"
                         }}}
+                        {{{ControllerInput
+                                type="text"
+                                name="email"
+                                placeholder="Введите email"
+                                onInput=onInput
+                                onFocus=onFocus
+                                label="Email"
+                                value="${this.props.email}"
+                                ref="emailControllerInputRef"
+                        }}}
+                        
                         {{{ControllerInput
                                 type="text"
                                 name="name"
@@ -79,7 +93,7 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Имя"
-                                value="${this.props.nameValue}"
+                                value="${this.props.first_name}"
                                 ref="nameControllerInputRef"
                         }}}
                         {{{ControllerInput
@@ -89,7 +103,7 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Фамилия"
-                                value="${this.props.surnameValue}"
+                                value="${this.props.second_name}"
                                 ref="surnameControllerInputRef"
                         }}}
                         {{{ControllerInput
@@ -99,7 +113,7 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Телефон"
-                                value="${this.props.phoneValue}"
+                                value="${this.props.phone}"
                                 ref="phoneControllerInputRef"
                         }}}
                         {{{ControllerInput
@@ -109,18 +123,8 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Пароль"
-                                value="${this.props.passwordValue}"
+                                value="${this.props.password}"
                                 ref="passwordControllerInputRef"
-                        }}}
-                        {{{ControllerInput
-                                type="password"
-                                name="passwordRetry"
-                                placeholder="Введите пароль"
-                                onInput=onInput
-                                onFocus=onFocus
-                                label="Пароль (ещё раз)"
-                                value="${this.props.passwordRetryValue}"
-                                ref="passwordRetryControllerInputRef"
                         }}}
                     </div>
                     <div class="input-error">{{#if error}}{{error}}{{/if}}</div>

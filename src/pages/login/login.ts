@@ -1,14 +1,26 @@
 import Block from '../../core/Block';
 import {validateForm} from "../../helpers/validateForm";
 import './login.css';
+import AuthController from '../../controllers/AuthController';
+import {SignupData} from "../../api/AuthAPI";
+
+
+// email:"test@btu.ru"
+// first_name:"Екатерина"
+// login:"elarionova25"
+// password:"abcABC123$"
+// phone:"+7 952 266-3200"
+// second_name:"Екатерина"
 
 export class LoginPage extends Block {
     constructor() {
         super();
         this.setProps({
             error: '',
-            loginValue: '',
-            passwordValue: '',
+            values: {
+                login: '',
+                password: '',
+            },
             onInput: () => console.log('input'),
             onFocus: () => console.log('focus'),
             onSubmit: () => {
@@ -22,14 +34,16 @@ export class LoginPage extends Block {
 
                 this.setProps({
                     error: errorMessage || "",
-                    loginValue: loginEl.props.value,
-                    passwordValue: passwordEl.props.value,
+                    login: loginEl.props.value,
+                    password: passwordEl.props.value,
                 });
 
-                if (!errorMessage) {
-                    console.log('form is ready to send');
-                    console.log(this.props)
-                }
+                // if (!errorMessage) {
+                    //const data = Object.fromEntries(values);
+                    const data = this.props.values;
+                    console.log('DATA', data)
+                    AuthController.signin(data as SignupData);
+                // }
             },
         })
     }
@@ -51,7 +65,7 @@ export class LoginPage extends Block {
               onInput=onInput
               onFocus=onFocus
               label="Логин"
-              value="${this.props.loginValue}"
+              value="${this.props.values.login}"
               ref="loginControllerInputRef"
         }}}
         {{{ControllerInput
