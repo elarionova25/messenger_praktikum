@@ -52,7 +52,7 @@ export class DataEditPage extends Block {
         stroke-width="3" stroke-linecap="butt" stroke-linejoin="arcs">
         <path d="M15 18l-6-6 6-6" />
     </svg>
-    <a href="./profile.ts" class="back-btn" style="color: #999">
+    <a href="/profile" class="back-btn" style="color: #999">
         Назад
     </a>
     </div>
@@ -144,7 +144,7 @@ export class DataEditPage extends Block {
         </div>
 
         <div class="save-btn-wrap">
-            <a href="/pages/profile" style="color:#fff" class="save-btn">
+            <a href="/profile" style="color:#fff" class="save-btn">
                 Сохранить
             </a>
         </div>

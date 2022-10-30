@@ -8,7 +8,7 @@ export class ChatList extends Block{
         <div class="chats">
         <div class="header">
         <div class="profile">
-            <a href="/pages/profile/" class="profile-text">
+            <a href="/profile" class="profile-text">
                 Профиль
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 19 19" fill="none"
                     stroke="#999999" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
@@ -33,9 +33,9 @@ export class ChatList extends Block{
                 </svg>
             </a>
             <br>
-            <a href="/pages/404">Страница 404</a>
+            <a href="/error404">Страница 404</a>
             <br>
-            <a href="/pages/500">Страница 500</a>
+            <a href="/error500">Страница 500</a>
         </div>
     </div>
 

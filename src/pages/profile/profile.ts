@@ -19,7 +19,7 @@ export class ProfilePage extends Block {
                     {{{ ProfileData }}}
                     <div class="links-container">
                         <div class="settings-link">
-                            <a href="/pages/data-edit">Изменить данные</a>
+                            <a href="/data-edit">Изменить данные</a>
                         </div>
                         <div class="settings-link">
                             <a href="/password-change">Изменить пароль</a>
