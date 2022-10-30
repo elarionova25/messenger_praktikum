@@ -4,7 +4,6 @@ import './avatar-input.css';
 
 export class AvatarInput extends Block {
 
-
     protected render() {
         return `
         <div class="personal-image">
