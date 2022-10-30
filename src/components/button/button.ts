@@ -2,11 +2,10 @@ import Block from '../../core/Block';
 
 import './button.css';
 
-type ButtonProps = {
+interface ButtonProps {
   text: string;
   onClick: () => void;
 }
-
 
 export class Button extends Block {
   constructor({text, onClick}: ButtonProps) {
