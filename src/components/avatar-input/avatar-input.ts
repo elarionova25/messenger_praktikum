@@ -8,7 +8,7 @@ export class AvatarInput extends Block {
         return `
         <div class="personal-image">
             <label class="label">
-            <input type="file"/>
+            <input id="avatar" type="file" name="avatar" accept="image/*">
             <figure class="personal-figure">
              <img src="" class="personal-avatar" alt="avatar">
             <figcaption class="personal-figcaption">

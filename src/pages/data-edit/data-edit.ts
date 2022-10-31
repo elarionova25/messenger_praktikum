@@ -93,13 +93,10 @@ export class DataEditPageBase extends Block {
     <div class="profile-container">
         <div class="profile">
             <div class="avatar-wrap">
-<!--                {{{ AvatarInput }}}-->
             <form id="myUserForm">
                 <input id="avatar" type="file" name="avatar" accept="image/*">
-                <input type="submit">
-           {{{Button text="загрузить аватар"
+                {{{Button text="загрузить аватар"
                      onClick=onSubmit
-                     type="submit"
            }}}
             </form>
             </div>
