@@ -9,6 +9,7 @@ import {SignupData} from "../../api/AuthAPI";
 // first_name:"Екатерина"
 // login:"elarionova25"
 // password:"abcABC123$"
+// newPassword: "ABCabc123&"
 // phone:"+7 952 266-3200"
 // second_name:"Екатерина"
 

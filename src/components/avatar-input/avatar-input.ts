@@ -10,9 +10,9 @@ export class AvatarInput extends Block {
             <label class="label">
             <input type="file"/>
             <figure class="personal-figure">
-             <img src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png" class="personal-avatar" alt="avatar">
+             <img src="" class="personal-avatar" alt="avatar">
             <figcaption class="personal-figcaption">
-            <img src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png" alt="Аватар">
+            <img src="" alt="Аватар">
             </figcaption>
             </figure>
             </label>

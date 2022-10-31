@@ -32,7 +32,7 @@ export class ProfilePageBase extends Block {
                 <div class="profile-container">
                     <div class="profile">
                         <div class="avatar-wrap">
-                            <img src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png" alt="Аватар" class="profile-img">
+                            <img src="https://ya-praktikum.tech/api/v2/resources/{{avatar}}" alt="Аватар" class="profile-img">
                         </div>
                         <div class="name-wrap">
                             <p class="name">

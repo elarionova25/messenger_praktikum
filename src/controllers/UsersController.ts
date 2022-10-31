@@ -1,4 +1,4 @@
-import API, {UsersAPI, ChangeData} from '../api/UsersAPI';
+import API, {UsersAPI, ChangeData, ChangePassword} from '../api/UsersAPI';
 import router from '../core/Router';
 
 export class UsersController {
@@ -11,6 +11,16 @@ export class UsersController {
     async changedata(data: ChangeData) {
         try {
             await this.api.changedata(data);
+
+            router.go('/profile');
+        } catch (e: any) {
+            console.error(e);
+        }
+    }
+
+    async changepassword(data: ChangePassword) {
+        try {
+            await this.api.changepassword(data);
 
             router.go('/profile');
         } catch (e: any) {

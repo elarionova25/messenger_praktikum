@@ -9,9 +9,9 @@
     margin: 0;
 }
 
-input[type="file"] {
-    display: none;
-}
+/*input[type="file"] {*/
+/*    display: none;*/
+/*}*/
 
 .header-chat {
     display: flex;

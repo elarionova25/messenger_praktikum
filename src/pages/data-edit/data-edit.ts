@@ -13,7 +13,6 @@ export class DataEditPageBase extends Block {
         this.setProps({
             error: '',
             values:{
-                id: '',
                 email: '',
                 first_name: '',
                 second_name: '',
@@ -53,6 +52,26 @@ export class DataEditPageBase extends Block {
                     console.log(data);
                     UsersController.changedata(data as ChangeData);
                 //}
+            },
+            onSubmit: () => {
+                const host = 'https://ya-praktikum.tech';
+                const myUserForm = document.getElementById('myUserForm');
+
+                console.log(myUserForm);
+
+                const avatar = document.getElementById('avatar');
+                const form = new FormData(myUserForm);
+                fetch(`${host}/api/v2/user/profile/avatar`, {
+                    method: 'PUT',
+                    credentials: 'include', // Нам нужно подставлять cookies
+                    mode: 'cors', // Работаем с CORS
+                    body: form,
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        return data;
+                    });
             }
         })
     }
@@ -74,7 +93,15 @@ export class DataEditPageBase extends Block {
     <div class="profile-container">
         <div class="profile">
             <div class="avatar-wrap">
-                {{{ AvatarInput }}}
+<!--                {{{ AvatarInput }}}-->
+            <form id="myUserForm">
+                <input id="avatar" type="file" name="avatar" accept="image/*">
+                <input type="submit">
+           {{{Button text="загрузить аватар"
+                     onClick=onSubmit
+                     type="submit"
+           }}}
+            </form>
             </div>
             <div class="name-wrap">
                 <p class="name">

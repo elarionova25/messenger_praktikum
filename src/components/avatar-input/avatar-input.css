@@ -2,9 +2,9 @@
     text-align: center;
 }
 
-.personal-image input[type="file"] {
-    display: none;
-}
+/*.personal-image input[type="file"] {*/
+/*    display: none;*/
+/*}*/
 
 .personal-figure {
     position: relative;

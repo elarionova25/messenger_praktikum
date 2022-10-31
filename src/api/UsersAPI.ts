@@ -10,6 +10,11 @@ export interface ChangeData {
     phone: string;
 }
 
+export interface ChangePassword {
+    oldPassword: string,
+    newPassword: string
+}
+
 export class UsersAPI extends BaseAPI {
     constructor() {
         super('/user');
@@ -22,6 +27,11 @@ export class UsersAPI extends BaseAPI {
     changedata(data: ChangeData) {
         return this.http.put('/profile', data);
     }
+
+    changepassword(data: ChangePassword) {
+        return this.http.put('/password', data);
+    }
+
 
     create = undefined;
     update = undefined;
