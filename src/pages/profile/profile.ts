@@ -8,7 +8,7 @@ interface ProfilePageProps {
     user: User | null;
 }
 
-export class ProfilePageBase extends Block {
+export class ProfilePage extends Block {
     constructor(props: ProfilePageProps) {
         super(props);
         console.log(this.props.user)
@@ -106,7 +106,3 @@ export class ProfilePageBase extends Block {
         `
     }
 }
-
-const withUser = withStore((state) => ({ ...state.user }))
-
-export const ProfilePage = withUser(ProfilePageBase);
