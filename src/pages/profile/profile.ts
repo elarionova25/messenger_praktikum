@@ -4,14 +4,11 @@ import AuthController from "../../controllers/AuthController";
 import {withStore} from "../../core/Store";
 import {User} from "../../api/AuthAPI";
 
-interface ProfilePageProps {
-    user: User | null;
-}
+export class ProfilePageBase extends Block {
 
-export class ProfilePage extends Block {
-    constructor(props: ProfilePageProps) {
-        super(props);
-        console.log(this.props.user)
+    constructor() {
+        super();
+        AuthController.fetchUser();
     }
 
     // language=hbs
@@ -45,7 +42,7 @@ export class ProfilePage extends Block {
                                     Почта
                                 </p>
                                 <p class="info">
-                                    {{this.props.user.email}}
+                                    {{email}}
                                 </p>
                             </div>
                             <div class="info-wrap">
@@ -53,7 +50,7 @@ export class ProfilePage extends Block {
                                     Логин
                                 </p>
                                 <p class="info">
-                                    test
+                                    {{login}}
                                 </p>
                             </div>
                             <div class="info-wrap">
@@ -61,7 +58,7 @@ export class ProfilePage extends Block {
                                     Имя
                                 </p>
                                 <p class="info">
-                                    test
+                                    {{first_name}}
                                 </p>
                             </div>
                             <div class="info-wrap">
@@ -69,7 +66,7 @@ export class ProfilePage extends Block {
                                     Фамилия
                                 </p>
                                 <p class="info">
-                                    test
+                                    {{second_name}}
                                 </p>
                             </div>
                             <div class="info-wrap">
@@ -77,7 +74,7 @@ export class ProfilePage extends Block {
                                     Имя в чате
                                 </p>
                                 <p class="info">
-                                    test
+                                    {{login}}
                                 </p>
                             </div>
                             <div class="info-wrap">
@@ -85,7 +82,7 @@ export class ProfilePage extends Block {
                                     Телефон
                                 </p>
                                 <p class="info">
-                                    test
+                                    {{phone}}
                                 </p>
                             </div>
                         </div>
@@ -106,3 +103,6 @@ export class ProfilePage extends Block {
         `
     }
 }
+const withUser = withStore((state) => ({ ...state.user }));
+
+export const ProfilePage = withUser(ProfilePageBase);
