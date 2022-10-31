@@ -41,10 +41,10 @@ export class LoginPage extends Block {
                 });
 
                 // if (!errorMessage) {
-                    //const data = Object.fromEntries(values);
-                    const data = this.props.values;
-                    console.log('DATA', data)
-                    AuthController.signin(data as SignupData);
+                //const data = Object.fromEntries(values);
+                const data = this.props.values;
+                console.log('DATA', data)
+                AuthController.signin(data as SignupData);
                 // }
             },
         })
@@ -59,6 +59,8 @@ export class LoginPage extends Block {
         <div class="title">
             <p class="title-text">Вход</p>
         </div>
+        <br>
+        <span style="color: #999999">Test account: elarionova25/abcABC123$</span>
         <div class="data">
         {{{ControllerInput
               type="text"
@@ -87,7 +89,7 @@ export class LoginPage extends Block {
                 {{error}}
             {{/if}}
         </div>
-        
+         
         <div class="buttons">
             {{{ Button text="Войти" onClick=onSubmit}}}
             <button class="btn sign-in-btn">
@@ -96,6 +98,7 @@ export class LoginPage extends Block {
                 </a>
             </button>
         </div>
+       
     </div>
     </div>
     `;

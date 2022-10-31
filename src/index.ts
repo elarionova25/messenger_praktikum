@@ -1,7 +1,7 @@
 import {NotFoundErrorPage} from "./pages/404/404";
 
 require("babel-core/register");
-import { Block, renderDOM, registerComponent }  from './core';
+import { Block, renderDOM, registerComponent}  from './core';
 import Router from "./core/Router";
 import './styles/style.css';
 
@@ -27,6 +27,7 @@ import {ControllerInput} from "./components/controller-input/controller-input";
 import {SimpleInput} from "./components/simple-input/simple-input";
 import {SendButton} from "./components/send-button/send-button";
 import {ServerError} from "./pages/500/500";
+import {Store} from "./core/Store";
 
 registerComponent(Button);
 registerComponent(Link);
@@ -42,6 +43,12 @@ registerComponent(Error);
 registerComponent(ControllerInput);
 registerComponent(SimpleInput);
 registerComponent(SendButton);
+
+declare global {
+    interface Window {
+        store: Store;
+    }
+}
 
 enum Routes {
     Main = '/',

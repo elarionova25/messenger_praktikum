@@ -5,6 +5,7 @@ import './button.css';
 interface ButtonProps {
   text: string;
   onClick: () => void;
+  class: string;
 }
 
 export class Button extends Block {

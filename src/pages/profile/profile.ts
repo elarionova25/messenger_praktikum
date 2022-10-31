@@ -9,6 +9,11 @@ export class ProfilePageBase extends Block {
     constructor() {
         super();
         AuthController.fetchUser();
+        this.setProps({
+            onLogout:() => {
+                AuthController.logout();
+            }
+        })
     }
 
     // language=hbs
@@ -32,7 +37,7 @@ export class ProfilePageBase extends Block {
                         <div class="name-wrap">
                             <p class="name">
                                 <b>
-                                    Екатерина
+                                    {{first_name}}
                                 </b>
                             </p>
                         </div>
@@ -74,7 +79,7 @@ export class ProfilePageBase extends Block {
                                     Имя в чате
                                 </p>
                                 <p class="info">
-                                    {{login}}
+                                    {{display_name}}
                                 </p>
                             </div>
                             <div class="info-wrap">
@@ -94,8 +99,11 @@ export class ProfilePageBase extends Block {
                         <div class="settings-link">
                             <a href="/password-change">Изменить пароль</a>
                         </div>
+<!--                        <div class="settings-link">-->
+<!--                            <a style="color: #FF0000;" onLogout>Выйти</a>-->
+<!--                        </div>-->
                         <div class="settings-link">
-                            <a href="/login" style="color: #FF0000;">Выйти</a>
+                            {{{Button text="Выйти" onClick=onLogout}}} 
                         </div>
                     </div>
                 </div>

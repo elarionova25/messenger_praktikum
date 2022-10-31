@@ -1,30 +1,36 @@
 import {Block} from "../../core";
 import "./data-edit.css"
 import {validateForm} from "../../helpers/validateForm";
+import {withStore} from "../../core/Store";
+import AuthController from "../../controllers/AuthController";
+import UsersController from "../../controllers/UsersController";
+import {ChangeData} from "../../api/UsersAPI";
 
-
-export class DataEditPage extends Block {
+export class DataEditPageBase extends Block {
     constructor() {
         super();
+        AuthController.fetchUser();
         this.setProps({
             error: '',
-            emailValue: '',
-            nameValue: '',
-            surnameValue: '',
-            phoneValue: '',
-            loginValue: '',
-            passwordValue: '',
-            onSubmit: () => {
+            values:{
+                id: '',
+                email: '',
+                first_name: '',
+                second_name: '',
+                phone: '',
+                login: '',
+                display_name: '',
+            },
+            onSave: () => {
                 const loginEl = this.element?.querySelector('input[name="login"]') as HTMLInputElement;
-                const passwordEl = this.element?.querySelector('input[name="password"]') as HTMLInputElement;
                 const nameEl = this.element?.querySelector('input[name="first_name"]') as HTMLInputElement;
                 const surnameEl = this.element?.querySelector('input[name="second_name"]') as HTMLInputElement;
                 const phoneEl = this.element?.querySelector('input[name="phone"]') as HTMLInputElement;
                 const emailEl = this.element?.querySelector('input[name="email"]') as HTMLInputElement;
+                const displayNameEl = this.element?.querySelector('input[name="display_name"]') as HTMLInputElement;
 
                 const errorMessage = validateForm([
                     {type: 'login', value: loginEl.value},
-                    {type: 'password', value: passwordEl.value},
                     {type: 'first_name', value: nameEl.value},
                     {type: 'second_name', value: surnameEl.value},
                     {type: 'phone', value: phoneEl.value},
@@ -32,13 +38,21 @@ export class DataEditPage extends Block {
                 ]);
                 this.setProps({
                     error: errorMessage || "",
-                    loginValue: loginEl.value,
-                    passwordValue: passwordEl.value,
-                    emailValue: emailEl.value,
-                    nameValue: nameEl.value,
-                    surnameValue: surnameEl.value,
-                    phoneValue: phoneEl.value,
+                    values:{
+                        login: loginEl.value,
+                        email: emailEl.value,
+                        first_name: nameEl.value,
+                        second_name: surnameEl.value,
+                        phone: phoneEl.value,
+                        display_name: displayNameEl.value,
+                    }
                 });
+
+                //if(!errorMessage) {
+                    const data = this.props.values;
+                    console.log(data);
+                    UsersController.changedata(data as ChangeData);
+                //}
             }
         })
     }
@@ -77,7 +91,7 @@ export class DataEditPage extends Block {
                         onInput=onInput
                         onFocus=onFocus
                         label="Email"
-                        value="${this.props.emailValue}"
+                        value="${this.props.email}"
                         ref="emailControllerInputRef"
                 }}}
                 {{{ControllerInput
@@ -87,8 +101,18 @@ export class DataEditPage extends Block {
                         onInput=onInput
                         onFocus=onFocus
                         label="Логин"
-                        value="${this.props.loginValue}"
+                        value="${this.props.login}"
                         ref="loginControllerInputRef"
+                }}}
+                {{{ControllerInput
+                        type="text"
+                        name="display_name"
+                        placeholder="Введите имя в чате"
+                        onInput=onInput
+                        onFocus=onFocus
+                        label="Имя в чате"
+                        value="${this.props.display_name}"
+                        ref="displayNameControllerInputRef"
                 }}}
                 {{{ControllerInput
                         type="text"
@@ -97,7 +121,7 @@ export class DataEditPage extends Block {
                         onInput=onInput
                         onFocus=onFocus
                         label="Имя"
-                        value="${this.props.nameValue}"
+                        value="${this.props.first_name}"
                         ref="nameControllerInputRef"
                 }}}
                 {{{ControllerInput
@@ -107,7 +131,7 @@ export class DataEditPage extends Block {
                         onInput=onInput
                         onFocus=onFocus
                         label="Фамилия"
-                        value="${this.props.surnameValue}"
+                        value="${this.props.second_name}"
                         ref="surnameControllerInputRef"
                 }}}
                 {{{ControllerInput
@@ -117,39 +141,23 @@ export class DataEditPage extends Block {
                         onInput=onInput
                         onFocus=onFocus
                         label="Телефон"
-                        value="${this.props.phoneValue}"
+                        value="${this.props.phone}"
                         ref="phoneControllerInputRef"
-                }}}
-                {{{ControllerInput
-                        type="password"
-                        name="password"
-                        placeholder="Введите пароль"
-                        onInput=onInput
-                        onFocus=onFocus
-                        label="Пароль"
-                        value="${this.props.passwordValue}"
-                        ref="passwordControllerInputRef"
-                }}}
-                {{{ControllerInput
-                        type="password"
-                        name="passwordRetry"
-                        placeholder="Введите пароль"
-                        onInput=onInput
-                        onFocus=onFocus
-                        label="Пароль (ещё раз)"
-                        value="${this.props.passwordRetryValue}"
-                        ref="passwordRetryControllerInputRef"
                 }}}
             </div>
         </div>
 
         <div class="save-btn-wrap">
-            <a href="/profile" style="color:#fff" class="save-btn">
-                Сохранить
-            </a>
+<!--            <a href="/profile" style="color:#fff" class="save-btn">-->
+<!--                Сохранить-->
+<!--            </a>-->
+            {{{Button text="Сохранить" onClick=onSave}}}
         </div>
     </div>        
 </div>
         `
     }
 }
+
+const withUser = withStore((state) => ({ ...state.user }));
+export const DataEditPage = withUser(DataEditPageBase);

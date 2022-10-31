@@ -1,6 +1,8 @@
-import API, { AuthAPI, SigninData, SignupData } from '../api/AuthAPI';
+import API, {AuthAPI, SigninData, SignupData} from '../api/AuthAPI';
 import store from '../core/Store';
 import router from '../core/Router';
+import {renderDOM} from "../core";
+import LoginPage from "../pages/login";
 
 export class AuthController {
   private readonly api: AuthAPI;
@@ -41,11 +43,22 @@ export class AuthController {
     try {
       await this.api.logout();
 
-      router.go('/');
+      router.go('/login');
+      renderDOM(new LoginPage())
     } catch (e: any) {
       console.error(e.message);
     }
   }
+
+    // async changedata(data: ChangeData) {
+    //     try {
+    //         await this.api.changedata(data);
+    //
+    //         router.go('/profile');
+    //     } catch (e: any) {
+    //         console.error(e);
+    //     }
+    // }
 }
 
 export default new AuthController();
