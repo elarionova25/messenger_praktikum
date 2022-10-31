@@ -34,8 +34,10 @@ export class LoginPage extends Block {
 
                 this.setProps({
                     error: errorMessage || "",
-                    login: loginEl.props.value,
-                    password: passwordEl.props.value,
+                    values: {
+                        login: loginEl.props.value,
+                        password: passwordEl.props.value,
+                    }
                 });
 
                 // if (!errorMessage) {
@@ -65,7 +67,7 @@ export class LoginPage extends Block {
               onInput=onInput
               onFocus=onFocus
               label="Логин"
-              value="${this.props.values.login}"
+              value="${this.props.login}"
               ref="loginControllerInputRef"
         }}}
         {{{ControllerInput
