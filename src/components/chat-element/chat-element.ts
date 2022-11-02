@@ -1,17 +1,15 @@
 import {Block} from "../../core";
-import {Chat} from "../chat/chat";
 import ChatsController from "../../controllers/ChatsController";
-import {CreateChat} from "../../api/ChatsAPI";
+import store from "../../core/Store";
 
 type ChatElementProps = {
     chat: any;
     onClick: () => void;
 }
 
-
 export class ChatElement extends Block {
-    constructor({chat}: ChatElementProps) {
-        super({chat});
+    constructor({chat, onClick}: ChatElementProps) {
+        super({chat, events: {click: onClick}});
         this.setProps({
             onDelete: () => {
                 let data = {
@@ -19,23 +17,26 @@ export class ChatElement extends Block {
                 }
                 ChatsController.deletechat(data);
             },
+            onClick: () => {
+                store.set('selectedChat', chat);
+                console.log(store)
+            }
         })
     }
 
     //language=hbs
     render() {
         return `
-<div class="chat-element">
+<div class="chat-element" id="">
     {{#if avatar}}
         <div class="wrapper avatar">
             <img src="https://ya-praktikum.tech/api/v2/resources/{{avatar}}" alt="avatar">
         </div>
         {{else}}
         <div class="wrapper avatar">
-            <img src="./noimage.png" alt="avatar">
+            <img src="/noimage.png" alt="avatar">
         </div>
     {{/if}}
-    
 
     <div class="chat-wrap">
         <div class="name-message-wrap">
@@ -51,6 +52,11 @@ export class ChatElement extends Block {
                 <a class="time-text">
                     {{{ Button text="Удалить"
                                onClick=onDelete
+                               style="delete-btn"
+                    }}}
+
+                    {{{ Button text="Открыть"
+                               onClick=onClick
                                style="delete-btn"
                     }}}
                 </a>

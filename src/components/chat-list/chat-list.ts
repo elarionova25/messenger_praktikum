@@ -72,7 +72,6 @@ export class ChatList extends Block {
                     {{#each chats}}
                         {{{ ChatElement 
                                 chat=this
-                                onClick=onSelectChat
                         }}}
                     {{/each}}
                 </div>

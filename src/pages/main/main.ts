@@ -9,18 +9,23 @@ export class MainPageBase extends Block {
         AuthController.fetchUser();
         ChatsController.getChats();
     }
+
     // language=hbs
     render() {
-        return`
+        return `
             <div class="container">
                 <div class="chat-list-wrap">
-                {{{ ChatList chats=this.chats}}}
-<!--                {{{ Chat }}}-->
-                    {{{ Plug }}}
+                    {{{ ChatList chats=this.chats}}}
+                    {{#if selectedChat}}
+                        {{{ Chat chat=selectedChat}}}
+                    {{else}}
+                        {{{ Plug }}}
+                    {{/if}}
                 </div>
             </div>
         `
     }
 }
-const withChats = withStore((state) => ({ ...state}));
+
+const withChats = withStore((state) => ({...state}));
 export const MainPage = withChats(MainPageBase);

@@ -1,10 +1,16 @@
 import {Block} from "../../core";
 import './chat.css'
 import {validateForm} from "../../helpers/validateForm";
+import store from "../../core/Store";
+
+type ChatProps = {
+    chat: any;
+}
 
 export class Chat extends Block {
-    constructor() {
-        super();
+    constructor({chat}: ChatProps) {
+        super({chat});
+        console.log(this.props)
         this.setProps({
             message: '',
             onClick: () => {
@@ -22,7 +28,6 @@ export class Chat extends Block {
                     this.setProps({
                         error: errorMessage,
                     })
-                    console.log(errorMessage)
                     this.refs.sendButtonRef.props.className="disabled";
                 } else {
                     this.refs.sendButtonRef.props.className="circle";
@@ -41,7 +46,7 @@ export class Chat extends Block {
             <img src="https://randomuser.me/api/portraits/men/32.jpg">
         </div>
         <div class="name">
-            <p class="name main-name">Tybie Kesley</p>
+            <p class="name main-name">{{chat.title}}</p>
         </div>
         <div class="settings dropdown">
             <div class="dropbtn">
