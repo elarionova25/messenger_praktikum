@@ -4,6 +4,10 @@ export interface CreateChat {
     title: string;
 }
 
+export interface DeleteChat {
+    chatId: number;
+}
+
 export interface Chat {
      id: number,
      title: string,
@@ -24,6 +28,10 @@ export class ChatsAPI extends BaseAPI {
 
     createchat(data: CreateChat) {
         return this.http.post('', data);
+    }
+
+    deletechat(data: DeleteChat) {
+        return this.http.delete('', data);
     }
 
     create = undefined;

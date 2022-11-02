@@ -96,7 +96,8 @@ export class DataEditPageBase extends Block {
             <form id="myUserForm">
                 <input id="avatar" type="file" name="avatar" accept="image/*">
                 {{{Button text="загрузить аватар"
-                     onClick=onSubmit
+                          onClick=onSubmit
+                          style="button__button"
            }}}
             </form>
             </div>
@@ -175,7 +176,10 @@ export class DataEditPageBase extends Block {
 <!--            <a href="/profile" style="color:#fff" class="save-btn">-->
 <!--                Сохранить-->
 <!--            </a>-->
-            {{{Button text="Сохранить" onClick=onSave}}}
+            {{{Button text="Сохранить" 
+                      onClick=onSave
+                      style="button__button"
+            }}}
         </div>
     </div>        
 </div>

@@ -1,13 +1,25 @@
 import {Block} from "../../core";
+import {Chat} from "../chat/chat";
+import ChatsController from "../../controllers/ChatsController";
+import {CreateChat} from "../../api/ChatsAPI";
 
 type ChatElementProps = {
     chat: any;
+    onClick: () => void;
 }
 
 
 export class ChatElement extends Block {
     constructor({chat}: ChatElementProps) {
         super({chat});
+        this.setProps({
+            onDelete: () => {
+                let data = {
+                    chatId: chat.id,
+                }
+                ChatsController.deletechat(data);
+            },
+        })
     }
 
     //language=hbs
@@ -36,9 +48,12 @@ export class ChatElement extends Block {
         </div>
         <div class="time-number-wrap">
             <div class="time">
-                <time class="time-text">
-                    13:30
-                </time>
+                <a class="time-text">
+                    {{{ Button text="Удалить"
+                               onClick=onDelete
+                               style="delete-btn"
+                    }}}
+                </a>
             </div>
             <br>
             <div class="new-number">

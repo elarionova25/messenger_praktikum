@@ -5,6 +5,7 @@ import './link.css';
 interface LinkProps {
   text: string;
   to: string;
+  onClick: () => void;
 }
 
 export class Link extends Block {

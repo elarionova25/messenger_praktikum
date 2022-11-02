@@ -1,4 +1,4 @@
-import API, {CreateChat} from '../api/ChatsAPI';
+import API, {CreateChat, DeleteChat} from '../api/ChatsAPI';
 import {ChatsAPI} from "../api/ChatsAPI";
 import router from '../core/Router';
 import store from "../core/Store";
@@ -22,6 +22,14 @@ export class ChatsController {
             await this.api.createchat(data);
         } catch (e: any) {
             console.error(e);
+        }
+    }
+
+    async deletechat(data: DeleteChat){
+        try {
+            await this.api.deletechat(data);
+        } catch (e: any) {
+            console.error(e)
         }
     }
 }

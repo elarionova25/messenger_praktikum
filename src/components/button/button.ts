@@ -5,18 +5,19 @@ import './button.css';
 interface ButtonProps {
   text: string;
   onClick: () => void;
-  class: string;
+  style: string;
 }
 
 export class Button extends Block {
-  constructor({text, onClick}: ButtonProps) {
-    super({text, events: {click: onClick}});
+  constructor({text, style, onClick}: ButtonProps) {
+    super({text, style, events: {click: onClick}});
+
   }
 
   protected render(): string {
     return `
     <div class="button-wrap">
-        <button class="button__button" type="button">{{text}}</button>
+        <button class="{{style}}" type="button">{{text}}</button>
     </div>
     `;
   }

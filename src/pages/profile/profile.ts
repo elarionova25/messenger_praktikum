@@ -103,7 +103,10 @@ export class ProfilePageBase extends Block {
 <!--                            <a style="color: #FF0000;" onLogout>Выйти</a>-->
 <!--                        </div>-->
                         <div class="settings-link">
-                            {{{Button text="Выйти" onClick=onLogout}}} 
+                            {{{Button text="Выйти" 
+                                      onClick=onLogout
+                                      style="button__button"
+                            }}} 
                         </div>
                     </div>
                 </div>

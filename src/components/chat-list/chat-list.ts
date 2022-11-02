@@ -2,7 +2,7 @@ import {Block} from "../../core";
 import './chat-list.css'
 import ChatsController from "../../controllers/ChatsController";
 import {CreateChat} from "../../api/ChatsAPI";
-import store, {withStore} from "../../core/Store";
+import store from "../../core/Store";
 
 type ChatListProps = {
     chats: any;
@@ -13,14 +13,16 @@ export class ChatList extends Block {
         super({chats});
         this.setProps({
             values: {
-                title: 'lol',
+                title: 'THE BEST CHAT',
             },
             onCreate: () => {
                 const data = this.props.values;
                 ChatsController.createchat(data as CreateChat)
+            },
+            onSelectChat: () => {
+                console.log(1233)
             }
         })
-        console.log('this.props.chats', this.props.chats);
     }
 
     // language=hbs
@@ -61,13 +63,17 @@ export class ChatList extends Block {
                         <a href="/error500">Страница 500</a>
                         {{{Button text="Создать чат"
                                   onClick=onCreate
+                                  style="button__button"
                         }}}
                     </div>
                 </div>
                 
                 <div class="chats-list">
                     {{#each chats}}
-                        {{{ ChatElement chat=this}}}
+                        {{{ ChatElement 
+                                chat=this
+                                onClick=onSelectChat
+                        }}}
                     {{/each}}
                 </div>
 
