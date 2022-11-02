@@ -57,23 +57,13 @@ export class PasswordEditPageBase extends Block {
                          stroke-width="3" stroke-linecap="butt" stroke-linejoin="arcs">
                         <path d="M15 18l-6-6 6-6" />
                     </svg>
-                    <a href="./" class="back-btn">
+                    <a href="/profile" class="back-btn">
                         Назад
                     </a>
                 </div>
 
-                <div class="profile-container">
+                <div class="password-change-container">
                     <div class="profile">
-                        <div class="avatar-wrap">
-                            <img src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png" alt="Аватар" class="profile-img">
-                        </div>
-                        <div class="name-wrap">
-                            <p class="name">
-                                <b>
-                                    Екатерина
-                                </b>
-                            </p>
-                        </div>
                         <div class="wrap">
                             {{{ControllerInput
                                     type="text"

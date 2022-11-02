@@ -46,7 +46,5 @@ export function withStore(mapStateToProps: (state: any) => any) {
     }
 
   }
-
 }
-
 export default store;
