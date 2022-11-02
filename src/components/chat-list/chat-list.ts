@@ -2,7 +2,6 @@ import {Block} from "../../core";
 import './chat-list.css'
 import ChatsController from "../../controllers/ChatsController";
 import {CreateChat} from "../../api/ChatsAPI";
-import store from "../../core/Store";
 
 type ChatListProps = {
     chats: any;
@@ -13,15 +12,18 @@ export class ChatList extends Block {
         super({chats});
         this.setProps({
             values: {
-                title: 'THE BEST CHAT',
+                title: '',
             },
             onCreate: () => {
+                const chatNameEl = this.element?.querySelector('input[name="title"]') as HTMLInputElement;
+                this.setProps({
+                    values: {
+                        title: chatNameEl.value,
+                    }
+                })
                 const data = this.props.values;
                 ChatsController.createchat(data as CreateChat)
             },
-            onSelectChat: () => {
-                console.log(1233)
-            }
         })
     }
 
@@ -46,8 +48,8 @@ export class ChatList extends Block {
                         <button class="search-btn" type="submit"></button>
                     </form>
                     <div class="create-chat">
-                        <a href="#openAddPersonModal" class="create-group">
-                            Создать группу
+                        <a href="#openCreateChatModal" class="create-group">
+                            Создать чат
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="-1 -5 24 24"
                                  fill="none"
                                  stroke="#999" stroke-width="2" stroke-linecap="butt" stroke-linejoin="bevel">
@@ -61,10 +63,6 @@ export class ChatList extends Block {
                         <a href="/error404">Страница 404</a>
                         <br>
                         <a href="/error500">Страница 500</a>
-                        {{{Button text="Создать чат"
-                                  onClick=onCreate
-                                  style="button__button"
-                        }}}
                     </div>
                 </div>
                 
@@ -77,18 +75,20 @@ export class ChatList extends Block {
                 </div>
 
                 {{#Modal
-                        id='openAddPersonModal'
-                        title='Добавить пользователя'}}
+                        id='openCreateChatModal'
+                        title='Создать чат'}}
                     {{{ Input
-                            type="login"
-                            name="login"
-                            placeholder="Введите логин"
+                            type="text"
+                            name="title"
+                            placeholder="Введите название чата"
+                            onInput=onInput
                     }}}
                     <div class="buttons">
                         <button class="modal-btn">
-                            <a href="#close" style="color:#fff">
-                                Добавить
-                            </a>
+                            {{{Button text="Создать чат"
+                                      onClick=onCreate
+                                      style="button__button"
+                            }}}
                         </button>
                     </div>
                 {{/Modal}}
@@ -96,3 +96,25 @@ export class ChatList extends Block {
         `
     }
 }
+
+// {{{Button text="Создать чат"
+//     onClick=onCreate
+//     style="button__button"
+// }}}
+
+// {{#Modal
+//     id='openAddPersonModal'
+//     title='Добавить пользователя'}}
+// {{{ Input
+//     type="login"
+//     name="login"
+//     placeholder="Введите логин"
+// }}}
+// <div class="buttons">
+// <button class="modal-btn">
+// <a href="#close" style="color:#fff">
+//     Добавить
+//     </a>
+//     </button>
+//     </div>
+// {{/Modal}}
