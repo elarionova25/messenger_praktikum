@@ -96,25 +96,3 @@ export class ChatList extends Block {
         `
     }
 }
-
-// {{{Button text="Создать чат"
-//     onClick=onCreate
-//     style="button__button"
-// }}}
-
-// {{#Modal
-//     id='openAddPersonModal'
-//     title='Добавить пользователя'}}
-// {{{ Input
-//     type="login"
-//     name="login"
-//     placeholder="Введите логин"
-// }}}
-// <div class="buttons">
-// <button class="modal-btn">
-// <a href="#close" style="color:#fff">
-//     Добавить
-//     </a>
-//     </button>
-//     </div>
-// {{/Modal}}

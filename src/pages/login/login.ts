@@ -11,7 +11,16 @@ import {SignupData} from "../../api/AuthAPI";
 // password:"abcABC123$"
 // newPassword: "ABCabc123&"
 // phone:"+7 952 266-3200"
+//"id": 64426,
 // second_name:"Екатерина"
+
+// email:"blabla12@mail.ru"
+// first_name:"Ekaterina"
+// login:"blabla12"
+//ID: 84699
+// password:"ABCabc123&"
+// phone:"+7 952 266-3200"
+// second_name:"blabla12"
 
 export class LoginPage extends Block {
     constructor() {
@@ -25,19 +34,23 @@ export class LoginPage extends Block {
             onInput: () => console.log('input'),
             onFocus: () => console.log('focus'),
             onSubmit: () => {
-                const loginEl = this.refs.loginControllerInputRef;
-                const passwordEl = this.refs.passwordControllerInputRef;
+                // const loginEl = this.refs.loginControllerInputRef;
+                // const passwordEl = this.refs.passwordControllerInputRef;
+
+                const loginEl = this.element?.querySelector('input[name="login"]') as HTMLInputElement;
+                const passwordEl = this.element?.querySelector('input[name="password"]') as HTMLInputElement;
 
                 const errorMessage = validateForm([
-                    {type: loginEl.props.name, value: loginEl.props.value},
-                    {type: passwordEl.props.name, value: passwordEl.props.value},
+                    {type: loginEl.name, value: loginEl.value},
+                    {type: passwordEl.name, value: passwordEl.value},
                 ]);
 
+                console.log(loginEl)
                 this.setProps({
                     error: errorMessage || "",
                     values: {
-                        login: loginEl.props.value,
-                        password: passwordEl.props.value,
+                        login: loginEl.value,
+                        password: passwordEl.value,
                     }
                 });
 
@@ -61,7 +74,7 @@ export class LoginPage extends Block {
             <p class="title-text">Вход</p>
         </div>
         <br>
-        <span style="color: #999999">Test account: elarionova25/abcABC123$</span>
+        <span style="color: #999999">Test account: elarionova25/ABCabc123&</span>
         <div class="data">
         {{{ControllerInput
               type="text"

@@ -48,7 +48,6 @@ export class ControllerInput extends Block {
                       onFocus=onFocus
                       onInput=onInput
                       onBlur=onBlur
-                      value="{{value}}"
                       ref="inputRef"
               }}}
           {{{Error text=error}}}

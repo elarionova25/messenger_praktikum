@@ -19,12 +19,12 @@ export class RegisterPage extends Block {
                 // passwordRetryValue: ''
             },
             onSubmit: () => {
-                const emailEl = this.refs.emailControllerInputRef.props;
-                const loginEl = this.refs.loginControllerInputRef.props;
-                const nameEl = this.refs.nameControllerInputRef.props;
-                const surnameEl = this.refs.surnameControllerInputRef.props;
-                const phoneEl = this.refs.phoneControllerInputRef.props;
-                const passwordEl = this.refs.passwordControllerInputRef.props;
+                const loginEl = this.element?.querySelector('input[name="login"]') as HTMLInputElement;
+                const emailEl = this.element?.querySelector('input[name="email"]') as HTMLInputElement;
+                const nameEl = this.element?.querySelector('input[name="name"]') as HTMLInputElement;
+                const surnameEl = this.element?.querySelector('input[name="surname"]') as HTMLInputElement;
+                const phoneEl = this.element?.querySelector('input[name="phone"]') as HTMLInputElement;
+                const passwordEl = this.element?.querySelector('input[name="password"]') as HTMLInputElement;
 
                 const errorMessage = validateForm([
                     {type: 'login', value: loginEl.value},

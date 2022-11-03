@@ -1,24 +1,23 @@
 import {Block} from "../../core";
 import './chat.css'
 import {validateForm} from "../../helpers/validateForm";
-import store from "../../core/Store";
+import ChatsController from "../../controllers/ChatsController";
 
 type ChatProps = {
     chat: any;
+    chatUsers: [];
 }
 
 export class Chat extends Block {
-    constructor({chat}: ChatProps) {
-        super({chat});
-        console.log(this.props)
-        this.setProps({
+    constructor({chat, chatUsers}: ChatProps) {
+        super({chat, chatUsers});
+            this.setProps({
             message: '',
             onClick: () => {
                 if(this.refs.sendButtonRef.props.className==="disabled") {
                     this.setProps({
                         error: 'Сообщение пустое',
                     })
-                    console.log(this.props.error)
                 }
             },
             onBlur: () => {
@@ -32,13 +31,26 @@ export class Chat extends Block {
                 } else {
                     this.refs.sendButtonRef.props.className="circle";
                 }
+            },
+            onUserAdd: () => {
+                const loginEl = this.element?.querySelector('input[name="addUserlogin"]') as HTMLInputElement;
+                this.setProps({
+                    values: {
+                        users: [
+                            Number(loginEl.value)
+                        ],
+                        chatId: chat.id
+                    }
+                })
+                const data = this.props.values;
+                ChatsController.addusertochat(data);
             }
         })
     }
 
 
     render() {
-        //language=hbs
+        // language=hbs
         return `
         <div class="chat">
     <div class="header-chat">
@@ -47,6 +59,11 @@ export class Chat extends Block {
         </div>
         <div class="name">
             <p class="name main-name">{{chat.title}}</p>
+            <br>
+            Участники:
+            {{#each chatUsers}}
+                {{this.login}}
+            {{/each}}
         </div>
         <div class="settings dropdown">
             <div class="dropbtn">
@@ -69,15 +86,7 @@ export class Chat extends Block {
         <div class="messages-date">12 января</div>
         <div class="message-container message-container-outgoing">
             <div class="message message-outgoing">
-                <div class="message-text">Привет! Смотри, тут всплыл интересный кусок лунной космической истории
-                    — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну.
-                    Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки
-                    этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только
-                    кассеты с пленкой.
-
-                    Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так
-                    никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на
-                    аукционе за 45000 евро.
+                <div class="message-text">Привет!
                 </div>
                 <span class="message-time">13:00</span>
                 <br>
@@ -138,14 +147,15 @@ export class Chat extends Block {
             title='Добавить пользователя'}}
         {{{ Input
                 type="login"
-                name="login"
+                name="addUserlogin"
                 placeholder="Введите логин"
         }}}
         <div class="buttons">
             <button class="modal-btn">
-                <a href="#close" style="color:#fff">
-                    Добавить
-                </a>
+                {{{Button text="Добавить пользователя"
+                          onClick=onUserAdd
+                          style="button__button"
+                }}}
             </button>
         </div>
     {{/Modal}}

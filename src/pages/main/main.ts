@@ -17,7 +17,9 @@ export class MainPageBase extends Block {
                 <div class="chat-list-wrap">
                     {{{ ChatList chats=this.chats}}}
                     {{#if selectedChat}}
-                        {{{ Chat chat=selectedChat}}}
+                        {{{ Chat chat=selectedChat
+                                 chatUsers=chatUsers
+                        }}}
                     {{else}}
                         {{{ Plug }}}
                     {{/if}}

@@ -16,6 +16,11 @@ export interface Chat {
      last_message: {},
 }
 
+export interface AddUsers {
+    users: [],
+    chatId: number,
+}
+
 
 export class ChatsAPI extends BaseAPI {
     constructor() {
@@ -32,6 +37,14 @@ export class ChatsAPI extends BaseAPI {
 
     deletechat(data: DeleteChat) {
         return this.http.delete('', data);
+    }
+
+    addusertochat(data: AddUsers) {
+        return this.http.put('/users', data);
+    }
+
+    getchatusers(id: number){
+        return this.http.get('/'+id+'/users');
     }
 
     create = undefined;

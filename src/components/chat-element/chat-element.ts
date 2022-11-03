@@ -4,6 +4,7 @@ import store from "../../core/Store";
 
 type ChatElementProps = {
     chat: any;
+    chatUsers: [];
     onClick: () => void;
 }
 
@@ -19,6 +20,9 @@ export class ChatElement extends Block {
             },
             onClick: () => {
                 store.set('selectedChat', chat);
+                ChatsController.getchatusers(chat.id).then((response) => {
+                    store.set('chatUsers', response)
+                })
                 console.log(store)
             }
         })
