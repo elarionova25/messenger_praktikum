@@ -28,6 +28,7 @@ import {SimpleInput} from "./components/simple-input/simple-input";
 import {SendButton} from "./components/send-button/send-button";
 import {ServerError} from "./pages/500/500";
 import {Store} from "./core/Store";
+import {MessageElement} from "./components/message-element/message-element";
 
 registerComponent(Button);
 registerComponent(Link);
@@ -43,6 +44,7 @@ registerComponent(Error);
 registerComponent(ControllerInput);
 registerComponent(SimpleInput);
 registerComponent(SendButton);
+registerComponent(MessageElement);
 
 declare global {
     interface Window {

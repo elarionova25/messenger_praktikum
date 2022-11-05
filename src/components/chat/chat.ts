@@ -16,7 +16,6 @@ export class Chat extends Block {
         const token = store.getState().token;
         const currentUser = store.getState().user
         const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${currentUser.id}/${chat.id}/${token}`);
-        console.log(store)
         socket.addEventListener('open', () => {
             console.log('Соединение установлено');
             socket.send(JSON.stringify({
@@ -31,13 +30,16 @@ export class Chat extends Block {
             } else {
                 console.log('Обрыв соединения');
             }
-
             console.log(`Код: ${event.code} | Причина: ${event.reason}`);
         });
 
         socket.addEventListener('message', event => {
-            console.log('Получены данные', event.data);
-            chatOldMessages = event.data;
+            // console.log('Получены данные', event.data);
+            this.setProps({
+                chatOldMessages: JSON.parse(event.data),
+            })
+            console.log(this.props.chatOldMessages)
+            console.log(this.props)
         });
 
         socket.addEventListener('error', event => {
@@ -123,35 +125,38 @@ export class Chat extends Block {
     </div>
     <div class="messages-pool">
         <div class="messages-date">12 января</div>
-        <div class="message-container message-container-outgoing">
-            <div class="message message-outgoing">
-                <div class="message-text">Привет!
-                </div>
-                <span class="message-time">13:00</span>
-                <br>
-                <span class="message-status">
-                    Прочитано
-                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 20 20" fill="none"
-                        stroke="#999999" stroke-width="1" stroke-linecap="butt" stroke-linejoin="arcs">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                </span>
-            </div>
-        </div>
-        <div class="message-container">
-            <div class="message">
-                <div class="message-text">HELOOOO234</div>
-                <span class="message-time">13:30</span>
-                <br>
-                <span class="message-status">
-                    Прочитано
-                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 20 20" fill="none"
-                        stroke="#999999" stroke-width="1" stroke-linecap="butt" stroke-linejoin="arcs">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                </span>
-            </div>
-        </div>
+        {{#each chatOldMessages}}
+            {{{ MessageElement message=this}}}
+        {{/each}}
+<!--        <div class="message-container message-container-outgoing">-->
+<!--            <div class="message message-outgoing">-->
+<!--                <div class="message-text">Привет!-->
+<!--                </div>-->
+<!--                <span class="message-time">13:00</span>-->
+<!--                <br>-->
+<!--                <span class="message-status">-->
+<!--                    Прочитано-->
+<!--                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 20 20" fill="none"-->
+<!--                        stroke="#999999" stroke-width="1" stroke-linecap="butt" stroke-linejoin="arcs">-->
+<!--                        <polyline points="20 6 9 17 4 12"></polyline>-->
+<!--                    </svg>-->
+<!--                </span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="message-container">-->
+<!--            <div class="message">-->
+<!--                <div class="message-text">HELOOOO234</div>-->
+<!--                <span class="message-time">13:30</span>-->
+<!--                <br>-->
+<!--                <span class="message-status">-->
+<!--                    Прочитано-->
+<!--                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 20 20" fill="none"-->
+<!--                        stroke="#999999" stroke-width="1" stroke-linecap="butt" stroke-linejoin="arcs">-->
+<!--                        <polyline points="20 6 9 17 4 12"></polyline>-->
+<!--                    </svg>-->
+<!--                </span>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
     <div class="text-bar">
         <div class="icon-wrap">
