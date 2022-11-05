@@ -1,6 +1,7 @@
 import Block from '../../core/Block';
 
 import './message-element.css';
+import store from "../../core/Store";
 
 interface MessageElementProps {
     message: any;
@@ -9,13 +10,22 @@ interface MessageElementProps {
 export class MessageElement extends Block {
     constructor({message}: MessageElementProps) {
         super({message});
-
+        const currentUser = store.getState().user
+        this.setProps({
+            outGoing: message.user_id === currentUser.id
+        })
     }
+
 //language=hbs
     protected render() {
         return `
-    <div class="message-container message-container-outgoing">
-            <div class="message message-outgoing">
+            {{#if outGoing}}
+                <div class="message-container message-container-outgoing">
+                <div class="message message-outgoing">
+            {{else}}
+                <div class="message-container">
+                <div class="message">
+            {{/if}}
                 <div class="message-text">
                     {{message.content}}
                 </div>
