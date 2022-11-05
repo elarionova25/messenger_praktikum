@@ -2,16 +2,49 @@ import {Block} from "../../core";
 import './chat.css'
 import {validateForm} from "../../helpers/validateForm";
 import ChatsController from "../../controllers/ChatsController";
+import store from "../../core/Store";
 
 type ChatProps = {
     chat: any;
     chatUsers: [];
+    chatOldMessages: any;
 }
 
 export class Chat extends Block {
-    constructor({chat, chatUsers}: ChatProps) {
-        super({chat, chatUsers});
-            this.setProps({
+    constructor({chat, chatUsers, chatOldMessages}: ChatProps) {
+        super({chat, chatUsers, chatOldMessages});
+        const token = store.getState().token;
+        const currentUser = store.getState().user
+        const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${currentUser.id}/${chat.id}/${token}`);
+        console.log(store)
+        socket.addEventListener('open', () => {
+            console.log('Соединение установлено');
+            socket.send(JSON.stringify({
+                content: '0',
+                type: 'get old',
+            }));
+        });
+
+        socket.addEventListener('close', event => {
+            if (event.wasClean) {
+                console.log('Соединение закрыто чисто');
+            } else {
+                console.log('Обрыв соединения');
+            }
+
+            console.log(`Код: ${event.code} | Причина: ${event.reason}`);
+        });
+
+        socket.addEventListener('message', event => {
+            console.log('Получены данные', event.data);
+            chatOldMessages = event.data;
+        });
+
+        socket.addEventListener('error', event => {
+            console.log('Ошибка', event.message);
+        });
+
+        this.setProps({
             message: '',
             onClick: () => {
                 if(this.refs.sendButtonRef.props.className==="disabled") {
@@ -19,6 +52,11 @@ export class Chat extends Block {
                         error: 'Сообщение пустое',
                     })
                 }
+                const sendMessageEl = this.element?.querySelector('input[name="message"]') as HTMLInputElement;
+                socket.send(JSON.stringify({
+                    content: sendMessageEl.value,
+                    type: 'message',
+                }));
             },
             onBlur: () => {
                 const messageEl = this.element?.querySelector('input[name="message"]') as HTMLInputElement;
@@ -63,6 +101,7 @@ export class Chat extends Block {
             Участники:
             {{#each chatUsers}}
                 {{this.login}}
+                <br>
             {{/each}}
         </div>
         <div class="settings dropdown">

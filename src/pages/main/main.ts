@@ -18,7 +18,7 @@ export class MainPageBase extends Block {
                     {{{ ChatList chats=this.chats}}}
                     {{#if selectedChat}}
                         {{{ Chat chat=selectedChat
-                                 chatUsers=chatUsers
+                                 chatUsers=selectedChat.chatUsers
                         }}}
                     {{else}}
                         {{{ Plug }}}

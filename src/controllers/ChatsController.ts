@@ -45,6 +45,14 @@ export class ChatsController {
         const users = await this.api.getchatusers(id);
         return users;
     }
+
+    async getchattoken(id: number) {
+        try {
+            await this.api.getchattoken(id);
+        } catch (e: any) {
+            console.error(e)
+        }
+    }
 }
 
 export default new ChatsController();

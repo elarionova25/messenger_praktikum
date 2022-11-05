@@ -1,4 +1,5 @@
 import BaseAPI from './BaseAPI';
+import store from "../core/Store";
 
 export interface CreateChat {
     title: string;
@@ -45,6 +46,19 @@ export class ChatsAPI extends BaseAPI {
 
     getchatusers(id: number){
         return this.http.get('/'+id+'/users');
+    }
+
+    getchattoken(id: number) {
+        const host = 'https://ya-praktikum.tech';
+        fetch(`${host}/api/v2/chats/token/${id}`, {
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'include',
+        })
+            .then(response => response.json())
+            .then(data => {
+                store.set('token', data.token)
+            });
     }
 
     create = undefined;
