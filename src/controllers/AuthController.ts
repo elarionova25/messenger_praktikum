@@ -14,10 +14,10 @@ export class AuthController {
   async signin(data: SigninData) {
     try {
       await this.api.signin(data);
-
       router.go('/profile');
     } catch (e: any) {
       console.error(e);
+      router.go('/error500');
     }
   }
 
@@ -30,6 +30,7 @@ export class AuthController {
       router.go('/profile');
     } catch (e: any) {
       console.error(e.message);
+      router.go('/error500');
     }
   }
 
@@ -42,11 +43,11 @@ export class AuthController {
   async logout() {
     try {
       await this.api.logout();
-
       router.go('/login');
       renderDOM(new LoginPage())
     } catch (e: any) {
       console.error(e.message);
+      router.go('/error500');
     }
   }
 

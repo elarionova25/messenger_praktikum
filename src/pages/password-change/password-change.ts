@@ -99,7 +99,10 @@ export class PasswordEditPageBase extends Block {
                     </div>
                     <div class="input-error">{{#if error}}{{error}}{{/if}}</div>
                     <div class="save-btn-wrap">
-                        {{{ Button text="Cохранить" onClick=onSave}}}
+                        {{{ Button text="Cохранить" 
+                                   onClick=onSave
+                                   style="button__button"
+                        }}}
                     </div>
                 </div>
             </div>

@@ -74,7 +74,10 @@ export class LoginPage extends Block {
             <p class="title-text">Вход</p>
         </div>
         <br>
-        <span style="color: #999999">Test account: elarionova25/ABCabc123&</span>
+        <span style="color: #999999">First account: elarionova25/ABCabc123&</span>
+        <br>
+        <span style="color: #999999">Second account: blabla12/ABCabc123&</span>
+
         <div class="data">
         {{{ControllerInput
               type="text"
@@ -105,7 +108,10 @@ export class LoginPage extends Block {
         </div>
          
         <div class="buttons">
-            {{{ Button text="Войти" onClick=onSubmit}}}
+            {{{ Button text="Войти" 
+                       onClick=onSubmit
+                       style="button__button"
+            }}}
             <button class="btn sign-in-btn">
                 <a href="/register" class="sign-in-link">
                     Нет аккаунта?

@@ -129,7 +129,10 @@ export class RegisterPage extends Block {
                     </div>
                     <div class="input-error">{{#if error}}{{error}}{{/if}}</div>
                     <div class="buttons">
-                        {{{ Button text="Зарегистрироваться" onClick=onSubmit}}}
+                        {{{ Button text="Зарегистрироваться" 
+                                   onClick=onSubmit
+                                   style="button__button"
+                        }}}
                         <button class="btn sign-in-btn">
                             <a href="/login" class="sign-in-link">
                                 Войти

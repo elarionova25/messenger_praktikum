@@ -60,9 +60,6 @@ export class ChatList extends Block {
                             </svg>
                         </a>
                         <br>
-                        <a href="/error404">Страница 404</a>
-                        <br>
-                        <a href="/error500">Страница 500</a>
                     </div>
                 </div>
                 

@@ -57,7 +57,6 @@ enum Routes {
     Register = '/register',
     Profile = '/profile',
     Login ='/login',
-    Error404='/error404',
     Error500='/error500',
     DataEdit='/data-edit',
     PasswordChange='/password-change'
@@ -69,36 +68,18 @@ window.addEventListener("DOMContentLoaded", () => {
         .use(Routes.Login, LoginPage)
         .use(Routes.Register, RegisterPage)
         .use(Routes.Profile, ProfilePage)
-        .use(Routes.Error404, NotFoundErrorPage)
         .use(Routes.Error500, ServerError)
         .use(Routes.DataEdit, DataEditPage)
         .use(Routes.PasswordChange, PasswordChangePage)
-
 
     switch (window.location.pathname) {
         case Routes.Main: renderDOM(new MainPage()); break;
         case Routes.Register: renderDOM(new RegisterPage()); break;
         case Routes.Login:renderDOM(new LoginPage()); break;
         case Routes.Profile:renderDOM(new ProfilePage()); break;
-        case Routes.Error404:renderDOM(new NotFoundErrorPage()); break;
         case Routes.Error500:renderDOM(new ServerError()); break;
         case Routes.DataEdit:renderDOM(new DataEditPage()); break;
         case Routes.PasswordChange:renderDOM(new PasswordChangePage()); break;
+        default: renderDOM(new NotFoundErrorPage()); break;
     }
-
-    // try {
-    //     await AuthController.fetchUser();
-    //
-    //     Router.start();
-    //
-    //     if (!isProtectedRoute) {
-    //         Router.go(Routes.Profile)
-    //     }
-    // } catch (e) {
-    //     Router.start();
-    //
-    //     if (isProtectedRoute) {
-    //         Router.go(Routes.Main);
-    //     }
-    // }
 });
