@@ -1,5 +1,5 @@
 import {Block} from "../../core";
-import store, {withStore} from "../../core/Store";
+import {withStore} from "../../core/Store";
 import AuthController from "../../controllers/AuthController";
 import ChatsController from "../../controllers/ChatsController";
 

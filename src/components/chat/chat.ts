@@ -80,7 +80,6 @@ export class Chat extends Block {
         })
     }
 
-
     render() {
         // language=hbs
         return `
@@ -121,7 +120,7 @@ export class Chat extends Block {
     </div>
     <div class="msger-chat">
         {{#if chatOldMessages}}
-            <div class="messages-date">12 января</div>
+<!--            <div class="messages-date">12 января</div>-->
             {{#each chatOldMessages}}
                 {{{ MessageElement message=this}}}
             {{/each}}
@@ -133,7 +132,7 @@ export class Chat extends Block {
     <div class="text-bar">
         <div class="icon-wrap">
             <label for="custom-file-upload">
-                <input type="file">
+                <input class="input-chat-file" type="file">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="42" viewBox="0 0 24 24" fill="none"
                     stroke="#999999" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="arcs">
                     <path
@@ -143,7 +142,6 @@ export class Chat extends Block {
             </label>
         </div>
         <form class="text-bar-field">
-<!--            <input type="text" placeholder="Введите сообщение" name="message">-->
         {{{ Input 
             type=text
             placeholder="Введите сообщение"

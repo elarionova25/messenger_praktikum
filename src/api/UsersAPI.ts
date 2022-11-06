@@ -32,7 +32,6 @@ export class UsersAPI extends BaseAPI {
         return this.http.put('/password', data);
     }
 
-
     create = undefined;
     update = undefined;
     delete = undefined;

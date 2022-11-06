@@ -16,7 +16,6 @@ export class RegisterPage extends Block {
                 password: '',
                 phone: '',
                 second_name: '',
-                // passwordRetryValue: ''
             },
             onSubmit: () => {
                 const loginEl = this.element?.querySelector('input[name="login"]') as HTMLInputElement;
@@ -49,9 +48,7 @@ export class RegisterPage extends Block {
                 //if(!errorMessage){
                     const data = this.props.values
                     AuthController.signup(data as SignupData);
-
                // }
-                console.log(this.props.values)
             }
         })
     }

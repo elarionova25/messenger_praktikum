@@ -2,7 +2,6 @@ import {Block} from "../../core";
 import './profile.css';
 import AuthController from "../../controllers/AuthController";
 import {withStore} from "../../core/Store";
-import {User} from "../../api/AuthAPI";
 
 export class ProfilePageBase extends Block {
 
@@ -103,9 +102,6 @@ export class ProfilePageBase extends Block {
                         <div class="settings-link">
                             <a href="/password-change">Изменить пароль</a>
                         </div>
-<!--                        <div class="settings-link">-->
-<!--                            <a style="color: #FF0000;" onLogout>Выйти</a>-->
-<!--                        </div>-->
                         <div class="settings-link">
                             {{{Button text="Выйти" 
                                       onClick=onLogout

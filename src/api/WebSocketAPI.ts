@@ -1,4 +1,3 @@
-import BaseAPI from './BaseAPI';
 import store from "../core/Store";
 
 export class WebSocketAPI {
@@ -6,8 +5,6 @@ export class WebSocketAPI {
         const token = store.getState().token;
         const currentUser = store.getState().user
         const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${currentUser.id}/${chatId}/${token}`);
-        store.set('currentSocket', socket);
-        console.log('Store', store)
         socket.addEventListener('open', () => {
             console.log('Соединение установлено');
             socket.send(JSON.stringify({

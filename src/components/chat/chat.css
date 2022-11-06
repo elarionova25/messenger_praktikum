@@ -13,6 +13,10 @@
 /*    display: none;*/
 /*}*/
 
+.input-chat-file {
+    display: none;
+}
+
 .header-chat {
     display: flex;
     width: 100%;

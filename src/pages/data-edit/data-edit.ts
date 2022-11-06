@@ -48,7 +48,6 @@ export class DataEditPageBase extends Block {
                 });
                 //if(!errorMessage) {
                     const data = this.props.values;
-                    console.log(data);
                     UsersController.changedata(data as ChangeData);
                 //}
             },

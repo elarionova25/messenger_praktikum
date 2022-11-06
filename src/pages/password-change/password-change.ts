@@ -38,11 +38,7 @@ export class PasswordEditPageBase extends Block {
                     },
                     newPasswordRepeat: newRepeatPasswordEl.value,
                 });
-
-                //console.log(this.props.values.oldPassword)
-
                 const data = this.props.values;
-                console.log('VALUES', this.props.values);
                 UsersController.changepassword(data as ChangePassword)
                 }
         })

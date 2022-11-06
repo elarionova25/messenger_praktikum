@@ -49,6 +49,7 @@ export class ChatList extends Block {
                     </form>
                     <div class="create-chat">
                         <a href="#openCreateChatModal" class="create-group">
+                            <i class="fas fa-user"></i>
                             Создать чат
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="-1 -5 24 24"
                                  fill="none"
