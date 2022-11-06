@@ -32,13 +32,13 @@ export class ChatElement extends Block {
     render() {
         return `
 <div class="chat-element" id="">
-    {{#if avatar}}
+    {{#if chat.avatar}}
         <div class="wrapper avatar">
-            <img src="https://ya-praktikum.tech/api/v2/resources/{{avatar}}" alt="avatar">
+            <img src="https://ya-praktikum.tech/api/v2/resources/{{chat.avatar}}" alt="avatar">
         </div>
         {{else}}
         <div class="wrapper avatar">
-            <img src="/noimage.png" alt="avatar">
+            <img src="https://archive.org/download/no-photo-available/no-photo-available.png" alt="avatar">
         </div>
     {{/if}}
 

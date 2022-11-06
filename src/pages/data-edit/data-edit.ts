@@ -46,7 +46,6 @@ export class DataEditPageBase extends Block {
                         display_name: displayNameEl.value,
                     }
                 });
-
                 //if(!errorMessage) {
                     const data = this.props.values;
                     console.log(data);
@@ -56,15 +55,12 @@ export class DataEditPageBase extends Block {
             onSubmit: () => {
                 const host = 'https://ya-praktikum.tech';
                 const myUserForm = document.getElementById('myUserForm');
-
-                console.log(myUserForm);
-
                 const avatar = document.getElementById('avatar');
                 const form = new FormData(myUserForm);
                 fetch(`${host}/api/v2/user/profile/avatar`, {
                     method: 'PUT',
-                    credentials: 'include', // Нам нужно подставлять cookies
-                    mode: 'cors', // Работаем с CORS
+                    credentials: 'include',
+                    mode: 'cors',
                     body: form,
                 })
                     .then(response => response.json())
@@ -173,9 +169,6 @@ export class DataEditPageBase extends Block {
         </div>
 
         <div class="save-btn-wrap">
-<!--            <a href="/profile" style="color:#fff" class="save-btn">-->
-<!--                Сохранить-->
-<!--            </a>-->
             {{{Button text="Сохранить" 
                       onClick=onSave
                       style="button__button"

@@ -1,12 +1,21 @@
 .plug {
-    width: 75%;
-    position: relative;
+    text-align: center;
+    margin: auto 0;
+    width: 100%;
 }
 
-.text-wrap {
-    margin: auto;
-    position: absolute;
-    top: 50%;
-    left: 35%;
+.plug-text {
     color: var(--main-grey-color);
+    font-size: 30px;
 }
+
+/*.text-wrap {*/
+/*    margin: auto;*/
+/*    position: absolute;*/
+/*    top: 50%;*/
+/*    left: 50%;*/
+/*    color: var(--main-grey-color);*/
+/*    min-height: 15em;*/
+/*    display: table-cell;*/
+/*    vertical-align: middle*/
+/*}*/

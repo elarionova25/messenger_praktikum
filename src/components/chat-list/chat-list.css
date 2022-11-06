@@ -19,6 +19,7 @@
 .profile-text {
     text-decoration: none;
     color: var(--main-grey-color);
+    font-size: 16px;
 }
 
 form {
@@ -69,5 +70,5 @@ input {
 
 .create-chat a{
     color: #999;
-    font-size: 12px;
+    font-size: 16px;
 }

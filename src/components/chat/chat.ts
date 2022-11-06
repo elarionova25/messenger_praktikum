@@ -34,7 +34,6 @@ export class Chat extends Block {
         });
 
         socket.addEventListener('message', event => {
-            // console.log('Получены данные', event.data);
             const data = JSON.parse(event.data);
             this.setProps({
                 chatOldMessages: data.reverse(),
@@ -83,6 +82,32 @@ export class Chat extends Block {
                 })
                 const data = this.props.values;
                 ChatsController.addusertochat(data);
+            },
+            onChatDelete: () => {
+                let data = {
+                    chatId: chat.id,
+                }
+                ChatsController.deletechat(data);
+            },
+            onAvatarAdd: () => {
+                const host = 'https://ya-praktikum.tech';
+                const myUserForm = document.getElementById('myUserForm');
+                console.log(myUserForm)
+                const avatar = document.getElementById('avatar');
+                // const chatId = chat.id;
+                const form = new FormData(myUserForm);
+                form.append('chatId', chat.id);
+                fetch(`${host}/api/v2/chats/avatar`, {
+                    method: 'PUT',
+                    credentials: 'include',
+                    mode: 'cors',
+                    body: form,
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        return data;
+                    });
             }
         })
     }
@@ -94,7 +119,11 @@ export class Chat extends Block {
         <div class="chat">
     <div class="header-chat">
         <div class="wrapper avatar">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg">
+            {{#if chat.avatar}}
+                    <img src="https://ya-praktikum.tech/api/v2/resources/{{chat.avatar}}" alt="avatar">
+            {{else}}
+                    <img src="https://archive.org/download/no-photo-available/no-photo-available.png" alt="avatar">
+            {{/if}}
         </div>
         <div class="name">
             <p class="name main-name">{{chat.title}}</p>
@@ -102,7 +131,6 @@ export class Chat extends Block {
             Участники:
             {{#each chatUsers}}
                 {{this.login}}
-                <br>
             {{/each}}
         </div>
         <div class="settings dropdown">
@@ -118,6 +146,7 @@ export class Chat extends Block {
                 <a href="#openAddPersonModal">Добавить пользователя</a>
                 <a href="#openDeletePersonModal">Удалить пользователя</a>
                 <a href="#openDeleteModal">Удалить диалог</a>
+                <a href="#openAddChatAvatarModal">Добавить аватар чата</a>
                 </ul>
             </div>
         </div>
@@ -195,17 +224,30 @@ export class Chat extends Block {
          <p>Вы действительно хотите удалить диалог?</p>
          <br>
             <div class="yes-no-buttons">
-                <button class="yes-btn">
-                    <a href="#close" style="color:#fff">
-                        ДА!
-                    </a>
-                </button>
+                {{{Button text="ДА!"
+                          onClick=onChatDelete
+                          style="button__button"
+                }}}
                 <button class="no-btn">
                     <a href="#close" class="no-btn">
                         Нет
                     </a>
                 </button>
             </div>
+    {{/Modal}}
+
+    {{#Modal id='openAddChatAvatarModal'}}
+        <p>Добавить аватар чата</p>
+        <br>
+        <div class="avatar-wrap">
+            <form id="myUserForm">
+                <input id="avatar" type="file" name="avatar" accept="image/*">
+                {{{Button text="загрузить аватар"
+                          onClick=onAvatarAdd
+                          style="button__button"
+                }}}
+            </form>
+        </div>
     {{/Modal}}
 </div>
         `
