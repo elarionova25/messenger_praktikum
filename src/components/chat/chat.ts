@@ -35,13 +35,10 @@ export class Chat extends Block {
 
         socket.addEventListener('message', event => {
             // console.log('Получены данные', event.data);
-            const data = JSON.parse(event.data)
-            console.log('data', data)
+            const data = JSON.parse(event.data);
             this.setProps({
                 chatOldMessages: data.reverse(),
             })
-            console.log(this.props.chatOldMessages)
-            console.log(this.props)
         });
 
         socket.addEventListener('error', event => {

@@ -12,8 +12,18 @@ export class MessageElement extends Block {
         super({message});
         const currentUser = store.getState().user
         this.setProps({
+            time: this.modifyDate(message.time),
             outGoing: message.user_id === currentUser.id
         })
+    }
+
+    protected modifyDate(date: string) {
+        const dateExample = new Date(date);
+        var date = dateExample.getFullYear()+'-'+(dateExample.getMonth()+1)+'-'+dateExample.getDate();
+        var time = dateExample.getHours() + ":" + dateExample.getMinutes();
+        var dateTime = date+' '+time;
+        return dateTime;
+
     }
 
 //language=hbs
@@ -29,7 +39,7 @@ export class MessageElement extends Block {
                 <div class="message-text">
                     {{message.content}}
                 </div>
-                <span class="message-time">{{message.time}}</span>
+                <span class="message-time">{{time}}</span>
                 <br>
                 
                 {{#if message.is_read}}
