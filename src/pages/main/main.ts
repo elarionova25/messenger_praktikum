@@ -19,6 +19,7 @@ export class MainPageBase extends Block {
                     {{#if selectedChat}}
                         {{{ Chat chat=selectedChat
                                  chatUsers=selectedChat.chatUsers
+                                 chatOldMessages=selectedChat.oldMessages
                         }}}
                     {{else}}
                         {{{ Plug }}}

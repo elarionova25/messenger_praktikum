@@ -2,7 +2,7 @@ import API, {AddUsers, CreateChat, DeleteChat} from '../api/ChatsAPI';
 import {ChatsAPI} from "../api/ChatsAPI";
 import router from '../core/Router';
 import store from "../core/Store";
-import {ChangeData} from "../api/UsersAPI";
+import WebSocketController from "./WebSocketController";
 
 export class ChatsController {
     private readonly api: ChatsAPI;

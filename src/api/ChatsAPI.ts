@@ -1,5 +1,6 @@
 import BaseAPI from './BaseAPI';
 import store from "../core/Store";
+import WebSocketController from "../controllers/WebSocketController";
 
 export interface CreateChat {
     title: string;
@@ -57,7 +58,8 @@ export class ChatsAPI extends BaseAPI {
         })
             .then(response => response.json())
             .then(data => {
-                store.set('token', data.token)
+                store.set('token', data.token);
+                WebSocketController.createsocket(id)
             });
     }
 

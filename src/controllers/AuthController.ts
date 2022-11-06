@@ -50,16 +50,6 @@ export class AuthController {
       router.go('/error500');
     }
   }
-
-    // async changedata(data: ChangeData) {
-    //     try {
-    //         await this.api.changedata(data);
-    //
-    //         router.go('/profile');
-    //     } catch (e: any) {
-    //         console.error(e);
-    //     }
-    // }
 }
 
 export default new AuthController();

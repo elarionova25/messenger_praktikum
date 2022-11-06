@@ -13,37 +13,6 @@ type ChatProps = {
 export class Chat extends Block {
     constructor({chat, chatUsers, chatOldMessages}: ChatProps) {
         super({chat, chatUsers, chatOldMessages});
-        const token = store.getState().token;
-        const currentUser = store.getState().user
-        const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${currentUser.id}/${chat.id}/${token}`);
-        socket.addEventListener('open', () => {
-            console.log('Соединение установлено');
-            socket.send(JSON.stringify({
-                content: '0',
-                type: 'get old',
-            }));
-        });
-
-        socket.addEventListener('close', event => {
-            if (event.wasClean) {
-                console.log('Соединение закрыто чисто');
-            } else {
-                console.log('Обрыв соединения');
-            }
-            console.log(`Код: ${event.code} | Причина: ${event.reason}`);
-        });
-
-        socket.addEventListener('message', event => {
-            const data = JSON.parse(event.data);
-            this.setProps({
-                chatOldMessages: data.reverse(),
-            })
-        });
-
-        socket.addEventListener('error', event => {
-            console.log('Ошибка', event.message);
-        });
-
         this.setProps({
             message: '',
             onClick: () => {
@@ -53,7 +22,7 @@ export class Chat extends Block {
                     })
                 }
                 const sendMessageEl = this.element?.querySelector('input[name="message"]') as HTMLInputElement;
-                socket.send(JSON.stringify({
+                store.getState().currentSocket.send(JSON.stringify({
                     content: sendMessageEl.value,
                     type: 'message',
                 }));
@@ -94,7 +63,6 @@ export class Chat extends Block {
                 const myUserForm = document.getElementById('myUserForm');
                 console.log(myUserForm)
                 const avatar = document.getElementById('avatar');
-                // const chatId = chat.id;
                 const form = new FormData(myUserForm);
                 form.append('chatId', chat.id);
                 fetch(`${host}/api/v2/chats/avatar`, {
@@ -152,10 +120,15 @@ export class Chat extends Block {
         </div>
     </div>
     <div class="msger-chat">
-        <div class="messages-date">12 января</div>
-        {{#each chatOldMessages}}
-            {{{ MessageElement message=this}}}
-        {{/each}}
+        {{#if chatOldMessages}}
+            <div class="messages-date">12 января</div>
+            {{#each chatOldMessages}}
+                {{{ MessageElement message=this}}}
+            {{/each}}
+            {{else}}
+            <div class="messages-date">Сообщений нет</div>
+        {{/if}}
+            
     </div>
     <div class="text-bar">
         <div class="icon-wrap">

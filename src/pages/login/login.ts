@@ -34,9 +34,6 @@ export class LoginPage extends Block {
             onInput: () => console.log('input'),
             onFocus: () => console.log('focus'),
             onSubmit: () => {
-                // const loginEl = this.refs.loginControllerInputRef;
-                // const passwordEl = this.refs.passwordControllerInputRef;
-
                 const loginEl = this.element?.querySelector('input[name="login"]') as HTMLInputElement;
                 const passwordEl = this.element?.querySelector('input[name="password"]') as HTMLInputElement;
 
@@ -118,7 +115,6 @@ export class LoginPage extends Block {
                 </a>
             </button>
         </div>
-       
     </div>
     </div>
     `;
