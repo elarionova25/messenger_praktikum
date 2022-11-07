@@ -11,8 +11,9 @@ npm run start - для запуска на 3000 порту сервер Express
 
 Спринт 2:
 Реализован компонентный подход. Добавлена валидация на все input.
-А также неудачная попытка написать fetch.
 Pull request:https://github.com/elarionova25/middle.messenger.praktikum.yandex/pull/2
 
-
+Спринт 3:
+Подключены api и websocket. 
+Pull reguest: https://github.com/elarionova25/middle.messenger.praktikum.yandex/pull/3
 
