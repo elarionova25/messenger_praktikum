@@ -192,7 +192,7 @@
 
 .chat-element {
     min-height: 71px;
-    min-width: 200px;
+    min-width: 50px;
     margin: 0;
     border-top: 1px solid var(--main-border-color);
     background: none;
@@ -202,7 +202,7 @@
 
 .chat-element:hover {
     min-height: 71px;
-    min-width: 200px;
+    min-width: 50px;
     background: var(--main-border-color);
     margin: 0;
     border-top: 1px solid var(--main-border-color);

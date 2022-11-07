@@ -20,6 +20,8 @@ export class ChatElement extends Block {
             },
             onClick: () => {
                 store.set('selectedChat', chat);
+                // необходимо, чтобы сохранялся порядок в ChatList
+                ChatsController.getChats();
                 ChatsController.getchatusers(chat.id).then((response) => {
                     store.set('selectedChat.chatUsers', response)
                 })

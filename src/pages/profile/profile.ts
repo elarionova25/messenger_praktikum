@@ -31,7 +31,7 @@ export class ProfilePageBase extends Block {
                 <div class="profile-container">
                     <div class="profile">
                         <div class="avatar-wrap">
-                            {{#if chat.avatar}}
+                            {{#if avatar}}
                                 <img src="https://ya-praktikum.tech/api/v2/resources/{{avatar}}" alt="avatar" class="profile-img">
                             {{else}}
                                 <img src="https://archive.org/download/no-photo-available/no-photo-available.png" alt="avatar" class="profile-img">

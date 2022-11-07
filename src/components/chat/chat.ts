@@ -73,7 +73,6 @@ export class Chat extends Block {
                 })
                     .then(response => response.json())
                     .then(data => {
-                        console.log(data);
                         return data;
                     });
             }
@@ -83,7 +82,7 @@ export class Chat extends Block {
     render() {
         // language=hbs
         return `
-        <div class="chat">
+ <div class="chat">
     <div class="header-chat">
         <div class="wrapper avatar">
             {{#if chat.avatar}}
@@ -118,7 +117,7 @@ export class Chat extends Block {
             </div>
         </div>
     </div>
-    <div class="msger-chat">
+    <div id="messages-container" class="msger-chat">
         {{#if chatOldMessages}}
 <!--            <div class="messages-date">12 января</div>-->
             {{#each chatOldMessages}}
@@ -127,7 +126,6 @@ export class Chat extends Block {
             {{else}}
             <div class="messages-date">Сообщений нет</div>
         {{/if}}
-            
     </div>
     <div class="text-bar">
         <div class="icon-wrap">

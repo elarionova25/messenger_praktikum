@@ -11,9 +11,13 @@ export class ChatsController {
     }
 
     async getChats() {
-        const chats = await this.api.read();
-        store.set('chats', chats);
-        return chats;
+        try {
+            const chats = await this.api.read();
+            store.set('chats', chats);
+        } catch (e: any) {
+            console.error(e);
+            router.go('/error500');
+        }
     }
 
     async createchat(data: CreateChat) {
@@ -23,6 +27,7 @@ export class ChatsController {
             console.error(e);
             router.go('/error500');
         }
+        this.getChats();
     }
 
     async deletechat(data: DeleteChat){
@@ -32,6 +37,7 @@ export class ChatsController {
             console.error(e);
             router.go('/error500');
         }
+        this.getChats()
     }
 
     async addusertochat(data: AddUsers) {
