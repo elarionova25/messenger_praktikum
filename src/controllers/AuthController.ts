@@ -17,7 +17,6 @@ export class AuthController {
       router.go('/profile');
     } catch (e: any) {
       console.error(e);
-      router.go('/error500');
     }
   }
 
@@ -30,7 +29,6 @@ export class AuthController {
       router.go('/profile');
     } catch (e: any) {
       console.error(e.message);
-      router.go('/error500');
     }
   }
 
@@ -47,7 +45,6 @@ export class AuthController {
       renderDOM(new LoginPage())
     } catch (e: any) {
       console.error(e.message);
-      router.go('/error500');
     }
   }
 }

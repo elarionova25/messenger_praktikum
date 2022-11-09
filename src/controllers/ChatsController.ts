@@ -16,7 +16,6 @@ export class ChatsController {
             store.set('chats', chats);
         } catch (e: any) {
             console.error(e);
-            router.go('/error500');
         }
     }
 
@@ -25,7 +24,6 @@ export class ChatsController {
             await this.api.createchat(data);
         } catch (e: any) {
             console.error(e);
-            router.go('/error500');
         }
         this.getChats();
     }
@@ -35,7 +33,6 @@ export class ChatsController {
             await this.api.deletechat(data);
         } catch (e: any) {
             console.error(e);
-            router.go('/error500');
         }
         this.getChats()
     }
@@ -45,7 +42,6 @@ export class ChatsController {
             await this.api.addusertochat(data);
         } catch (e: any) {
             console.error(e);
-            router.go('/error500');
         }
     }
 
@@ -59,7 +55,6 @@ export class ChatsController {
             await this.api.getchattoken(id);
         } catch (e: any) {
             console.error(e);
-            router.go('/error500');
         }
     }
 }

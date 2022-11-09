@@ -15,7 +15,6 @@ export class UsersController {
             router.go('/profile');
         } catch (e: any) {
             console.error(e);
-            router.go('/error500');
         }
     }
 
@@ -26,7 +25,6 @@ export class UsersController {
             router.go('/profile');
         } catch (e: any) {
             console.error(e);
-            router.go('/error500');
         }
     }
 }
