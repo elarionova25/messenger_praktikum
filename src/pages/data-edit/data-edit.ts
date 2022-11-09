@@ -7,6 +7,8 @@ import UsersController from "../../controllers/UsersController";
 import {ChangeData} from "../../api/UsersAPI";
 
 export class DataEditPageBase extends Block {
+    static componentName = 'DataEditPage';
+
     constructor() {
         super();
         AuthController.fetchUser();

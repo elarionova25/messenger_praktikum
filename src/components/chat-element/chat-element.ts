@@ -9,6 +9,7 @@ type ChatElementProps = {
 }
 
 export class ChatElement extends Block {
+    static componentName = 'ChatElement';
     constructor({chat, onClick}: ChatElementProps) {
         super({chat, events: {click: onClick}});
         this.setProps({

@@ -13,6 +13,8 @@ interface SimpleInputProps {
 }
 
 export class SimpleInput extends Block {
+    static componentName = 'SimpleInput';
+
     constructor({onChange = () => {}, type = 'text', error, placeholder, value, name, label}: SimpleInputProps) {
         super({type, placeholder, value, name, label, error, events: {input: onChange}});
     }

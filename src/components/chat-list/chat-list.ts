@@ -8,6 +8,8 @@ type ChatListProps = {
 }
 
 export class ChatList extends Block {
+    static componentName = 'ChatList';
+
     constructor({chats}: ChatListProps) {
         super({chats});
         this.setProps({

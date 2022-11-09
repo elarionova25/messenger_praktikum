@@ -5,6 +5,8 @@ import {SignupData} from "../../api/AuthAPI";
 import AuthController from '../../controllers/AuthController';
 
 export class RegisterPage extends Block {
+    static componentName = 'RegisterPage';
+
     constructor() {
         super();
         this.setProps({

@@ -4,6 +4,7 @@ import AuthController from "../../controllers/AuthController";
 import {withStore} from "../../core/Store";
 
 export class ProfilePageBase extends Block {
+    static componentName = 'ProfilePage';
 
     constructor() {
         super();

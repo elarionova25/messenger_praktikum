@@ -4,6 +4,8 @@ import AuthController from "../../controllers/AuthController";
 import ChatsController from "../../controllers/ChatsController";
 
 export class MainPageBase extends Block {
+    static componentName = 'MainPage';
+
     constructor() {
         super();
         AuthController.fetchUser();

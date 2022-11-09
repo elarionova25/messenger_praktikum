@@ -3,6 +3,8 @@ import './500.css'
 
 
 export class ServerError extends Block {
+    static componentName = 'ServerError';
+
     render() {
         return `
         <div class="body">

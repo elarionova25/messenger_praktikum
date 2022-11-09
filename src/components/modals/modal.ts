@@ -3,6 +3,8 @@ import './modal.css';
 
 
 export class Modal extends Block {
+    static componentName = 'Modal';
+
     render() {
         return `
         <div id="{{id}}" class="modal">

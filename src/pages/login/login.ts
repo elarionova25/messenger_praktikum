@@ -23,6 +23,8 @@ import {SignupData} from "../../api/AuthAPI";
 // second_name:"blabla12"
 
 export class LoginPage extends Block {
+    static componentName = 'LoginPage';
+
     constructor() {
         super();
         this.setProps({

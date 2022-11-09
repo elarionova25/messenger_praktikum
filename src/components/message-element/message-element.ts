@@ -8,6 +8,8 @@ interface MessageElementProps {
 }
 
 export class MessageElement extends Block {
+    static componentName = 'MessageElement';
+
     constructor({message}: MessageElementProps) {
         super({message});
         const currentUser = store.getState().user

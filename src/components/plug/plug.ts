@@ -1,9 +1,9 @@
 import {Block} from "../../core";
 import './plug.css'
 
-
-
 export class Plug extends Block {
+    static componentName = 'Plug';
+
     render() {
         return `
         <div class="plug">

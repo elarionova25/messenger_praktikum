@@ -7,6 +7,8 @@ interface SendButtonProps {
 }
 
 export class SendButton extends Block {
+    static componentName = 'SendButton';
+
     constructor({className, onClick}: SendButtonProps) {
         super({className, events: {click: onClick}});
     }

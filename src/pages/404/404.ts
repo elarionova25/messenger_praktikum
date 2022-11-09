@@ -3,6 +3,8 @@ import './404.css';
 
 
 export class NotFoundErrorPage extends Block {
+    static componentName = 'NotFoundErrorPage';
+
     render() {
         return `
         <div class="body">

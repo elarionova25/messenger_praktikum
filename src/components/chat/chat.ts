@@ -11,6 +11,8 @@ type ChatProps = {
 }
 
 export class Chat extends Block {
+    static componentName = 'Chat';
+
     constructor({chat, chatUsers, chatOldMessages}: ChatProps) {
         super({chat, chatUsers, chatOldMessages});
         this.setProps({

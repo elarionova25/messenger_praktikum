@@ -7,6 +7,8 @@ import UsersController from "../../controllers/UsersController";
 import {withStore} from "../../core/Store";
 
 export class PasswordEditPageBase extends Block {
+    static componentName = 'PasswordEditPage';
+
     constructor() {
         super();
         AuthController.fetchUser();
