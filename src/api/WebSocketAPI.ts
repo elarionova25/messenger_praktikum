@@ -5,6 +5,7 @@ export class WebSocketAPI {
         const token = store.getState().token;
         const currentUser = store.getState().user
         const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${currentUser.id}/${chatId}/${token}`);
+        store.set('currentSocket', socket)
         socket.addEventListener('open', () => {
             console.log('Соединение установлено');
             socket.send(JSON.stringify({

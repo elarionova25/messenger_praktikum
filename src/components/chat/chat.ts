@@ -18,28 +18,32 @@ export class Chat extends Block {
         this.setProps({
             message: '',
             onClick: () => {
-                if(this.refs.sendButtonRef.props.className==="disabled") {
-                    this.setProps({
-                        error: 'Сообщение пустое',
-                    })
-                }
+                // if(this.refs.sendButtonRef.props.className==="disabled") {
+                //     this.setProps({
+                //         error: 'Сообщение пустое',
+                //     })
+                // }
                 const sendMessageEl = this.element?.querySelector('input[name="message"]') as HTMLInputElement;
                 store.getState().currentSocket.send(JSON.stringify({
                     content: sendMessageEl.value,
                     type: 'message',
                 }));
+                store.getState().currentSocket.send(JSON.stringify({
+                    content: '0',
+                    type: 'get old',
+                }));
             },
             onBlur: () => {
                 const messageEl = this.element?.querySelector('input[name="message"]') as HTMLInputElement;
                 const errorMessage = validateForm( [{type: 'message', value: messageEl.value}])
-                if(errorMessage){
-                    this.setProps({
-                        error: errorMessage,
-                    })
-                    this.refs.sendButtonRef.props.className="disabled";
-                } else {
-                    this.refs.sendButtonRef.props.className="circle";
-                }
+                // if(errorMessage){
+                //     this.setProps({
+                //         error: errorMessage,
+                //     })
+                //     this.refs.sendButtonRef.props.className="disabled";
+                // } else {
+                //     this.refs.sendButtonRef.props.className="circle";
+                // }
             },
             onUserAdd: () => {
                 const loginEl = this.element?.querySelector('input[name="addUserlogin"]') as HTMLInputElement;
