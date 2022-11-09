@@ -4,7 +4,7 @@
     "description": "",
     "scripts": {
         "hot": "parcel src/pages/index.hbs --no-cache",
-        "build": "parcel build src/index.html --no-source-maps --no-cache --public-url ./",
+        "build": "parcel build src/**/*.html --no-source-maps --no-cache --public-url ./",
         "start": "node server.js --no-cache  && parcel src/**/*.html --no-cache",
         "dev": "parcel src/**/*.html --no-cache"
     },
