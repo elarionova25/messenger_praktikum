@@ -11,7 +11,6 @@ export class UsersController {
     async changedata(data: ChangeData) {
         try {
             await this.api.changedata(data);
-
             router.go('/profile');
         } catch (e: any) {
             console.error(e);
@@ -21,7 +20,6 @@ export class UsersController {
     async changepassword(data: ChangePassword) {
         try {
             await this.api.changepassword(data);
-
             router.go('/profile');
         } catch (e: any) {
             console.error(e);

@@ -23,9 +23,7 @@ export class AuthController {
   async signup(data: SignupData) {
     try {
       await this.api.signup(data);
-
       await this.fetchUser();
-
       router.go('/profile');
     } catch (e: any) {
       console.error(e.message);
