@@ -11,6 +11,8 @@ import {ProfilePage} from "./pages/profile/profile";
 import {DataEditPage} from "./pages/data-edit/data-edit";
 import {PasswordChangePage} from "./pages/password-change/password-change";
 import {MainPage} from "./pages/main/main";
+import {ServerError} from "./pages/500/500";
+
 
 import Button from './components/button';
 import Link from './components/link';
@@ -26,9 +28,16 @@ import {Error} from "./components/error/error";
 import {ControllerInput} from "./components/controller-input/controller-input";
 import {SimpleInput} from "./components/simple-input/simple-input";
 import {SendButton} from "./components/send-button/send-button";
-import {ServerError} from "./pages/500/500";
 import {Store} from "./core/Store";
 import {MessageElement} from "./components/message-element/message-element";
+
+registerComponent(LoginPage);
+registerComponent(RegisterPage);
+registerComponent(ProfilePage);
+registerComponent(DataEditPage);
+registerComponent(PasswordChangePage);
+registerComponent(MainPage);
+registerComponent(ServerError);
 
 registerComponent(Button);
 registerComponent(Link);
