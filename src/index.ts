@@ -32,6 +32,12 @@ import {Store} from "./core/Store";
 import {MessageElement} from "./components/message-element/message-element";
 
 // registerComponent(ServerError);
+registerComponent(MainPage);
+registerComponent(RegisterPage);
+registerComponent(LoginPage);
+registerComponent(ProfilePage);
+registerComponent(DataEditPage);
+registerComponent(PasswordChangePage);
 
 registerComponent(Button);
 registerComponent(Link);
@@ -75,32 +81,26 @@ window.addEventListener("DOMContentLoaded", () => {
 
     switch (window.location.pathname) {
         case Routes.Main: {
-            registerComponent(MainPage);
             renderDOM(new MainPage());
             break;
         }
         case Routes.Register: {
-            registerComponent(RegisterPage);
             renderDOM(new RegisterPage());
             break;
         }
         case Routes.Login:{
-            registerComponent(LoginPage);
             renderDOM(new LoginPage());
             break;
         }
         case Routes.Profile:{
-            registerComponent(ProfilePage);
             renderDOM(new ProfilePage());
             break;
         }
         case Routes.DataEdit:{
-            registerComponent(DataEditPage);
             renderDOM(new DataEditPage());
             break;
         }
         case Routes.PasswordChange:{
-            registerComponent(PasswordChangePage);
             renderDOM(new PasswordChangePage());
             break;
         }
