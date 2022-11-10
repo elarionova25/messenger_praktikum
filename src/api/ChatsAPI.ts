@@ -50,17 +50,11 @@ export class ChatsAPI extends BaseAPI {
     }
 
     getchattoken(id: number) {
-        const host = 'https://ya-praktikum.tech';
-        fetch(`${host}/api/v2/chats/token/${id}`, {
-            method: 'POST',
-            mode: 'cors',
-            credentials: 'include',
-        })
-            .then(response => response.json())
-            .then(data => {
-                store.set('token', data.token);
+        this.http.fetchPost(`/token/${id}`)
+            .then((response:any) => {
+                store.set('token', response.token);
                 WebSocketController.createsocket(id)
-            });
+            })
     }
 
     create = undefined;

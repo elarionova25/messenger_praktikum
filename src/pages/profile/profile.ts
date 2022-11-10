@@ -2,6 +2,7 @@ import {Block} from "../../core";
 import './profile.css';
 import AuthController from "../../controllers/AuthController";
 import {withStore} from "../../core/Store";
+import {host} from "../../api/host";
 
 export class ProfilePageBase extends Block {
     static componentName = 'ProfilePage';
@@ -33,7 +34,7 @@ export class ProfilePageBase extends Block {
                     <div class="profile">
                         <div class="avatar-wrap">
                             {{#if avatar}}
-                                <img src="https://ya-praktikum.tech/api/v2/resources/{{avatar}}" alt="avatar" class="profile-img">
+                                <img src="${host}/api/v2/resources/{{avatar}}" alt="avatar" class="profile-img">
                             {{else}}
                                 <img src="https://archive.org/download/no-photo-available/no-photo-available.png" alt="avatar" class="profile-img">
                             {{/if}}

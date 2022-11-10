@@ -4,7 +4,6 @@ import './login.css';
 import AuthController from '../../controllers/AuthController';
 import {SignupData} from "../../api/AuthAPI";
 
-
 // email:"test@btu.ru"
 // first_name:"Екатерина"
 // login:"elarionova25"
@@ -24,7 +23,6 @@ import {SignupData} from "../../api/AuthAPI";
 
 export class LoginPage extends Block {
     static componentName = 'LoginPage';
-
     constructor() {
         super();
         this.setProps({
@@ -53,11 +51,11 @@ export class LoginPage extends Block {
                     }
                 });
 
-                // if (!errorMessage) {
+                if (!errorMessage) {
                 const data = this.props.values;
                 console.log('DATA', data)
                 AuthController.signin(data as SignupData);
-                // }
+                }
             },
         })
     }

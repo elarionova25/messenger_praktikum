@@ -1,6 +1,7 @@
 import {Block} from "../../core";
 import ChatsController from "../../controllers/ChatsController";
 import store from "../../core/Store";
+import {host} from "../../api/host";
 
 type ChatElementProps = {
     chat: any;
@@ -37,7 +38,7 @@ export class ChatElement extends Block {
 <div class="chat-element" id="">
     {{#if chat.avatar}}
         <div class="wrapper avatar">
-            <img src="https://ya-praktikum.tech/api/v2/resources/{{chat.avatar}}" alt="avatar">
+            <img src="${host}/api/v2/resources/{{chat.avatar}}" alt="avatar">
         </div>
         {{else}}
         <div class="wrapper avatar">

@@ -3,6 +3,7 @@ import './chat.css'
 import {validateForm} from "../../helpers/validateForm";
 import ChatsController from "../../controllers/ChatsController";
 import store from "../../core/Store";
+import {host} from "../../api/host";
 
 type ChatProps = {
     chat: any;
@@ -103,7 +104,7 @@ export class Chat extends Block {
     <div class="header-chat">
         <div class="wrapper avatar">
             {{#if chat.avatar}}
-                    <img src="https://ya-praktikum.tech/api/v2/resources/{{chat.avatar}}" alt="avatar">
+                    <img src="${host}/api/v2/resources/{{chat.avatar}}" alt="avatar">
             {{else}}
                     <img src="https://archive.org/download/no-photo-available/no-photo-available.png" alt="avatar">
             {{/if}}

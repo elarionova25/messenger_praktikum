@@ -1,3 +1,4 @@
+import {host} from "../api/host";
 export enum Method {
     Get = 'Get',
     Post = 'Post',
@@ -9,10 +10,12 @@ export enum Method {
 type Options = {
     method: Method;
     data?: any;
+    mode?: any;
+    credentials?: any;
 };
 
 export default class HTTPTransport {
-    static API_URL = 'https://ya-praktikum.tech/api/v2';
+    static API_URL = `${host}/api/v2`;
     protected endpoint: string;
 
     constructor(endpoint: string) {
@@ -48,6 +51,14 @@ export default class HTTPTransport {
         return this.request<Response>(this.endpoint + path, {
             method: Method.Delete,
             data,
+        });
+    }
+
+    public fetchPost<Response>(path: string, data?: unknown): Promise<Response> {
+        return this.request<Response>(this.endpoint + path, {
+            method: Method.Post,
+            mode: 'cors',
+            credentials: 'include',
         });
     }
 
