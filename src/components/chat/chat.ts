@@ -15,6 +15,11 @@ export class Chat extends Block {
 
     constructor({chat, chatUsers, chatOldMessages}: ChatProps) {
         super({chat, chatUsers, chatOldMessages});
+        addEventListener('keypress', (event) => {
+            if (event.key === 'Enter'){
+                event.preventDefault()
+            }
+        });
         this.setProps({
             message: '',
             onClick: () => {
