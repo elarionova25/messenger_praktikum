@@ -10,23 +10,23 @@ const dirPath = path.join(__dirname, './');
 app.use(express.static('dist'));
 
 app.get('/', (req, res) => {
-    res.sendFile(dirPath + `dist/chats.html`);
+    res.sendFile(dirPath + `dist/pages/index.html`);
 });
 
 app.get('/failed', (req, res) => {
-    res.sendFile(dirPath +`dist/404.html`);
+    res.sendFile(dirPath +`dist/pages/404/404.html`);
 });
 
 app.get('/login', (req, res) => {
-    res.sendFile(dirPath +`dist/login.html`);
+    res.sendFile(dirPath +`dist/pages/login/login.html`);
 });
 
 app.get('/register', (req, res) => {
-    res.sendFile(dirPath +`dist/register.html`);
+    res.sendFile(dirPath +`dist/pages/register/register.html`);
 });
 
 app.get('/profile', (req, res) => {
-    res.sendFile(dirPath +`dist/profile.html`);
+    res.sendFile(dirPath +`dist/pages/profile/profile.html`);
 });
 
 
