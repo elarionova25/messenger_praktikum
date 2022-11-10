@@ -24,12 +24,14 @@ export class ControllerInput extends Block {
             value: props.value,
             onBlur: (e: FocusEvent) => {
                 let inputEl = e.target as HTMLInputElement;
-                let errorMessage = validateForm( [{type: inputEl.name, value: inputEl.value}]);
-                this.setProps( {
-                    error: errorMessage || "",
-                    inputValue: inputEl.value,
-                })
-                this.refs.inputRef.props.value= inputEl.value;
+                if(inputEl.value){
+                    let errorMessage = validateForm( [{type: inputEl.name, value: inputEl.value}]);
+                    this.setProps( {
+                        error: errorMessage || "",
+                        inputValue: inputEl.value,
+                    })
+                    this.refs.inputRef.value= inputEl.value;
+                }
             }
         });
     }

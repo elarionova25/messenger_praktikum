@@ -1,7 +1,7 @@
 import {Block} from "../../core";
 import "./data-edit.css"
 import {validateForm} from "../../helpers/validateForm";
-import {withStore} from "../../core/Store";
+import store, {withStore} from "../../core/Store";
 import AuthController from "../../controllers/AuthController";
 import UsersController from "../../controllers/UsersController";
 import {ChangeData} from "../../api/UsersAPI";
@@ -15,7 +15,7 @@ export class DataEditPageBase extends Block {
         this.setProps({
             error: '',
             values:{
-                email: '',
+                email: '111111',
                 first_name: '',
                 second_name: '',
                 phone: '',
