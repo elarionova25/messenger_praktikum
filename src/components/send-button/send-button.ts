@@ -4,6 +4,7 @@ import './send-button.css'
 interface SendButtonProps {
     className: string;
     onClick: () => void;
+    name?: string;
 }
 
 export class SendButton extends Block {

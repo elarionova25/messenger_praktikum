@@ -18,32 +18,38 @@ export class Chat extends Block {
         this.setProps({
             message: '',
             onClick: () => {
-                // if(this.refs.sendButtonRef.props.className==="disabled") {
-                //     this.setProps({
-                //         error: 'Сообщение пустое',
-                //     })
-                // }
-                const sendMessageEl = this.element?.querySelector('input[name="message"]') as HTMLInputElement;
-                store.getState().currentSocket.send(JSON.stringify({
-                    content: sendMessageEl.value,
-                    type: 'message',
-                }));
-                store.getState().currentSocket.send(JSON.stringify({
-                    content: '0',
-                    type: 'get old',
-                }));
+                if(this.refs.sendButtonRef.firstElementChild.className==="disabled") {
+                    this.setProps({
+                        error: 'Сообщение пустое',
+                    })
+                    console.log(this.props.error)
+                }
+                else {
+                    const sendMessageEl = this.element?.querySelector('input[name="message"]') as HTMLInputElement;
+                    store.getState().currentSocket.send(JSON.stringify({
+                        content: sendMessageEl.value,
+                        type: 'message',
+                    }));
+                    store.getState().currentSocket.send(JSON.stringify({
+                        content: '0',
+                        type: 'get old',
+                    }));
+                }
             },
             onBlur: () => {
                 const messageEl = this.element?.querySelector('input[name="message"]') as HTMLInputElement;
                 const errorMessage = validateForm( [{type: 'message', value: messageEl.value}])
-                // if(errorMessage){
-                //     this.setProps({
-                //         error: errorMessage,
-                //     })
-                //     this.refs.sendButtonRef.props.className="disabled";
-                // } else {
-                //     this.refs.sendButtonRef.props.className="circle";
-                // }
+                const btnEl = this.element?.querySelector('button[name="sendBtn"]') as HTMLInputElement;
+                console.log('sendBtn', this.refs.sendButtonRef.firstElementChild.className);
+                if(errorMessage){
+                    this.setProps({
+                        error: errorMessage,
+                    })
+                    console.log(this.props.error);
+                    this.refs.sendButtonRef.firstElementChild.className="disabled";
+                } else {
+                    this.refs.sendButtonRef.firstElementChild.className="circle";
+                }
             },
             onUserAdd: () => {
                 const loginEl = this.element?.querySelector('input[name="addUserlogin"]') as HTMLInputElement;
@@ -154,6 +160,7 @@ export class Chat extends Block {
         }}}
         </form>
         {{{ SendButton
+                name="sendBtn"
                 className="disabled"
                 onClick=onClick
                 ref="sendButtonRef"
