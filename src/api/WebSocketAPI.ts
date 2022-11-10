@@ -25,7 +25,8 @@ export class WebSocketAPI {
 
         socket.addEventListener('message', event => {
             const data = JSON.parse(event.data);
-            store.set('selectedChat.oldMessages', data.reverse())
+            const reversedData = Array.prototype.reverse.call(data);
+            store.set('selectedChat.oldMessages', reversedData)
         });
 
         socket.addEventListener('error', event => {
