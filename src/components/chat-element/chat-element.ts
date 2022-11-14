@@ -70,11 +70,13 @@ export class ChatElement extends Block {
                 </a>
             </div>
             <br>
+            {{#if chat.unread_count}}
             <div class="new-number">
                 <span class="badge">
                     {{chat.unread_count}}
                 </span>
             </div>
+            {{/if}}
         </div>
     </div>
 <!--</div>-->
