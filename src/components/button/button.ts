@@ -13,7 +13,6 @@ export class Button extends Block {
 
   constructor({text, style, onClick}: ButtonProps) {
     super({text, style, events: {click: onClick}});
-
   }
 
   protected render(): string {

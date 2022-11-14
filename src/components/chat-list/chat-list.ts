@@ -67,7 +67,7 @@ export class ChatList extends Block {
                 
                 <div class="chats-list">
                     {{#each chats}}
-                        {{{ ChatElement 
+                        {{{ChatElement 
                                 chat=this
                         }}}
                     {{/each}}

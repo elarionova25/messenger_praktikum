@@ -1,7 +1,9 @@
 .plug {
     text-align: center;
     margin: auto 0;
-    width: 100%;
+    width: 75%;
+    background-color: var(--main-white-color);
+    min-height: 100%;
 }
 
 .plug-text {

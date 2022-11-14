@@ -30,6 +30,7 @@ import {SimpleInput} from "./components/simple-input/simple-input";
 import {SendButton} from "./components/send-button/send-button";
 import {Store} from "./core/Store";
 import {MessageElement} from "./components/message-element/message-element";
+import {ChatWrap} from "./components/chat-wrap/chat-wrap";
 
 // registerComponent(ServerError);
 registerComponent(MainPage);
@@ -54,6 +55,7 @@ registerComponent(ControllerInput);
 registerComponent(SimpleInput);
 registerComponent(SendButton);
 registerComponent(MessageElement);
+registerComponent(ChatWrap)
 
 declare global {
     interface Window {

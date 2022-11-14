@@ -2,15 +2,16 @@ import {Block} from "../../core";
 import ChatsController from "../../controllers/ChatsController";
 import store from "../../core/Store";
 import {host} from "../../api/host";
+import './chat-element.css'
 
 type ChatElementProps = {
     chat: any;
-    chatUsers: [];
     onClick: () => void;
 }
 
 export class ChatElement extends Block {
     static componentName = 'ChatElement';
+
     constructor({chat, onClick}: ChatElementProps) {
         super({chat, events: {click: onClick}});
         this.setProps({
@@ -35,7 +36,10 @@ export class ChatElement extends Block {
     //language=hbs
     render() {
         return `
-<div class="chat-element" id="">
+{{#ChatWrap chat=chat
+            onClick=onClick
+}}
+<!--<div class="chat-element" id={{chat.id}}>-->
     {{#if chat.avatar}}
         <div class="wrapper avatar">
             <img src="${host}/api/v2/resources/{{chat.avatar}}" alt="avatar">
@@ -47,7 +51,7 @@ export class ChatElement extends Block {
     {{/if}}
 
     <div class="chat-wrap">
-        <div class="name-message-wrap">
+        <div class="name-message-wrap" id={{chat.id}}>
             <div class="sender-name">
                 <p class="name">{{chat.title}}</p>
             </div>
@@ -62,11 +66,7 @@ export class ChatElement extends Block {
                                onClick=onDelete
                                style="delete-btn"
                     }}}
-
-                    {{{ Button text="Открыть"
-                               onClick=onClick
-                               style="delete-btn"
-                    }}}
+                    <br>
                 </a>
             </div>
             <br>
@@ -77,7 +77,8 @@ export class ChatElement extends Block {
             </div>
         </div>
     </div>
-</div>
+<!--</div>-->
+{{/ChatWrap}}
         `
     }
 }

@@ -190,26 +190,6 @@
     background-color: #f1f1f1;
 }
 
-.chat-element {
-    min-height: 71px;
-    min-width: 50px;
-    margin: 0;
-    border-top: 1px solid var(--main-border-color);
-    background: none;
-    display: flex;
-    overflow: hidden;
-}
-
-.chat-element:hover {
-    min-height: 71px;
-    min-width: 50px;
-    background: var(--main-border-color);
-    margin: 0;
-    border-top: 1px solid var(--main-border-color);
-    display: flex;
-    overflow: hidden;
-}
-
 .wrapper {
     width: 80px;
     height: 80px;
