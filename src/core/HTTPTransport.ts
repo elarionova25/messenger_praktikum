@@ -63,8 +63,8 @@ export default class HTTPTransport {
         });
     }
 
-    public fetchPut<Response>(path: string, data?: unknown): Promise<Response> {
-        console.log(data)
+    public fetchPut<Response>(path: string, data?: FormData): Promise<Response> {
+        console.log(typeof data)
         return this.request<Response>(this.endpoint + path, {
             method: Method.Put,
             mode: 'cors',
@@ -90,19 +90,24 @@ export default class HTTPTransport {
                 }
             };
 
-
             xhr.onabort = () => reject({reason: 'abort'});
             xhr.onerror = () => reject({reason: 'network error'});
             xhr.ontimeout = () => reject({reason: 'timeout'});
 
-            // xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.withCredentials = true;
-            xhr.responseType = 'json';
-
-            if (method === Method.Get || !data) {
-                xhr.send();
-            } else {
+            if(data instanceof FormData) {
+                xhr.withCredentials = true;
                 xhr.send(data);
+            }
+            else {
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.withCredentials = true;
+                xhr.responseType = 'json';
+
+                if (method === Method.Get || !data) {
+                    xhr.send();
+                } else {
+                    xhr.send(JSON.stringify(data));
+                }
             }
         });
     }
