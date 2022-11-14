@@ -14,22 +14,20 @@ app.get('/', (req, res) => {
 });
 
 app.get('/failed', (req, res) => {
-    res.sendFile(dirPath +`dist/pages/404/404.html`);
+    res.sendFile(dirPath +`dist/pages/404/index.html`);
 });
 
 app.get('/login', (req, res) => {
-    res.sendFile(dirPath +`dist/pages/login/login.html`);
+    res.sendFile(dirPath +`dist/pages/login/index.html`);
 });
 
 app.get('/register', (req, res) => {
-    res.sendFile(dirPath +`dist/pages/register/register.html`);
+    res.sendFile(dirPath +`dist/pages/register/index.html`);
 });
 
 app.get('/profile', (req, res) => {
-    res.sendFile(dirPath +`dist/pages/profile/profile.html`);
+    res.sendFile(dirPath +`dist/pages/profile/index.html`);
 });
-
-
 
 app.listen(PORT, function () {
     console.log(`Example app listening on port ${PORT}!`);
