@@ -57,6 +57,14 @@ export class ChatsController {
             console.error(e);
         }
     }
+
+    async changechatavatar(data: FormData) {
+        try {
+            await this.api.changechatavatar(data);
+        } catch (e: any) {
+            console.error(e);
+        }
+    }
 }
 
 export default new ChatsController();

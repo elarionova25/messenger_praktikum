@@ -25,6 +25,14 @@ export class UsersController {
             console.error(e);
         }
     }
+
+    async changeavatar(data: FormData) {
+        try {
+            await this.api.changeavatar(data);
+        } catch (e: any) {
+            console.error(e);
+        }
+    }
 }
 
 export default new UsersController();

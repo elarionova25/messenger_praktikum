@@ -5,6 +5,8 @@ import store, {withStore} from "../../core/Store";
 import AuthController from "../../controllers/AuthController";
 import UsersController from "../../controllers/UsersController";
 import {ChangeData} from "../../api/UsersAPI";
+import UsersAPI from "../../api/UsersAPI";
+import {host} from "../../api/host";
 
 export class DataEditPageBase extends Block {
     static componentName = 'DataEditPage';
@@ -54,21 +56,9 @@ export class DataEditPageBase extends Block {
                 //}
             },
             onSubmit: () => {
-                const host = 'https://ya-praktikum.tech';
-                const myUserForm = document.getElementById('myUserForm');
-                const avatar = document.getElementById('avatar');
-                const form = new FormData(myUserForm);
-                fetch(`${host}/api/v2/user/profile/avatar`, {
-                    method: 'PUT',
-                    credentials: 'include',
-                    mode: 'cors',
-                    body: form,
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data);
-                        return data;
-                    });
+                const userForm = document.getElementById('myUserForm');
+                const form = new FormData(userForm);
+                UsersController.changeavatar(form)
             }
         })
     }

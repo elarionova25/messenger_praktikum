@@ -57,6 +57,13 @@ export class ChatsAPI extends BaseAPI {
             })
     }
 
+    changechatavatar(data: FormData) {
+        this.http.fetchPut('/avatar', data)
+            .then(data => {
+                return data;
+            });
+    }
+
     create = undefined;
     update = undefined;
     delete = undefined;

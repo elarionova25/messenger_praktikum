@@ -12,6 +12,7 @@ type Options = {
     data?: any;
     mode?: any;
     credentials?: any;
+    body?: any;
 };
 
 export default class HTTPTransport {
@@ -62,13 +63,22 @@ export default class HTTPTransport {
         });
     }
 
+    public fetchPut<Response>(path: string, data?: unknown): Promise<Response> {
+        console.log(data)
+        return this.request<Response>(this.endpoint + path, {
+            method: Method.Put,
+            mode: 'cors',
+            credentials: 'include',
+            data
+        });
+    }
+
     private request<Response>(url: string, options: Options = {method: Method.Get}): Promise<Response> {
         const {method, data} = options;
 
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
             xhr.open(method, url);
-
             xhr.onreadystatechange = (e) => {
 
                 if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -80,19 +90,19 @@ export default class HTTPTransport {
                 }
             };
 
+
             xhr.onabort = () => reject({reason: 'abort'});
             xhr.onerror = () => reject({reason: 'network error'});
             xhr.ontimeout = () => reject({reason: 'timeout'});
 
-            xhr.setRequestHeader('Content-Type', 'application/json');
-
+            // xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.withCredentials = true;
             xhr.responseType = 'json';
 
             if (method === Method.Get || !data) {
                 xhr.send();
             } else {
-                xhr.send(JSON.stringify(data));
+                xhr.send(data);
             }
         });
     }

@@ -1,5 +1,6 @@
 import BaseAPI from './BaseAPI';
 import {User} from "./AuthAPI";
+import store from "../core/Store";
 
 export interface ChangeData {
     first_name: string;
@@ -30,6 +31,13 @@ export class UsersAPI extends BaseAPI {
 
     changepassword(data: ChangePassword) {
         return this.http.put('/password', data);
+    }
+
+    changeavatar(data: FormData) {
+        this.http.fetchPut('/profile/avatar', data)
+            .then(data => {
+                return data;
+            });
     }
 
     create = undefined;
