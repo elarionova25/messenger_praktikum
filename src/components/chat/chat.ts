@@ -18,7 +18,7 @@ export class Chat extends Block {
         super({chat, chatUsers, chatOldMessages});
         addEventListener('keypress', (event) => {
             if (event.key === 'Enter'){
-                event.preventDefault()
+                event.preventDefault();
             }
         });
         this.setProps({
@@ -42,16 +42,14 @@ export class Chat extends Block {
                     }));
                 }
             },
-            onBlur: () => {
+            onInput: () => {
                 const messageEl = this.element?.querySelector('input[name="message"]') as HTMLInputElement;
                 const errorMessage = validateForm( [{type: 'message', value: messageEl.value}])
                 const btnEl = this.element?.querySelector('button[name="sendBtn"]') as HTMLInputElement;
-                console.log('sendBtn', this.refs.sendButtonRef.firstElementChild.className);
                 if(errorMessage){
                     this.setProps({
                         error: errorMessage,
                     })
-                    console.log(this.props.error);
                     this.refs.sendButtonRef.firstElementChild.className="disabled";
                 } else {
                     this.refs.sendButtonRef.firstElementChild.className="circle";
@@ -161,7 +159,7 @@ export class Chat extends Block {
         {{{ Input 
             type=text
             placeholder="Введите сообщение"
-            onBlur=onBlur
+            onInput=onInput
             name="message"
         }}}
         </form>
