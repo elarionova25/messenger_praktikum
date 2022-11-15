@@ -78,7 +78,7 @@ export class LoginPage extends Block {
         {{{ControllerInput
               type="text"
               name="login"
-              placeholder="Введите id пользователя"
+              placeholder="Введите логин пользователя"
               onInput=onInput
               onFocus=onFocus
               label="Логин"

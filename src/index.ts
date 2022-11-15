@@ -73,7 +73,7 @@ enum Routes {
 window.addEventListener("DOMContentLoaded", async () => {
     console.log('store', store.getState().user)
 
-    if (store.getState().user === undefined) {
+    if (store.getState().user === undefined && window.location.pathname!='/register') {
         try {
             await AuthController.fetchUser();
             console.log('store2', store.getState().user)
