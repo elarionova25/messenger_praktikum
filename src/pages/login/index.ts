@@ -13,7 +13,3 @@ registerComponent(ControllerInput);
 registerComponent(Input);
 registerComponent(Error);
 registerComponent(Link);
-
-document.addEventListener("DOMContentLoaded", () => {
-    renderDOM(new LoginPage());
-})

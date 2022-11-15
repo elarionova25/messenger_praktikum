@@ -1,7 +1,7 @@
 import {Block} from "../../core";
 import './profile.css';
 import AuthController from "../../controllers/AuthController";
-import {withStore} from "../../core/Store";
+import store, {withStore} from "../../core/Store";
 import {host} from "../../api/host";
 
 export class ProfilePageBase extends Block {
@@ -9,12 +9,16 @@ export class ProfilePageBase extends Block {
 
     constructor() {
         super();
-        AuthController.fetchUser();
+        // AuthController.fetchUser();
+        console.log(store.getState().user);
+        console.log(this.props.user)
         this.setProps({
+            user: store.getState().user,
             onLogout:() => {
                 AuthController.logout();
             }
         })
+        console.log('user', this.props.user)
     }
 
     // language=hbs
@@ -33,8 +37,8 @@ export class ProfilePageBase extends Block {
                 <div class="profile-container">
                     <div class="profile">
                         <div class="avatar-wrap">
-                            {{#if avatar}}
-                                <img src="${host}/api/v2/resources/{{avatar}}" alt="avatar" class="profile-img">
+                            {{#if user.avatar}}
+                                <img src="${host}/api/v2/resources/{{user.avatar}}" alt="avatar" class="profile-img">
                             {{else}}
                                 <img src="https://archive.org/download/no-photo-available/no-photo-available.png" alt="avatar" class="profile-img">
                             {{/if}}
@@ -42,7 +46,7 @@ export class ProfilePageBase extends Block {
                         <div class="name-wrap">
                             <p class="name">
                                 <b>
-                                    {{first_name}}
+                                    {{user.first_name}}
                                 </b>
                             </p>
                         </div>
@@ -52,7 +56,7 @@ export class ProfilePageBase extends Block {
                                     Почта
                                 </p>
                                 <p class="info">
-                                    {{email}}
+                                    {{user.email}}
                                 </p>
                             </div>
                             <div class="info-wrap">
@@ -60,7 +64,7 @@ export class ProfilePageBase extends Block {
                                     Логин
                                 </p>
                                 <p class="info">
-                                    {{login}}
+                                    {{user.login}}
                                 </p>
                             </div>
                             <div class="info-wrap">
@@ -68,7 +72,7 @@ export class ProfilePageBase extends Block {
                                     Имя
                                 </p>
                                 <p class="info">
-                                    {{first_name}}
+                                    {{user.first_name}}
                                 </p>
                             </div>
                             <div class="info-wrap">
@@ -76,7 +80,7 @@ export class ProfilePageBase extends Block {
                                     Фамилия
                                 </p>
                                 <p class="info">
-                                    {{second_name}}
+                                    {{user.second_name}}
                                 </p>
                             </div>
                             <div class="info-wrap">
@@ -84,7 +88,7 @@ export class ProfilePageBase extends Block {
                                     Имя в чате
                                 </p>
                                 <p class="info">
-                                    {{display_name}}
+                                    {{user.display_name}}
                                 </p>
                             </div>
                             <div class="info-wrap">
@@ -92,7 +96,7 @@ export class ProfilePageBase extends Block {
                                     Телефон
                                 </p>
                                 <p class="info">
-                                    {{phone}}
+                                    {{user.phone}}
                                 </p>
                             </div>
                         </div>

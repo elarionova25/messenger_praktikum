@@ -11,8 +11,6 @@ import {ProfilePage} from "./pages/profile/profile";
 import {DataEditPage} from "./pages/data-edit/data-edit";
 import {PasswordChangePage} from "./pages/password-change/password-change";
 import {MainPage} from "./pages/main/main";
-import {ServerError} from "./pages/500/500";
-
 
 import Button from './components/button';
 import Link from './components/link';
@@ -28,11 +26,11 @@ import {Error} from "./components/error/error";
 import {ControllerInput} from "./components/controller-input/controller-input";
 import {SimpleInput} from "./components/simple-input/simple-input";
 import {SendButton} from "./components/send-button/send-button";
-import {Store} from "./core/Store";
+import store, {Store} from "./core/Store";
 import {MessageElement} from "./components/message-element/message-element";
 import {ChatWrap} from "./components/chat-wrap/chat-wrap";
+import AuthController from "./controllers/AuthController";
 
-// registerComponent(ServerError);
 registerComponent(MainPage);
 registerComponent(RegisterPage);
 registerComponent(LoginPage);
@@ -72,7 +70,19 @@ enum Routes {
     PasswordChange='/password-change'
 }
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", async () => {
+    console.log('store', store.getState().user)
+
+    if (store.getState().user === undefined) {
+        try {
+            await AuthController.fetchUser();
+            console.log('store2', store.getState().user)
+
+        } catch (e: any) {
+            console.log('error')
+        }
+    }
+
     Router
         .use(Routes.Main, MainPage)
         .use(Routes.Login, LoginPage)
@@ -90,19 +100,19 @@ window.addEventListener("DOMContentLoaded", () => {
             renderDOM(new RegisterPage());
             break;
         }
-        case Routes.Login:{
+        case Routes.Login: {
             renderDOM(new LoginPage());
             break;
         }
-        case Routes.Profile:{
+        case Routes.Profile: {
             renderDOM(new ProfilePage());
             break;
         }
-        case Routes.DataEdit:{
+        case Routes.DataEdit: {
             renderDOM(new DataEditPage());
             break;
         }
-        case Routes.PasswordChange:{
+        case Routes.PasswordChange: {
             renderDOM(new PasswordChangePage());
             break;
         }
