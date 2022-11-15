@@ -109,7 +109,7 @@ export class DataEditPageBase extends Block {
                 {{{ControllerInput
                         type="text"
                         name="login"
-                        placeholder="Введите логин"
+                        placeholder="Введите id пользователя"
                         onInput=onInput
                         onFocus=onFocus
                         label="Логин"

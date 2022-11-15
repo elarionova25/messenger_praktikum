@@ -177,7 +177,7 @@ export class Chat extends Block {
         {{{ Input
                 type="login"
                 name="addUserlogin"
-                placeholder="Введите логин"
+                placeholder="Введите id пользователя"
         }}}
         <div class="buttons">
             <button class="modal-btn">
@@ -195,7 +195,7 @@ export class Chat extends Block {
         {{{ Input 
                 type="login"
                 name="login"
-                placeholder="Введите логин"
+                placeholder="Введите id пользователя"
         }}}
          <div class="buttons">
                 <button class="modal-btn">
