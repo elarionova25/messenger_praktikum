@@ -15,7 +15,7 @@ export class ChatsController {
             const chats = await this.api.read();
             store.set('chats', chats);
         } catch (e: any) {
-            console.error(e);
+            console.log('error');
         }
     }
 
@@ -23,7 +23,7 @@ export class ChatsController {
         try {
             await this.api.createchat(data);
         } catch (e: any) {
-            console.error(e);
+            console.log('error');
         }
         this.getChats();
     }
@@ -32,7 +32,7 @@ export class ChatsController {
         try {
             await this.api.deletechat(data);
         } catch (e: any) {
-            console.error(e);
+            console.log('error');
         }
         this.getChats()
     }
@@ -41,7 +41,7 @@ export class ChatsController {
         try {
             await this.api.addusertochat(data);
         } catch (e: any) {
-            console.error(e);
+            console.log('error');
         }
     }
 
@@ -54,7 +54,7 @@ export class ChatsController {
         try {
             await this.api.getchattoken(id);
         } catch (e: any) {
-            console.error(e);
+            console.log('error');
         }
     }
 
@@ -62,7 +62,7 @@ export class ChatsController {
         try {
             await this.api.changechatavatar(data);
         } catch (e: any) {
-            console.error(e);
+            console.log('error');
         }
     }
 }

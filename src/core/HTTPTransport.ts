@@ -64,7 +64,6 @@ export default class HTTPTransport {
     }
 
     public fetchPut<Response>(path: string, data?: FormData): Promise<Response> {
-        console.log(typeof data)
         return this.request<Response>(this.endpoint + path, {
             method: Method.Put,
             mode: 'cors',
@@ -80,19 +79,16 @@ export default class HTTPTransport {
             const xhr = new XMLHttpRequest();
             xhr.open(method, url);
             xhr.onreadystatechange = (e) => {
-
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status < 400) {
                         resolve(xhr.response);
-                    } else {
+                    }
+                    else {
                         reject(xhr.response);
                     }
                 }
             };
 
-            xhr.onabort = () => reject({reason: 'abort'});
-            xhr.onerror = () => reject({reason: 'network error'});
-            xhr.ontimeout = () => reject({reason: 'timeout'});
 
             if(data instanceof FormData) {
                 xhr.withCredentials = true;
@@ -109,6 +105,13 @@ export default class HTTPTransport {
                     xhr.send(JSON.stringify(data));
                 }
             }
+
+            xhr.onabort = () => reject({reason: 'abort'});
+            // xhr.onerror = () => reject({reason: 'network error'});
+            xhr.onerror = function (e) {
+                console.log('errorHTTP')
+            };
+            xhr.ontimeout = () => reject({reason: 'timeout'});
         });
     }
 }

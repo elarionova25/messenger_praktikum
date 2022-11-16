@@ -1,5 +1,6 @@
 import API, {UsersAPI, ChangeData, ChangePassword} from '../api/UsersAPI';
 import router from '../core/Router';
+import ChatsController from "./ChatsController";
 
 export class UsersController {
     private readonly api: UsersAPI;
@@ -13,7 +14,7 @@ export class UsersController {
             await this.api.changedata(data);
             router.go('/profile');
         } catch (e: any) {
-            console.error(e);
+            console.log('error');
         }
     }
 
@@ -22,15 +23,16 @@ export class UsersController {
             await this.api.changepassword(data);
             router.go('/profile');
         } catch (e: any) {
-            console.error(e);
+            console.log('error');
         }
     }
 
     async changeavatar(data: FormData) {
         try {
             await this.api.changeavatar(data);
+            ChatsController.getChats();
         } catch (e: any) {
-            console.error(e);
+            console.log('error');
         }
     }
 }

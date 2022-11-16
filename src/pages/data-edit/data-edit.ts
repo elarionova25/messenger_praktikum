@@ -10,7 +10,6 @@ import {host} from "../../api/host";
 
 export class DataEditPageBase extends Block {
     static componentName = 'DataEditPage';
-
     constructor() {
         super();
         AuthController.fetchUser();
@@ -58,7 +57,7 @@ export class DataEditPageBase extends Block {
             onSubmit: () => {
                 const userForm = document.getElementById('myUserForm');
                 const form = new FormData(userForm);
-                UsersController.changeavatar(form)
+                UsersController.changeavatar(form);
             }
         })
     }
@@ -86,6 +85,7 @@ export class DataEditPageBase extends Block {
                           onClick=onSubmit
                           style="button__button"
            }}}
+                <input type="submit">
             </form>
             </div>
             <div class="name-wrap">

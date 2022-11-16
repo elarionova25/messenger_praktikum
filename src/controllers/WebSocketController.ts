@@ -12,7 +12,7 @@ export class WebSocketController {
         try {
             await this.socket.createsocket(chatId);
         } catch (e: any) {
-            console.error(e);
+            console.log('error');
             router.go('/error500');
         }
     }

@@ -4,6 +4,7 @@ import {validateForm} from "../../helpers/validateForm";
 import ChatsController from "../../controllers/ChatsController";
 import store from "../../core/Store";
 import {host} from "../../api/host";
+import e from "express";
 
 type ChatProps = {
     chat: any;
@@ -16,14 +17,10 @@ export class Chat extends Block {
 
     constructor({chat, chatUsers, chatOldMessages}: ChatProps) {
         super({chat, chatUsers, chatOldMessages});
-        addEventListener('keypress', (event) => {
-            if (event.key === 'Enter'){
-                event.preventDefault();
-            }
-        });
         this.setProps({
             message: '',
-            onClick: () => {
+            onSubmit: (event: SubmitEvent) => {
+                event.preventDefault();
                 if(this.refs.sendButtonRef.firstElementChild.className==="disabled") {
                     this.setProps({
                         error: 'Сообщение пустое',
@@ -75,22 +72,10 @@ export class Chat extends Block {
                 ChatsController.deletechat(data);
             },
             onAvatarAdd: () => {
-                const host = 'https://ya-praktikum.tech';
                 const myUserForm = document.getElementById('myUserForm');
-                console.log(myUserForm)
-                const avatar = document.getElementById('avatar');
                 const form = new FormData(myUserForm);
                 form.append('chatId', chat.id);
-                fetch(`${host}/api/v2/chats/avatar`, {
-                    method: 'PUT',
-                    credentials: 'include',
-                    mode: 'cors',
-                    body: form,
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        return data;
-                    });
+                ChatsController.changechatavatar(form);
             }
         })
     }
@@ -155,7 +140,7 @@ export class Chat extends Block {
                 </svg>
             </label>
         </div>
-        <form class="text-bar-field">
+        <form id="send-form" class="text-bar-field">
         {{{ Input 
             type=text
             placeholder="Введите сообщение"
@@ -164,9 +149,10 @@ export class Chat extends Block {
         }}}
         </form>
         {{{ SendButton
+                type="submit"
                 name="sendBtn"
+                onClick=onSubmit
                 className="disabled"
-                onClick=onClick
                 ref="sendButtonRef"
         }}}
     </div>
@@ -228,11 +214,14 @@ export class Chat extends Block {
         <div class="avatar-wrap">
             <form id="myUserForm">
                 <input id="avatar" type="file" name="avatar" accept="image/*">
-                {{{Button text="загрузить аватар"
-                          onClick=onAvatarAdd
-                          style="button__button"
-                }}}
+                <a href="#close">
+                    {{{Button text="загрузить аватар"
+                              onClick=onAvatarAdd
+                              style="button__button"
+                    }}}
+                </a>
             </form>
+            <span>Если был загружен аватар, необходимо перезагрузить страницу</span>
         </div>
     {{/Modal}}
 </div>
