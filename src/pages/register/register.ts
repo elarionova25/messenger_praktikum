@@ -71,7 +71,6 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Логин"
-                                value="${this.props.login}"
                                 ref="loginControllerInputRef"
                         }}}
                         {{{ControllerInput
@@ -81,7 +80,6 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Email"
-                                value="${this.props.email}"
                                 ref="emailControllerInputRef"
                         }}}
                         
@@ -92,7 +90,6 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Имя"
-                                value="${this.props.first_name}"
                                 ref="nameControllerInputRef"
                         }}}
                         {{{ControllerInput
@@ -102,7 +99,6 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Фамилия"
-                                value="${this.props.second_name}"
                                 ref="surnameControllerInputRef"
                         }}}
                         {{{ControllerInput
@@ -112,7 +108,6 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Телефон"
-                                value="${this.props.phone}"
                                 ref="phoneControllerInputRef"
                         }}}
                         {{{ControllerInput
@@ -122,7 +117,6 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Пароль"
-                                value="${this.props.password}"
                                 ref="passwordControllerInputRef"
                         }}}
                     </div>

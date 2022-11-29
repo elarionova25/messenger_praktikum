@@ -82,7 +82,6 @@ export class LoginPage extends Block {
               onInput=onInput
               onFocus=onFocus
               label="Логин"
-              value="${this.props.login}"
               ref="loginControllerInputRef"
         }}}
         {{{ControllerInput
@@ -92,7 +91,6 @@ export class LoginPage extends Block {
               onInput=onInput
               onFocus=onFocus
               label="Пароль"
-              value="{{value}}"
               ref="passwordControllerInputRef"
         }}}
         </div>
