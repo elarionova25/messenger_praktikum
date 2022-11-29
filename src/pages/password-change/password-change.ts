@@ -6,12 +6,15 @@ import {ChangePassword, UsersAPI} from "../../api/UsersAPI";
 import UsersController from "../../controllers/UsersController";
 import {withStore} from "../../core/Store";
 
+type PasswordEditPageProps ={
+    user: {},
+}
+
 export class PasswordEditPageBase extends Block {
     static componentName = 'PasswordEditPage';
 
-    constructor() {
-        super();
-        AuthController.fetchUser();
+    constructor({...props}: PasswordEditPageProps) {
+        super({...props});
         this.setProps({
             error: '',
             values:{
@@ -69,7 +72,6 @@ export class PasswordEditPageBase extends Block {
                                     onInput=onInput
                                     onFocus=onFocus
                                     placeholder="Введите пароль"
-                                    value="${this.props.oldPassword}"
                                     label="Старый пароль"
                                     ref="oldPasswordRef"
                             }}}
@@ -79,7 +81,6 @@ export class PasswordEditPageBase extends Block {
                                     onInput=onInput
                                     onFocus=onFocus
                                     placeholder="Введите пароль"
-                                    value="${this.props.newPassword}"
                                     label="Новый пароль"
                                     ref="newPasswordRef"
                             }}}
@@ -89,7 +90,6 @@ export class PasswordEditPageBase extends Block {
                                     onInput=onInput
                                     onFocus=onFocus
                                     placeholder="Введите пароль"
-                                    value=""
                                     label="Повторите новый пароль"
                                     ref="newRepeatPasswordRef"
                             }}}
@@ -107,6 +107,5 @@ export class PasswordEditPageBase extends Block {
         `
     }
 }
-
-const withUser = withStore((state) => ({ ...state.user }));
+const withUser = withStore((state) => ({user: {...(state.user || undefined)}}));
 export const PasswordChangePage = withUser(PasswordEditPageBase);

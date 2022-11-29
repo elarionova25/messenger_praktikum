@@ -5,18 +5,19 @@ import store, {withStore} from "../../core/Store";
 import AuthController from "../../controllers/AuthController";
 import UsersController from "../../controllers/UsersController";
 import {ChangeData} from "../../api/UsersAPI";
-import UsersAPI from "../../api/UsersAPI";
-import {host} from "../../api/host";
+
+type DataEditProps = {
+    user: {};
+}
 
 export class DataEditPageBase extends Block {
     static componentName = 'DataEditPage';
-    constructor() {
-        super();
-        AuthController.fetchUser();
+    constructor({...props}: DataEditProps) {
+        super({...props});
         this.setProps({
             error: '',
             values:{
-                email: '111111',
+                email: '',
                 first_name: '',
                 second_name: '',
                 phone: '',
@@ -91,7 +92,7 @@ export class DataEditPageBase extends Block {
             <div class="name-wrap">
                 <p class="name">
                     <b>
-                        Екатерина
+                        {{user.name}}
                     </b>
                 </p>
             </div>
@@ -103,7 +104,7 @@ export class DataEditPageBase extends Block {
                         onInput=onInput
                         onFocus=onFocus
                         label="Email"
-                        value="${this.props.email}"
+                        value="${this.props.user.email}"
                         ref="emailControllerInputRef"
                 }}}
                 {{{ControllerInput
@@ -113,7 +114,7 @@ export class DataEditPageBase extends Block {
                         onInput=onInput
                         onFocus=onFocus
                         label="Логин"
-                        value="${this.props.login}"
+                        value="${this.props.user.login}"
                         ref="loginControllerInputRef"
                 }}}
                 {{{ControllerInput
@@ -123,7 +124,7 @@ export class DataEditPageBase extends Block {
                         onInput=onInput
                         onFocus=onFocus
                         label="Имя в чате"
-                        value="${this.props.display_name}"
+                        value="${this.props.user.display_name}"
                         ref="displayNameControllerInputRef"
                 }}}
                 {{{ControllerInput
@@ -133,7 +134,7 @@ export class DataEditPageBase extends Block {
                         onInput=onInput
                         onFocus=onFocus
                         label="Имя"
-                        value="${this.props.first_name}"
+                        value="${this.props.user.first_name}"
                         ref="nameControllerInputRef"
                 }}}
                 {{{ControllerInput
@@ -143,7 +144,7 @@ export class DataEditPageBase extends Block {
                         onInput=onInput
                         onFocus=onFocus
                         label="Фамилия"
-                        value="${this.props.second_name}"
+                        value="${this.props.user.second_name}"
                         ref="surnameControllerInputRef"
                 }}}
                 {{{ControllerInput
@@ -153,7 +154,7 @@ export class DataEditPageBase extends Block {
                         onInput=onInput
                         onFocus=onFocus
                         label="Телефон"
-                        value="${this.props.phone}"
+                        value="${this.props.user.phone}"
                         ref="phoneControllerInputRef"
                 }}}
             </div>
@@ -171,5 +172,6 @@ export class DataEditPageBase extends Block {
     }
 }
 
-const withUser = withStore((state) => ({ ...state.user }));
+const withUser = withStore((state) => ({user: {...(state.user || undefined)}}));
+
 export const DataEditPage = withUser(DataEditPageBase);
