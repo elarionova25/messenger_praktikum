@@ -1,18 +1,17 @@
 import {Block} from "../../core";
 import './chat-list.css'
 import ChatsController from "../../controllers/ChatsController";
-import {Chat, CreateChat} from "../../api/ChatsAPI";
-import {withStore} from "../../core/Store";
+import {CreateChat} from "../../api/ChatsAPI";
 
 type ChatListProps = {
-    chats: Chat[];
+    chats: any;
 }
 
-export class ChatListBase extends Block {
-    static componentName = 'ChatList';
+export class ChatList extends Block {
+    // static componentName = 'ChatList';
 
-    constructor({...props}: ChatListProps) {
-        super({...props});
+    constructor({chats}: ChatListProps) {
+        super({chats});
         this.setProps({
             values: {
                 title: '',
@@ -96,7 +95,3 @@ export class ChatListBase extends Block {
         `
     }
 }
-
-const withChats = withStore((state) => ({chats: [...(state.chats || [])]}));
-// @ts-ignore
-export const ChatList = withChats(ChatListBase);

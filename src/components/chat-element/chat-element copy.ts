@@ -1,18 +1,16 @@
 import {Block} from "../../core";
 import ChatsController from "../../controllers/ChatsController";
-import store, {withStore} from "../../core/Store";
+import store from "../../core/Store";
 import {host} from "../../api/host";
 import './chat-element.css'
-import {Chat} from "../../api/ChatsAPI";
 
 type ChatElementProps = {
     chat: any;
     onClick: () => void;
-    selectedChat: Chat;
 }
 
-export class ChatElementBase extends Block {
-    static componentName = 'ChatElement';
+export class ChatElement extends Block {
+    // static componentName = 'ChatElement';
 
     constructor({chat, onClick}: ChatElementProps) {
         super({chat, events: {click: onClick}});
@@ -23,12 +21,14 @@ export class ChatElementBase extends Block {
                 }
                 ChatsController.deletechat(data);
             },
-            onClick: async () => {
+            onClick: () => {
                 store.set('selectedChat', chat);
+                // необходимо, чтобы сохранялся порядок в ChatList
+                ChatsController.getChats();
                 ChatsController.getchatusers(chat.id).then((response) => {
                     store.set('selectedChat.chatUsers', response)
                 })
-                console.log('Store', store)
+                ChatsController.getchattoken(chat.id);
             }
         })
     }
@@ -39,6 +39,7 @@ export class ChatElementBase extends Block {
 {{#ChatWrap chat=chat
             onClick=onClick
 }}
+<!--<div class="chat-element" id={{chat.id}}>-->
     {{#if chat.avatar}}
         <div class="wrapper avatar">
             <img src="${host}/api/v2/resources/{{chat.avatar}}" alt="avatar">
@@ -59,6 +60,16 @@ export class ChatElementBase extends Block {
             </div>
         </div>
         <div class="time-number-wrap">
+            <div class="time">
+                <a class="time-text">
+                    {{{ Button text="Удалить"
+                               onClick=onDelete
+                               style="delete-btn"
+                    }}}
+                    <br>
+                </a>
+            </div>
+            <br>
             {{#if chat.unread_count}}
             <div class="new-number">
                 <span class="badge">
@@ -68,10 +79,8 @@ export class ChatElementBase extends Block {
             {{/if}}
         </div>
     </div>
+<!--</div>-->
 {{/ChatWrap}}
         `
     }
 }
-export const withSelectedChat = withStore(state => ({selectedChat: (state.chats || []).find(({id}) => id === state.selectedChat)}));
-
-export const ChatElement = withSelectedChat(ChatElementBase);
