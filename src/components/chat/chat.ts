@@ -225,8 +225,9 @@ export class ChatBase extends Block {
 }
 const withSelectedChatMessages = withStore(state => {
     let selectedChatId = null;
+
     if(state.selectedChat) {
-        selectedChatId = state.selectedChat.id;
+        selectedChatId = state.selectedChat;
     }
 
     if (!selectedChatId) {
@@ -239,7 +240,7 @@ const withSelectedChatMessages = withStore(state => {
 
     return {
         messages: (state.messages || {})[selectedChatId] || [],
-        selectedChat: state.selectedChat,
+        selectedChat: (state.chats || []).find(({id}) => id === state.selectedChat),
         userId: state.user.id,
     };
 });

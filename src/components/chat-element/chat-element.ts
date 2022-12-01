@@ -14,8 +14,8 @@ type ChatElementProps = {
 export class ChatElementBase extends Block {
     static componentName = 'ChatElement';
 
-    constructor({chat, onClick}: ChatElementProps) {
-        super({chat, events: {click: onClick}});
+    constructor({chat, selectedChat, onClick}: ChatElementProps) {
+        super({chat, selectedChat, events: {click: onClick}});
         this.setProps({
             onDelete: () => {
                 let data = {
@@ -24,11 +24,12 @@ export class ChatElementBase extends Block {
                 ChatsController.deletechat(data);
             },
             onClick: async () => {
-                store.set('selectedChat', chat);
+                store.set('selectedChat', chat.id);
                 ChatsController.getchatusers(chat.id).then((response) => {
                     store.set('selectedChat.chatUsers', response)
                 })
                 console.log('Store', store)
+                console.log('selectedChat', this.props.selectedChat)
             }
         })
     }
