@@ -26,10 +26,9 @@ export class ChatElementBase extends Block {
             onClick: async () => {
                 store.set('selectedChat', chat.id);
                 ChatsController.getchatusers(chat.id).then((response) => {
-                    store.set('selectedChat.chatUsers', response)
+                    store.set('chatUsers', response)
+
                 })
-                console.log('Store', store)
-                console.log('selectedChat', this.props.selectedChat)
             }
         })
     }

@@ -10,6 +10,7 @@ type ChatProps = {
     selectedChat: any;
     messages: any;
     userId: number;
+    chatUsers: [];
 }
 
 export class ChatBase extends Block {
@@ -88,7 +89,7 @@ export class ChatBase extends Block {
                             <p class="name main-name">{{selectedChat.title}}</p>
                             <br>
                             Участники:
-                                {{#each selectedChat.chatUsers}}
+                                {{#each chatUsers}}
                                 {{this.login}}
                                 {{/each}}
                         </div>
@@ -235,6 +236,7 @@ const withSelectedChatMessages = withStore(state => {
             messages: [],
             selectedChat: undefined,
             user: state.user.id,
+            chatUsers: state.chatUsers,
         };
     }
 
@@ -242,6 +244,7 @@ const withSelectedChatMessages = withStore(state => {
         messages: (state.messages || {})[selectedChatId] || [],
         selectedChat: (state.chats || []).find(({id}) => id === state.selectedChat),
         userId: state.user.id,
+        chatUsers: state.chatUsers,
     };
 });
 

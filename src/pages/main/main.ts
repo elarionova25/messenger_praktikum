@@ -8,7 +8,6 @@ export class MainPage extends Block {
     constructor() {
         super({});
         ChatsController.getChats();
-        console.log('Store', store)
     }
 
     // language=hbs

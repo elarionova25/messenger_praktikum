@@ -53,7 +53,7 @@ export class LoginPage extends Block {
 
                 if (!errorMessage) {
                 const data = this.props.values;
-                console.log('DATA', data)
+
                 AuthController.signin(data as SignupData);
                 }
             },
