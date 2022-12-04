@@ -30,6 +30,7 @@ export class ControllerInput extends Block {
                         error: errorMessage || "",
                         inputValue: inputEl.value,
                     })
+                    // @ts-ignore
                     this.refs.inputRef.value= inputEl.value;
                 }
             }

@@ -1,8 +1,8 @@
 import Block from '../../core/Block';
 import {validateForm} from "../../helpers/validateForm";
-import './login.css';
 import AuthController from '../../controllers/AuthController';
 import {SignupData} from "../../api/AuthAPI";
+import './login.css';
 
 // email:"test@btu.ru"
 // first_name:"Екатерина"
@@ -117,3 +117,5 @@ export class LoginPage extends Block {
     `;
     }
 }
+
+// export const LoginPage = LoginPageBase;
