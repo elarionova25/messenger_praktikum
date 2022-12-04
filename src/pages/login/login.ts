@@ -70,9 +70,9 @@ export class LoginPage extends Block {
             <p class="title-text">Вход</p>
         </div>
         <br>
-        <span style="color: #999999">First account: elarionova25/ABCabc123&</span>
+        <span style="color: #999999; margin-left: 10px">Тестовый аккаунт №1: elarionova25/ABCabc123&</span>
         <br>
-        <span style="color: #999999">Second account: blabla12/ABCabc123&</span>
+        <span style="color: #999999; margin-left: 10px">Тестовый аккаунт №2: blabla12/ABCabc123&</span>
 
         <div class="data">
         {{{ControllerInput

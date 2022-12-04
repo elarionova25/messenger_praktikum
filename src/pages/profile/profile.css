@@ -11,7 +11,7 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
-    box-shadow: 0 0 7px var(--main-black-color);
+    box-shadow: 0 0 7px #EAEAEA;
     border-radius: 12px;
     max-width: 600px;
     max-height: 700px;
@@ -20,7 +20,6 @@ body {
 .settings-link {
     margin: 20px 40px;
     border-bottom: 1px solid var(--main-border-color);
-
 }
 
 .settings-link a {
@@ -43,7 +42,7 @@ body {
     height: 130px;
     margin: 12px;
     border-radius: 50%;
-    box-shadow: 0 0 7px var(--main-black-color);
+    box-shadow: 0 0 7px var(--main-border-color);
     display: block;
     margin: 40px auto 40px auto;
     background: #EFEFEF;
@@ -69,6 +68,6 @@ body {
 .info {
     font-size: 15px;
     float: right;
-    color: var(--main-grey-color);
+    color: var(--main-border-color);
     margin-left: auto;
 }
