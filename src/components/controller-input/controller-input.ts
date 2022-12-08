@@ -14,19 +14,24 @@ interface ControllerInputProps {
 }
 
 export class ControllerInput extends Block {
+    static componentName = 'ControllerInput';
+
     constructor({...props}: ControllerInputProps) {
         super({
             ...props,
             error: '',
-            value: '',
+            inputValue: '',
+            value: props.value,
             onBlur: (e: FocusEvent) => {
                 let inputEl = e.target as HTMLInputElement;
-                let errorMessage = validateForm( [{type: inputEl.name, value: inputEl.value}]);
-                this.setProps( {
-                    error: errorMessage || "",
-                    value: inputEl.value,
-                })
-                this.refs.inputRef.props.value= inputEl.value;
+                if(inputEl.value){
+                    let errorMessage = validateForm( [{type: inputEl.name, value: inputEl.value}]);
+                    this.setProps( {
+                        error: errorMessage || "",
+                        inputValue: inputEl.value,
+                    })
+                    this.refs.inputRef.value= inputEl.value;
+                }
             }
         });
     }
@@ -40,18 +45,18 @@ export class ControllerInput extends Block {
                   {{label}}:
               </span>
           </div>
-          {{{ Input 
-            name="{{name}}"
-            type="{{type}}"
-            placeholder="{{placeholder}}"
-            onFocus=onFocus
-            onInput=onInput
-            onBlur=onBlur
-            value=""
-            ref="inputRef"
-          }}}
+              {{{ Input
+                      name="{{name}}"
+                      type="{{type}}"
+                      placeholder="{{placeholder}}"
+                      onFocus=onFocus
+                      onInput=onInput
+                      onBlur=onBlur
+                      ref="inputRef"
+              }}}
           {{{Error text=error}}}
       </div>
     `
     }
 }
+

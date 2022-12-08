@@ -3,17 +3,17 @@ import Block from '../../core/Block';
 import './avatar-input.css';
 
 export class AvatarInput extends Block {
-
+    static componentName = 'AvatarInput';
 
     protected render() {
         return `
         <div class="personal-image">
             <label class="label">
-            <input type="file"/>
+            <input id="avatar" type="file" name="avatar" accept="image/*">
             <figure class="personal-figure">
-             <img src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png" class="personal-avatar" alt="avatar">
+             <img src="" class="personal-avatar" alt="avatar">
             <figcaption class="personal-figcaption">
-            <img src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png" alt="Аватар">
+            <img src="" alt="Аватар">
             </figcaption>
             </figure>
             </label>

@@ -15,11 +15,13 @@
   }
 
 .container {
+    width: 100vw;
+    height: 100vh;
     margin: 0 auto;
 }
 
 .chat-list-wrap {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     display: flex;
     overflow: hidden;
@@ -27,4 +29,10 @@
 
 a {
     text-decoration: none;
+}
+
+i{
+    display: inline-block;
+    height: 1rem;
+    width: 1rem;
 }

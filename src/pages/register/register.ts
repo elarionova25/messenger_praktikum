@@ -1,26 +1,31 @@
 import {Block} from "../../core";
 import './register.css';
 import {validateForm} from "../../helpers/validateForm";
+import {SignupData} from "../../api/AuthAPI";
+import AuthController from '../../controllers/AuthController';
 
 export class RegisterPage extends Block {
+    static componentName = 'RegisterPage';
+
     constructor() {
         super();
         this.setProps({
             error: '',
-            emailValue: '',
-            nameValue: '',
-            surnameValue: '',
-            phoneValue: '',
-            loginValue: '',
-            passwordValue: '',
-            passwordRetryValue: '',
+            values: {
+                email: '',
+                first_name: '',
+                login: '',
+                password: '',
+                phone: '',
+                second_name: '',
+            },
             onSubmit: () => {
-                const emailEl = this.refs.emailControllerInputRef.props;
-                const loginEl = this.refs.loginControllerInputRef.props;
-                const nameEl = this.refs.nameControllerInputRef.props;
-                const surnameEl = this.refs.surnameControllerInputRef.props;
-                const phoneEl = this.refs.phoneControllerInputRef.props;
-                const passwordEl = this.refs.passwordControllerInputRef.props;
+                const loginEl = this.element?.querySelector('input[name="login"]') as HTMLInputElement;
+                const emailEl = this.element?.querySelector('input[name="email"]') as HTMLInputElement;
+                const nameEl = this.element?.querySelector('input[name="name"]') as HTMLInputElement;
+                const surnameEl = this.element?.querySelector('input[name="surname"]') as HTMLInputElement;
+                const phoneEl = this.element?.querySelector('input[name="phone"]') as HTMLInputElement;
+                const passwordEl = this.element?.querySelector('input[name="password"]') as HTMLInputElement;
 
                 const errorMessage = validateForm([
                     {type: 'login', value: loginEl.value},
@@ -32,13 +37,20 @@ export class RegisterPage extends Block {
                 ]);
                 this.setProps({
                     error: errorMessage || "",
-                    loginValue: loginEl.value,
-                    passwordValue: passwordEl.value,
-                    emailValue: emailEl.value,
-                    nameValue: nameEl.value,
-                    surnameValue: surnameEl.value,
-                    phoneValue: phoneEl.value
+                    values: {
+                        email: emailEl.value,
+                        first_name: nameEl.value,
+                        login: loginEl.value,
+                        password: passwordEl.value,
+                        second_name: surnameEl.value,
+                        phone: phoneEl.value
+                    }
                 });
+
+                //if(!errorMessage){
+                    const data = this.props.values
+                    AuthController.signup(data as SignupData);
+               // }
             }
         })
     }
@@ -47,11 +59,21 @@ export class RegisterPage extends Block {
         // language=hbs
         return `
             <div class="block">
-                <div class="entry-form">
+                <div class="register-entry-form">
                     <div class="title">
                         <p class="title-text">Регистрация</p>
                     </div>
                     <div class="data">
+                        {{{ControllerInput
+                                type="text"
+                                name="login"
+                                placeholder="Введите логин пользователя"
+                                onInput=onInput
+                                onFocus=onFocus
+                                label="Логин"
+                                value="${this.props.login}"
+                                ref="loginControllerInputRef"
+                        }}}
                         {{{ControllerInput
                                 type="text"
                                 name="email"
@@ -59,19 +81,10 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Email"
-                                value="${this.props.emailValue}"
+                                value="${this.props.email}"
                                 ref="emailControllerInputRef"
                         }}}
-                        {{{ControllerInput
-                                type="text"
-                                name="login"
-                                placeholder="Введите логин"
-                                onInput=onInput
-                                onFocus=onFocus
-                                label="Логин"
-                                value="${this.props.loginValue}"
-                                ref="loginControllerInputRef"
-                        }}}
+                        
                         {{{ControllerInput
                                 type="text"
                                 name="name"
@@ -79,7 +92,7 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Имя"
-                                value="${this.props.nameValue}"
+                                value="${this.props.first_name}"
                                 ref="nameControllerInputRef"
                         }}}
                         {{{ControllerInput
@@ -89,7 +102,7 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Фамилия"
-                                value="${this.props.surnameValue}"
+                                value="${this.props.second_name}"
                                 ref="surnameControllerInputRef"
                         }}}
                         {{{ControllerInput
@@ -99,7 +112,7 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Телефон"
-                                value="${this.props.phoneValue}"
+                                value="${this.props.phone}"
                                 ref="phoneControllerInputRef"
                         }}}
                         {{{ControllerInput
@@ -109,25 +122,18 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Пароль"
-                                value="${this.props.passwordValue}"
+                                value="${this.props.password}"
                                 ref="passwordControllerInputRef"
-                        }}}
-                        {{{ControllerInput
-                                type="password"
-                                name="passwordRetry"
-                                placeholder="Введите пароль"
-                                onInput=onInput
-                                onFocus=onFocus
-                                label="Пароль (ещё раз)"
-                                value="${this.props.passwordRetryValue}"
-                                ref="passwordRetryControllerInputRef"
                         }}}
                     </div>
                     <div class="input-error">{{#if error}}{{error}}{{/if}}</div>
                     <div class="buttons">
-                        {{{ Button text="Зарегистрироваться" onClick=onSubmit}}}
+                        {{{ Button text="Зарегистрироваться" 
+                                   onClick=onSubmit
+                                   style="button__button"
+                        }}}
                         <button class="btn sign-in-btn">
-                            <a href="/pages/login" class="sign-in-link">
+                            <a href="/login" class="sign-in-link">
                                 Войти
                             </a>
                         </button>

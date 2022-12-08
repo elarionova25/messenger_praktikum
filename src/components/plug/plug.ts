@@ -1,13 +1,15 @@
 import {Block} from "../../core";
-
+import './plug.css'
 
 export class Plug extends Block {
+    static componentName = 'Plug';
+
     render() {
         return `
         <div class="plug">
-            <div class="text-wrap">
-                Выберите чат чтобы отправить сообщение
-            </div>
+            <p class="plug-text">
+               Выберите чат
+            </p>
         </div>
         `
     }

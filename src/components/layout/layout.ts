@@ -5,7 +5,9 @@ import './layout.css';
 interface LayoutProps {}
 
 export class Layout extends Block<LayoutProps> {
-  protected render(): string {
+    static componentName = 'Layout';
+
+    protected render(): string {
     // language=hbs
     return `
       <div class="screen screen_theme_full">

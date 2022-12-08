@@ -10,25 +10,32 @@ const dirPath = path.join(__dirname, './');
 app.use(express.static('dist'));
 
 app.get('/', (req, res) => {
-    res.sendFile(dirPath + `dist/chats.html`);
+    res.sendFile(dirPath + `dist/index.html`);
 });
 
-app.get('/failed', (req, res) => {
-    res.sendFile(dirPath +`dist/404.html`);
+app.get('/error500', (req, res) => {
+    res.sendFile(dirPath +`dist/index.html`);
 });
 
 app.get('/login', (req, res) => {
-    res.sendFile(dirPath +`dist/login.html`);
+    res.sendFile(dirPath +`dist/index.html`);
 });
 
 app.get('/register', (req, res) => {
-    res.sendFile(dirPath +`dist/register.html`);
+    res.sendFile(dirPath +`dist/index.html`);
 });
 
 app.get('/profile', (req, res) => {
-    res.sendFile(dirPath +`dist/profile.html`);
+    res.sendFile(dirPath +`dist/index.html`);
 });
 
+app.get('/data-edit', (req, res) => {
+    res.sendFile(dirPath +`dist/index.html`);
+});
+
+app.get('/password-change', (req, res) => {
+    res.sendFile(dirPath +`dist/index.html`);
+});
 
 
 app.listen(PORT, function () {

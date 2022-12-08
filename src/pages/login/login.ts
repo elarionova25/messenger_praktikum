@@ -1,34 +1,60 @@
 import Block from '../../core/Block';
 import {validateForm} from "../../helpers/validateForm";
 import './login.css';
+import AuthController from '../../controllers/AuthController';
+import {SignupData} from "../../api/AuthAPI";
+
+// email:"test@btu.ru"
+// first_name:"Екатерина"
+// login:"elarionova25"
+// password:"abcABC123$"
+// newPassword: "ABCabc123&"
+// phone:"+7 952 266-3200"
+//"id": 64426,
+// second_name:"Екатерина"
+
+// email:"blabla12@mail.ru"
+// first_name:"Ekaterina"
+// login:"blabla12"
+//ID: 84699
+// password:"ABCabc123&"
+// phone:"+7 952 266-3200"
+// second_name:"blabla12"
 
 export class LoginPage extends Block {
+    static componentName = 'LoginPage';
     constructor() {
         super();
         this.setProps({
             error: '',
-            loginValue: '',
-            passwordValue: '',
+            values: {
+                login: '',
+                password: '',
+            },
             onInput: () => console.log('input'),
             onFocus: () => console.log('focus'),
             onSubmit: () => {
-                const loginEl = this.refs.loginControllerInputRef;
-                const passwordEl = this.refs.passwordControllerInputRef;
+                const loginEl = this.element?.querySelector('input[name="login"]') as HTMLInputElement;
+                const passwordEl = this.element?.querySelector('input[name="password"]') as HTMLInputElement;
 
                 const errorMessage = validateForm([
-                    {type: loginEl.props.name, value: loginEl.props.value},
-                    {type: passwordEl.props.name, value: passwordEl.props.value},
+                    {type: loginEl.name, value: loginEl.value},
+                    {type: passwordEl.name, value: passwordEl.value},
                 ]);
 
+                console.log(loginEl)
                 this.setProps({
                     error: errorMessage || "",
-                    loginValue: loginEl.props.value,
-                    passwordValue: passwordEl.props.value,
+                    values: {
+                        login: loginEl.value,
+                        password: passwordEl.value,
+                    }
                 });
 
-                if(!errorMessage) {
-                    console.log('form is ready to send');
-                    console.log(this.props)
+                if (!errorMessage) {
+                const data = this.props.values;
+                console.log('DATA', data)
+                AuthController.signin(data as SignupData);
                 }
             },
         })
@@ -43,19 +69,24 @@ export class LoginPage extends Block {
         <div class="title">
             <p class="title-text">Вход</p>
         </div>
+        <br>
+        <span style="color: #999999">First account: elarionova25/ABCabc123&</span>
+        <br>
+        <span style="color: #999999">Second account: blabla12/ABCabc123&</span>
+
         <div class="data">
         {{{ControllerInput
               type="text"
               name="login"
-              placeholder="Введите логин"
+              placeholder="Введите логин пользователя"
               onInput=onInput
               onFocus=onFocus
               label="Логин"
-              value="${this.props.loginValue}"
+              value="${this.props.login}"
               ref="loginControllerInputRef"
         }}}
         {{{ControllerInput
-              type="text"
+              type="password"
               name="password"
               placeholder="Введите пароль"
               onInput=onInput
@@ -71,11 +102,14 @@ export class LoginPage extends Block {
                 {{error}}
             {{/if}}
         </div>
-           
+         
         <div class="buttons">
-        {{{ Button text='Войти' onClick=onSubmit}}}
-            <button class="btn sign-up-btn">
-                <a href="/pages/register" class="sign-up-link">
+            {{{ Button text="Войти" 
+                       onClick=onSubmit
+                       style="button__button"
+            }}}
+            <button class="btn sign-in-btn">
+                <a href="/register" class="sign-in-link">
                     Нет аккаунта?
                 </a>
             </button>

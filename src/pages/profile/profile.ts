@@ -1,7 +1,26 @@
 import {Block} from "../../core";
 import './profile.css';
+import AuthController from "../../controllers/AuthController";
+import store, {withStore} from "../../core/Store";
+import {host} from "../../api/host";
 
-export class ProfilePage extends Block {
+export class ProfilePageBase extends Block {
+    static componentName = 'ProfilePage';
+
+    constructor() {
+        super();
+        // AuthController.fetchUser();
+        console.log(store.getState().user);
+        console.log(this.props.user)
+        this.setProps({
+            user: store.getState().user,
+            onLogout:() => {
+                AuthController.logout();
+            }
+        })
+        console.log('user', this.props.user)
+    }
+
     // language=hbs
     render() {
         return `
@@ -16,16 +35,84 @@ export class ProfilePage extends Block {
                     </a>
                 </div>
                 <div class="profile-container">
-                    {{{ ProfileData }}}
+                    <div class="profile">
+                        <div class="avatar-wrap">
+                            {{#if user.avatar}}
+                                <img src="${host}/api/v2/resources/{{user.avatar}}" alt="avatar" class="profile-img">
+                            {{else}}
+                                <img src="https://archive.org/download/no-photo-available/no-photo-available.png" alt="avatar" class="profile-img">
+                            {{/if}}
+                        </div>
+                        <div class="name-wrap">
+                            <p class="name">
+                                <b>
+                                    {{user.first_name}}
+                                </b>
+                            </p>
+                        </div>
+                        <div class="wrap">
+                            <div class="info-wrap">
+                                <p class="info-label">
+                                    Почта
+                                </p>
+                                <p class="info">
+                                    {{user.email}}
+                                </p>
+                            </div>
+                            <div class="info-wrap">
+                                <p class="info-label">
+                                    Логин
+                                </p>
+                                <p class="info">
+                                    {{user.login}}
+                                </p>
+                            </div>
+                            <div class="info-wrap">
+                                <p class="info-label">
+                                    Имя
+                                </p>
+                                <p class="info">
+                                    {{user.first_name}}
+                                </p>
+                            </div>
+                            <div class="info-wrap">
+                                <p class="info-label">
+                                    Фамилия
+                                </p>
+                                <p class="info">
+                                    {{user.second_name}}
+                                </p>
+                            </div>
+                            <div class="info-wrap">
+                                <p class="info-label">
+                                    Имя в чате
+                                </p>
+                                <p class="info">
+                                    {{user.display_name}}
+                                </p>
+                            </div>
+                            <div class="info-wrap">
+                                <p class="info-label">
+                                    Телефон
+                                </p>
+                                <p class="info">
+                                    {{user.phone}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                     <div class="links-container">
                         <div class="settings-link">
-                            <a href="/pages/data-edit">Изменить данные</a>
+                            <a href="/data-edit">Изменить данные</a>
                         </div>
                         <div class="settings-link">
-                            <a href="/pages/password-change">Изменить пароль</a>
+                            <a href="/password-change">Изменить пароль</a>
                         </div>
                         <div class="settings-link">
-                            <a href="/pages/login" style="color: #FF0000;">Выйти</a>
+                            {{{Button text="Выйти" 
+                                      onClick=onLogout
+                                      style="button__button"
+                            }}} 
                         </div>
                     </div>
                 </div>
@@ -33,3 +120,6 @@ export class ProfilePage extends Block {
         `
     }
 }
+const withUser = withStore((state) => ({ ...state.user }));
+
+export const ProfilePage = withUser(ProfilePageBase);

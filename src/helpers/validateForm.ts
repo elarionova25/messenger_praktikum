@@ -6,7 +6,7 @@
 //     Email = 'email',
 //     Phone = 'phone'
 // }
-
+//
 // type ValidateRule = {
 //     type: ValidateType,
 //     value: string;

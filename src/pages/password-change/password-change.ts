@@ -1,21 +1,30 @@
 import {Block} from "../../core";
 import "./password-change.css";
 import {validateForm} from "../../helpers/validateForm";
+import AuthController from "../../controllers/AuthController";
+import {ChangePassword, UsersAPI} from "../../api/UsersAPI";
+import UsersController from "../../controllers/UsersController";
+import {withStore} from "../../core/Store";
 
+export class PasswordEditPageBase extends Block {
+    static componentName = 'PasswordEditPage';
 
-export class PasswordChangePage extends Block {
     constructor() {
         super();
-
+        AuthController.fetchUser();
         this.setProps({
             error: '',
-            oldPasswordValue: '',
-            newPasswordValue: '',
-            newPasswordRepeatValue: '',
-            onSubmit: () => {
-                const oldPasswordEl = this.refs.oldPasswordRef.props;
-                const newPasswordEl = this.refs.newPasswordRef.props;
-                const newRepeatPasswordEl = this.refs.newRepeatPasswordRef.props;
+            values:{
+                oldPassword: '',
+                newPassword: '',
+            },
+            newPasswordRepeat: '',
+            onSave: () => {
+                console.log(this.refs.oldPasswordRef.props)
+
+                const oldPasswordEl = this.element?.querySelector('input[name="password"]') as HTMLInputElement;
+                const newPasswordEl = this.element?.querySelector('input[name="newPassword"]') as HTMLInputElement;
+                const newRepeatPasswordEl = this.element?.querySelector('input[name="newPasswordRepeat"]') as HTMLInputElement;
 
                 const errorMessage = validateForm([
                     {type: 'password', value: oldPasswordEl.value},
@@ -25,10 +34,14 @@ export class PasswordChangePage extends Block {
 
                 this.setProps({
                     error: errorMessage || "",
-                    oldPasswordValue: oldPasswordEl.value,
-                    newPasswordValue: newPasswordEl.value,
-                    newPasswordRepeatValue: newRepeatPasswordEl.value,
+                    values: {
+                        oldPassword: oldPasswordEl.value,
+                        newPassword: newPasswordEl.value,
+                    },
+                    newPasswordRepeat: newRepeatPasswordEl.value,
                 });
+                const data = this.props.values;
+                UsersController.changepassword(data as ChangePassword)
                 }
         })
     }
@@ -42,51 +55,41 @@ export class PasswordChangePage extends Block {
                          stroke-width="3" stroke-linecap="butt" stroke-linejoin="arcs">
                         <path d="M15 18l-6-6 6-6" />
                     </svg>
-                    <a href="./" class="back-btn">
+                    <a href="/profile" class="back-btn">
                         Назад
                     </a>
                 </div>
 
-                <div class="profile-container">
+                <div class="password-change-container">
                     <div class="profile">
-                        <div class="avatar-wrap">
-                            <img src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png" alt="Аватар" class="profile-img">
-                        </div>
-                        <div class="name-wrap">
-                            <p class="name">
-                                <b>
-                                    Екатерина
-                                </b>
-                            </p>
-                        </div>
                         <div class="wrap">
                             {{{ControllerInput
-                                    type="password"
+                                    type="text"
                                     name="password"
                                     onInput=onInput
                                     onFocus=onFocus
                                     placeholder="Введите пароль"
-                                    value="${this.props.loginValue}"
+                                    value="${this.props.oldPassword}"
                                     label="Старый пароль"
                                     ref="oldPasswordRef"
                             }}}
                             {{{ControllerInput
-                                    type="password"
+                                    type="text"
                                     name="newPassword"
                                     onInput=onInput
                                     onFocus=onFocus
                                     placeholder="Введите пароль"
-                                    value="${this.props.loginValue}"
+                                    value="${this.props.newPassword}"
                                     label="Новый пароль"
                                     ref="newPasswordRef"
                             }}}
                             {{{ControllerInput
-                                    type="password"
+                                    type="text"
                                     name="newPasswordRepeat"
                                     onInput=onInput
                                     onFocus=onFocus
                                     placeholder="Введите пароль"
-                                    value="${this.props.loginValue}"
+                                    value=""
                                     label="Повторите новый пароль"
                                     ref="newRepeatPasswordRef"
                             }}}
@@ -94,10 +97,16 @@ export class PasswordChangePage extends Block {
                     </div>
                     <div class="input-error">{{#if error}}{{error}}{{/if}}</div>
                     <div class="save-btn-wrap">
-                        {{{ Button text="Cохранить" onClick=onSubmit}}}
+                        {{{ Button text="Cохранить" 
+                                   onClick=onSave
+                                   style="button__button"
+                        }}}
                     </div>
                 </div>
             </div>
         `
     }
 }
+
+const withUser = withStore((state) => ({ ...state.user }));
+export const PasswordChangePage = withUser(PasswordEditPageBase);

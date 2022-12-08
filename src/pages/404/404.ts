@@ -3,10 +3,12 @@ import './404.css';
 
 
 export class NotFoundErrorPage extends Block {
+    static componentName = 'NotFoundErrorPage';
+
     render() {
         return `
         <div class="body">
-    <div class="container">
+    <div class="error-container">
         <div class="error-text">
             <p class="text title">
                 <b>

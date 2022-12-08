@@ -5,10 +5,14 @@ import './link.css';
 interface LinkProps {
   text: string;
   to: string;
+  onClick: () => void;
 }
 
 export class Link extends Block {
-  constructor(props: LinkProps) {
+    static componentName = 'Link';
+
+
+    constructor(props: LinkProps) {
     const onClick = (e: MouseEvent) => {
       // const router = new Router();
       // router.go(this.props.to);
