@@ -108,4 +108,5 @@ export class PasswordEditPageBase extends Block {
     }
 }
 const withUser = withStore((state) => ({user: {...(state.user || undefined)}}));
+// @ts-ignore
 export const PasswordChangePage = withUser(PasswordEditPageBase);

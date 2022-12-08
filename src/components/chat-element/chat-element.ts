@@ -72,6 +72,7 @@ export class ChatElementBase extends Block {
         `
     }
 }
-export const withSelectedChat = withStore(state => ({selectedChat: (state.chats || []).find(({id}) => id === state.selectedChat)}));
+export const withSelectedChat = withStore(state => ({selectedChat: (state.chats || []).find(({id}:any) => id === state.selectedChat)}));
 
+// @ts-ignore
 export const ChatElement = withSelectedChat(ChatElementBase);

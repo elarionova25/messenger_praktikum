@@ -3,6 +3,6 @@ import {registerComponent, renderDOM} from "../../core";
 import Button from "../button";
 registerComponent(Button)
 
-document.addEventListener("DOMContentLoaded", () => {
-    renderDOM(new ChatList());
-});
+// document.addEventListener("DOMContentLoaded", () => {
+//     renderDOM(new ChatList());
+// });

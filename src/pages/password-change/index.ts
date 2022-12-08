@@ -10,6 +10,6 @@ registerComponent(ControllerInput);
 registerComponent(Error);
 registerComponent(Button);
 
-document.addEventListener("DOMContentLoaded", () =>{
-    renderDOM(new PasswordChangePage());
-})
+// document.addEventListener("DOMContentLoaded", () =>{
+//     renderDOM(new PasswordChangePage());
+// })

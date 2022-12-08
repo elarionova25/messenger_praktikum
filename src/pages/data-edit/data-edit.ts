@@ -56,7 +56,7 @@ export class DataEditPageBase extends Block {
                 //}
             },
             onSubmit: () => {
-                const userForm = document.getElementById('myUserForm');
+                const userForm = document.getElementById('myUserForm') as HTMLFormElement;
                 const form = new FormData(userForm);
                 UsersController.changeavatar(form);
             }
@@ -174,4 +174,5 @@ export class DataEditPageBase extends Block {
 
 const withUser = withStore((state) => ({user: {...(state.user || undefined)}}));
 
+// @ts-ignore
 export const DataEditPage = withUser(DataEditPageBase);

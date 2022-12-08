@@ -102,14 +102,17 @@ window.addEventListener("DOMContentLoaded", async () => {
             break;
         }
         case Routes.Profile: {
+            // @ts-ignore
             renderDOM(new ProfilePage());
             break;
         }
         case Routes.DataEdit: {
+            // @ts-ignore
             renderDOM(new DataEditPage());
             break;
         }
         case Routes.PasswordChange: {
+            // @ts-ignore
             renderDOM(new PasswordChangePage());
             break;
         }

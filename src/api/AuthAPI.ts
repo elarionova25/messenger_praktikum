@@ -46,9 +46,9 @@ export class AuthAPI extends BaseAPI {
     return this.http.post('/logout');
   }
 
-  create = undefined;
-  update = undefined;
-  delete = undefined;
+  create:any = undefined;
+  update:any = undefined;
+  delete:any = undefined;
 }
 
 export default new AuthAPI();

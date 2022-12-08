@@ -202,7 +202,7 @@ export default class Block<P = any> {
         return;
       }
 
-      const stubChilds = stub.childNodes.length ? stub.childNodes : [];
+      const stubChilds: any = stub.childNodes.length ? stub.childNodes : [];
 
       const content = component.getContent();
       stub.replaceWith(content);

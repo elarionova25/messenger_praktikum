@@ -64,7 +64,7 @@ export class ChatBase extends Block {
                 ChatsController.deletechat(data);
             },
             onAvatarAdd: () => {
-                const myUserForm = document.getElementById('myUserForm');
+                const myUserForm = document.getElementById('myUserForm') as HTMLFormElement;
                 const form = new FormData(myUserForm);
                 form.append('chatId', this.props.selectedChat.id);
                 ChatsController.changechatavatar(form);
@@ -242,10 +242,11 @@ const withSelectedChatMessages = withStore(state => {
 
     return {
         messages: (state.messages || {})[selectedChatId] || [],
-        selectedChat: (state.chats || []).find(({id}) => id === state.selectedChat),
+        selectedChat: (state.chats || []).find(({id}:any) => id === state.selectedChat),
         userId: state.user.id,
         chatUsers: state.chatUsers,
     };
 });
 
+// @ts-ignore
 export const Chat = withSelectedChatMessages(ChatBase);

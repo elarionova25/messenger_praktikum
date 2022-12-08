@@ -40,9 +40,9 @@ export class UsersAPI extends BaseAPI {
             });
     }
 
-    create = undefined;
-    update = undefined;
-    delete = undefined;
+    create:any = undefined;
+    update:any = undefined;
+    delete:any = undefined;
 }
 
 export default new UsersAPI();

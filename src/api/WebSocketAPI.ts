@@ -31,7 +31,7 @@ export class WebSocketAPI {
         });
 
         socket.addEventListener('error', event => {
-            console.log('Ошибка', event.message);
+            console.log('Ошибка', event);
         });
     }
 }

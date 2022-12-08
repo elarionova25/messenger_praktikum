@@ -10,6 +10,6 @@ registerComponent(Input);
 registerComponent(ControllerInput);
 registerComponent(Error);
 
-document.addEventListener("DOMContentLoaded", () => {
-    renderDOM(new DataEditPage());
-});
+// document.addEventListener("DOMContentLoaded", () => {
+//     renderDOM(new DataEditPage());
+// });
