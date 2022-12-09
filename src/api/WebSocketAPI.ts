@@ -1,9 +1,11 @@
 import store from "../core/Store";
 
 export class WebSocketAPI {
-    createsocket(chatId: number) {
-        const token = store.getState().token;
+    createsocket(chatId: number, token: string) {
+        // const token = store.getState().token;
+
         const currentUser = store.getState().user
+
         const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${currentUser.id}/${chatId}/${token}`);
         store.set('currentSocket', socket)
         socket.addEventListener('open', () => {
@@ -25,12 +27,11 @@ export class WebSocketAPI {
 
         socket.addEventListener('message', event => {
             const data = JSON.parse(event.data);
-            const reversedData = Array.prototype.reverse.call(data);
-            store.set('selectedChat.oldMessages', reversedData)
+            store.set('selectedChat.oldMessages', data)
         });
 
         socket.addEventListener('error', event => {
-            console.log('Ошибка', event.message);
+            console.log('Ошибка', event);
         });
     }
 }

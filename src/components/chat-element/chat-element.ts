@@ -1,19 +1,21 @@
 import {Block} from "../../core";
 import ChatsController from "../../controllers/ChatsController";
-import store from "../../core/Store";
+import store, {withStore} from "../../core/Store";
 import {host} from "../../api/host";
 import './chat-element.css'
+import {Chat} from "../../api/ChatsAPI";
 
 type ChatElementProps = {
     chat: any;
     onClick: () => void;
+    selectedChat: Chat;
 }
 
-export class ChatElement extends Block {
+export class ChatElementBase extends Block {
     static componentName = 'ChatElement';
 
-    constructor({chat, onClick}: ChatElementProps) {
-        super({chat, events: {click: onClick}});
+    constructor({chat, selectedChat, onClick}: ChatElementProps) {
+        super({chat, selectedChat, events: {click: onClick}});
         this.setProps({
             onDelete: () => {
                 let data = {
@@ -21,14 +23,12 @@ export class ChatElement extends Block {
                 }
                 ChatsController.deletechat(data);
             },
-            onClick: () => {
-                store.set('selectedChat', chat);
-                // необходимо, чтобы сохранялся порядок в ChatList
-                ChatsController.getChats();
+            onClick: async () => {
+                store.set('selectedChat', chat.id);
                 ChatsController.getchatusers(chat.id).then((response) => {
-                    store.set('selectedChat.chatUsers', response)
+                    store.set('chatUsers', response)
+
                 })
-                ChatsController.getchattoken(chat.id);
             }
         })
     }
@@ -39,7 +39,6 @@ export class ChatElement extends Block {
 {{#ChatWrap chat=chat
             onClick=onClick
 }}
-<!--<div class="chat-element" id={{chat.id}}>-->
     {{#if chat.avatar}}
         <div class="wrapper avatar">
             <img src="${host}/api/v2/resources/{{chat.avatar}}" alt="avatar">
@@ -60,16 +59,6 @@ export class ChatElement extends Block {
             </div>
         </div>
         <div class="time-number-wrap">
-            <div class="time">
-                <a class="time-text">
-                    {{{ Button text="Удалить"
-                               onClick=onDelete
-                               style="delete-btn"
-                    }}}
-                    <br>
-                </a>
-            </div>
-            <br>
             {{#if chat.unread_count}}
             <div class="new-number">
                 <span class="badge">
@@ -79,8 +68,11 @@ export class ChatElement extends Block {
             {{/if}}
         </div>
     </div>
-<!--</div>-->
 {{/ChatWrap}}
         `
     }
 }
+export const withSelectedChat = withStore(state => ({selectedChat: (state.chats || []).find(({id}:any) => id === state.selectedChat)}));
+
+// @ts-ignore
+export const ChatElement = withSelectedChat(ChatElementBase);

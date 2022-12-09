@@ -1,8 +1,8 @@
 import Block from '../../core/Block';
 import {validateForm} from "../../helpers/validateForm";
-import './login.css';
 import AuthController from '../../controllers/AuthController';
 import {SignupData} from "../../api/AuthAPI";
+import './login.css';
 
 // email:"test@btu.ru"
 // first_name:"Екатерина"
@@ -53,7 +53,7 @@ export class LoginPage extends Block {
 
                 if (!errorMessage) {
                 const data = this.props.values;
-                console.log('DATA', data)
+
                 AuthController.signin(data as SignupData);
                 }
             },
@@ -70,9 +70,9 @@ export class LoginPage extends Block {
             <p class="title-text">Вход</p>
         </div>
         <br>
-        <span style="color: #999999">First account: elarionova25/ABCabc123&</span>
+        <span style="color: #999999; margin-left: 10px">Тестовый аккаунт №1: elarionova25/ABCabc123&</span>
         <br>
-        <span style="color: #999999">Second account: blabla12/ABCabc123&</span>
+        <span style="color: #999999; margin-left: 10px">Тестовый аккаунт №2: blabla12/ABCabc123&</span>
 
         <div class="data">
         {{{ControllerInput
@@ -82,7 +82,6 @@ export class LoginPage extends Block {
               onInput=onInput
               onFocus=onFocus
               label="Логин"
-              value="${this.props.login}"
               ref="loginControllerInputRef"
         }}}
         {{{ControllerInput
@@ -92,7 +91,6 @@ export class LoginPage extends Block {
               onInput=onInput
               onFocus=onFocus
               label="Пароль"
-              value="{{value}}"
               ref="passwordControllerInputRef"
         }}}
         </div>
@@ -119,3 +117,5 @@ export class LoginPage extends Block {
     `;
     }
 }
+
+// export const LoginPage = LoginPageBase;

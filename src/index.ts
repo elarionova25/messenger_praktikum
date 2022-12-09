@@ -102,15 +102,15 @@ window.addEventListener("DOMContentLoaded", async () => {
             break;
         }
         case Routes.Profile: {
-            renderDOM(new ProfilePage());
+            renderDOM(new ProfilePage({}));
             break;
         }
         case Routes.DataEdit: {
-            renderDOM(new DataEditPage());
+            renderDOM(new DataEditPage({}));
             break;
         }
         case Routes.PasswordChange: {
-            renderDOM(new PasswordChangePage());
+            renderDOM(new PasswordChangePage({}));
             break;
         }
         default: {

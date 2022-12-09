@@ -5,6 +5,9 @@ import Handlebars from 'handlebars';
 interface BlockMeta<P = any> {
   props: P;
 }
+export type Nullable<T> = T | null;
+export type Keys<T extends Record<string, unknown>> = keyof T;
+export type Values<T extends Record<string, unknown>> = T[Keys<T>];
 
 type Events = Values<typeof Block.EVENTS>;
 
@@ -27,6 +30,7 @@ export default class Block<P = any> {
 
   protected state: any = {};
   refs: {[key: string]: Block} = {};
+    firstElementChild: any;
 
   public constructor(props?: P) {
     const eventBus = new EventBus<Events>();
@@ -91,7 +95,8 @@ export default class Block<P = any> {
       return;
     }
 
-    Object.assign(this.props, nextProps);
+    // @ts-ignore
+      Object.assign(this.props, nextProps);
   };
 
   setState = (nextState: any) => {
@@ -197,7 +202,7 @@ export default class Block<P = any> {
         return;
       }
 
-      const stubChilds = stub.childNodes.length ? stub.childNodes : [];
+      const stubChilds: any = stub.childNodes.length ? stub.childNodes : [];
 
       const content = component.getContent();
       stub.replaceWith(content);

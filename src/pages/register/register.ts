@@ -71,8 +71,6 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Логин"
-                                value="${this.props.login}"
-                                ref="loginControllerInputRef"
                         }}}
                         {{{ControllerInput
                                 type="text"
@@ -81,8 +79,6 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Email"
-                                value="${this.props.email}"
-                                ref="emailControllerInputRef"
                         }}}
                         
                         {{{ControllerInput
@@ -92,8 +88,6 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Имя"
-                                value="${this.props.first_name}"
-                                ref="nameControllerInputRef"
                         }}}
                         {{{ControllerInput
                                 type="text"
@@ -102,8 +96,6 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Фамилия"
-                                value="${this.props.second_name}"
-                                ref="surnameControllerInputRef"
                         }}}
                         {{{ControllerInput
                                 type="text"
@@ -112,8 +104,6 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Телефон"
-                                value="${this.props.phone}"
-                                ref="phoneControllerInputRef"
                         }}}
                         {{{ControllerInput
                                 type="password"
@@ -122,8 +112,6 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Пароль"
-                                value="${this.props.password}"
-                                ref="passwordControllerInputRef"
                         }}}
                     </div>
                     <div class="input-error">{{#if error}}{{error}}{{/if}}</div>

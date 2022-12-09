@@ -29,7 +29,7 @@ export class ChatsAPI extends BaseAPI {
         super('/chats');
     }
 
-    read(): Promise<Chat> {
+    read(): Promise<Chat[]> {
         return this.http.get('');
     }
 
@@ -49,12 +49,10 @@ export class ChatsAPI extends BaseAPI {
         return this.http.get('/'+id+'/users');
     }
 
-    getchattoken(id: number) {
-        this.http.fetchPost(`/token/${id}`)
-            .then((response:any) => {
-                store.set('token', response.token);
-                WebSocketController.createsocket(id)
-            })
+    async getchattoken(id: number): Promise<string> {
+        const response = await this.http.post<{ token: string }>(`/token/${id}`);
+
+        return response.token;
     }
 
     changechatavatar(data: FormData) {
@@ -64,9 +62,9 @@ export class ChatsAPI extends BaseAPI {
             });
     }
 
-    create = undefined;
-    update = undefined;
-    delete = undefined;
+    create:any = undefined;
+    update:any = undefined;
+    delete:any = undefined;
 }
 
 export default new ChatsAPI();

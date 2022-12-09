@@ -8,9 +8,9 @@ export class WebSocketController {
         this.socket = SOCKET;
     }
 
-    async createsocket(chatId: number) {
+    async createsocket(chatId: number, token: string) {
         try {
-            await this.socket.createsocket(chatId);
+            await this.socket.createsocket(chatId, token);
         } catch (e: any) {
             console.log('error');
             router.go('/error500');

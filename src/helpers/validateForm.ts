@@ -39,7 +39,7 @@ export function validateForm(rules: ValidateRule[]) {
                 // qwerty false
                 // qwertyuiop false
                 // abcABC123$ true
-                const regex = new RegExp(/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,40}$/);
+                const regex = new RegExp(/^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d).*$/);
                 if(!(regex.test(value))){
                     return 'Cлабый пароль';
                 }
@@ -87,7 +87,7 @@ export function validateForm(rules: ValidateRule[]) {
                 // +1 202-456-11-11 false
                 const regex = new RegExp(/^\+?(\d{1,3})?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$/);
                 if(!(regex.test(value))){
-                    return 'Неверный телефон'
+                    return 'Неверный телефон. Введите в формате (000) 000-0000 или +7 000-000-0000'
                 }
             }
         }

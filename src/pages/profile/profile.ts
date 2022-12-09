@@ -4,21 +4,21 @@ import AuthController from "../../controllers/AuthController";
 import store, {withStore} from "../../core/Store";
 import {host} from "../../api/host";
 
+type ProfilePageProps = {
+    user: any;
+}
+
+
 export class ProfilePageBase extends Block {
     static componentName = 'ProfilePage';
 
-    constructor() {
-        super();
-        // AuthController.fetchUser();
-        console.log(store.getState().user);
-        console.log(this.props.user)
+    constructor({...props}: ProfilePageProps) {
+        super({...props});
         this.setProps({
-            user: store.getState().user,
             onLogout:() => {
                 AuthController.logout();
             }
         })
-        console.log('user', this.props.user)
     }
 
     // language=hbs
@@ -30,7 +30,7 @@ export class ProfilePageBase extends Block {
                          stroke-width="3" stroke-linecap="butt" stroke-linejoin="arcs">
                         <path d="M15 18l-6-6 6-6" />
                     </svg>
-                    <a href="./" class="back-btn" style="color: #999">
+                    <a href="/" class="back-btn" style="color: #999">
                         Назад
                     </a>
                 </div>
@@ -120,6 +120,7 @@ export class ProfilePageBase extends Block {
         `
     }
 }
-const withUser = withStore((state) => ({ ...state.user }));
+const withUser = withStore((state) => ({user: {...(state.user || undefined)}}));
 
+// @ts-ignore
 export const ProfilePage = withUser(ProfilePageBase);

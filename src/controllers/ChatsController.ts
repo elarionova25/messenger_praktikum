@@ -1,7 +1,7 @@
 import API, {AddUsers, CreateChat, DeleteChat} from '../api/ChatsAPI';
 import {ChatsAPI} from "../api/ChatsAPI";
-import router from '../core/Router';
 import store from "../core/Store";
+import MessagesController from "./MessagesController";
 
 export class ChatsController {
     private readonly api: ChatsAPI;
@@ -13,9 +13,18 @@ export class ChatsController {
     async getChats() {
         try {
             const chats = await this.api.read();
+
+            chats.map(async (chat) => {
+                const token = await this.getchattoken(chat.id);
+                await MessagesController.connect(chat.id, token);
+                // let i =0;
+                // const users = await this.getchatusers(chat.id);
+                // store.set(`chats.${chat.id}`, users);
+                // i++;
+            });
             store.set('chats', chats);
         } catch (e: any) {
-            console.log('error');
+            console.error("fetch chat error")
         }
     }
 
@@ -51,11 +60,7 @@ export class ChatsController {
     }
 
     async getchattoken(id: number) {
-        try {
-            await this.api.getchattoken(id);
-        } catch (e: any) {
-            console.log('error');
-        }
+        return this.api.getchattoken(id);
     }
 
     async changechatavatar(data: FormData) {

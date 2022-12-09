@@ -30,6 +30,7 @@ export class ControllerInput extends Block {
                         error: errorMessage || "",
                         inputValue: inputEl.value,
                     })
+                    // @ts-ignore
                     this.refs.inputRef.value= inputEl.value;
                 }
             }
@@ -45,6 +46,18 @@ export class ControllerInput extends Block {
                   {{label}}:
               </span>
           </div>
+          {{#if value}}
+              {{{ Input
+                      name="{{name}}"
+                      type="{{type}}"
+                      placeholder="{{placeholder}}"
+                      onFocus=onFocus
+                      onInput=onInput
+                      onBlur=onBlur
+                      ref="inputRef"
+                      value="{{value}}"
+              }}}
+              {{else}}
               {{{ Input
                       name="{{name}}"
                       type="{{type}}"
@@ -54,6 +67,7 @@ export class ControllerInput extends Block {
                       onBlur=onBlur
                       ref="inputRef"
               }}}
+          {{/if}}
           {{{Error text=error}}}
       </div>
     `
