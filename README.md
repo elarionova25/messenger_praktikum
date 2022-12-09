@@ -11,5 +11,5 @@ npm run test - запуск тестов
 
 Деплой на Netlify: https://endearing-kheer-2ce087.netlify.app/
 
-Pull reguest: https://github.com/elarionova25/middle.messenger.praktikum.yandex/pull/3
+Pull reguest: https://github.com/elarionova25/middle.messenger.praktikum.yandex/pull/4
 
