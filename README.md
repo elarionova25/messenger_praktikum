@@ -1,18 +1,14 @@
-Проект "Мессенджер"
-
-Предназначен для осуществления общения между людьми. Пользователь регистрируется в системе и него появляется возможность отравлять сообщения другим авторизованным пользователям. 
+# Мессенджер на TypeScript с собственной реализацией реактивного фреймворка.
 
 Команды:
-npm run build - для сборки проекта
-npm run dev - для запуска проекта
+```
+npm run build - cборка проекта
+npm run serve - запуск проекта
+npm run test - запуск тестов
+```
 
-Для запуска на сервере Express: 
-npm run start_build
-npm run start - для запуска на 3000 порту сервер Express
+Деплой: https://messenger-go5m.onrender.com/
 
-Netlify: https://endearing-kheer-2ce087.netlify.app/
+Деплой на Netlify: https://endearing-kheer-2ce087.netlify.app/
 
-Спринт 3:
-Подключены api и websocket. 
-Pull reguest: https://github.com/elarionova25/middle.messenger.praktikum.yandex/pull/3
-
+Pull reguest: https://github.com/elarionova25/middle.messenger.praktikum.yandex/pull/4
