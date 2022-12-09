@@ -71,7 +71,6 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Логин"
-                                ref="loginControllerInputRef"
                         }}}
                         {{{ControllerInput
                                 type="text"
@@ -80,7 +79,6 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Email"
-                                ref="emailControllerInputRef"
                         }}}
                         
                         {{{ControllerInput
@@ -90,7 +88,6 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Имя"
-                                ref="nameControllerInputRef"
                         }}}
                         {{{ControllerInput
                                 type="text"
@@ -99,7 +96,6 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Фамилия"
-                                ref="surnameControllerInputRef"
                         }}}
                         {{{ControllerInput
                                 type="text"
@@ -108,7 +104,6 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Телефон"
-                                ref="phoneControllerInputRef"
                         }}}
                         {{{ControllerInput
                                 type="password"
@@ -117,7 +112,6 @@ export class RegisterPage extends Block {
                                 onInput=onInput
                                 onFocus=onFocus
                                 label="Пароль"
-                                ref="passwordControllerInputRef"
                         }}}
                     </div>
                     <div class="input-error">{{#if error}}{{error}}{{/if}}</div>

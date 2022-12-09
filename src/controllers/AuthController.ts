@@ -25,9 +25,9 @@ export class AuthController {
 
     async signup(data: SignupData) {
         try {
-            router.go('/');
             await this.api.signup(data);
             await this.fetchUser();
+            router.go('/');
         } catch (e: any) {
             console.log('error_sign_up');
         }
