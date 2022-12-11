@@ -8,7 +8,11 @@
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
-    "serve": "webpack serve"
+    "serve": "webpack serve",
+    "lint:scss": "npx stylelint \"**/*.scss\"",
+    "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
+    "lint:ts": "eslint --ext .ts ./",
+    "lint:ts:fix": "eslint --ext .ts ./ --fix"
   },
   "author": "",
   "license": "ISC",
