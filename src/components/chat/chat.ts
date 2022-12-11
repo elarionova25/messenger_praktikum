@@ -17,6 +17,11 @@ export class ChatBase extends Block {
     static componentName = 'Chat';
     constructor({...props}: ChatProps) {
         super({...props});
+        document.addEventListener('keypress', function (e) {
+            if (e.key === "Enter"){
+                e.preventDefault();
+            }
+        })
         this.setProps({
             message: '',
             onSubmit: (event: SubmitEvent) => {
