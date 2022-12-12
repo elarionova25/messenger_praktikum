@@ -138,14 +138,15 @@ export class ChatBase extends Block {
                                 </svg>
                             </label>
                         </div>
-                        <form id="send-form" class="text-bar-field">
+<!--                        <form id="send-form" class="text-bar-field">-->
                             {{{ Input
                                     type=text
                                     placeholder="Введите сообщение"
                                     onInput=onInput
                                     name="message"
+                                    onSubmit=onSubmit
                             }}}
-                        </form>
+<!--                        </form>-->
                         {{{ SendButton
                                 type="submit"
                                 name="sendBtn"
